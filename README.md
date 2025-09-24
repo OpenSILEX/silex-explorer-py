@@ -1,93 +1,177 @@
-# SilexExplorerPy
 
 
+# **Python Package**
+> **Brief Description**: A Python package designed to help researchers extract, visualize, and analyze complex phenotypic and environmental data for in-depth scientific insights.
 
-## Getting started
+## **Table of Contents**
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+- [Description](#description)
+- [Features](#features)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## **Description**
+`Package Name` is a Python package designed to help researchers extract, visualize, and analyze complex phenotypic and environmental data associated with scientific experiments. It provides a comprehensive set of tools for interacting with OpenSILEX instances to retrieve experimental data, manage scientific objects, and collect environmental information. Ideal for researchers in fields such as agriculture and environment, this package enables efficient data management and filtering by experiments, species, projects, and environmental conditions. It also supports exporting, visualizing, and analyzing the results, facilitating in-depth scientific insights and data-driven decision-making.
 
-## Add your files
+## **Features**
+- **User Authentication**:   
+  The `login` function allows secure authentication to an OpenSILEX instance and facilitates seamless interaction with its REST and GraphQL services by:  
+  - Providing a token-based authentication mechanism.  
+  - Configuring and generating REST and GraphQL endpoints dynamically.  
+  - Preparing headers for secure and efficient API communication.  
+  - Supporting custom ports and flexible server setups.  
+ 
+- **Experiment Retrieval and Filtering**:   
+  The `get_ls_exp` function allows you to retrieve and filter experiments from an OpenSILEX instance using a GraphQL query. Key features include:  
+  - Filtering experiments by species_uri, project_uri, date,species_name or project name.    
+  - Returning results as a pandas DataFrame. 
+  - Exporting filtered results to a CSV file for further analysis.  
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+- **Scientific Object Types Retrieval**:    
+  The `get_ls_os_types_by_exp` function retrieves all scientific object types associated with a specific experiment from an OpenSILEX instance. Key features include:   
+  - Filtering scientific object types by experiment URI.  
+  - Returning results, including URIs and namesas,as a pandas DataFrame.  
+  - Exporting results, to a CSV file.  
+
+- **Factors and Factor Levels Retrieval** :   
+  The `get_fl_by_exp` function retrieves all factors and their associated levels for a given experiment. Key features include:  
+  - Retrieving factors and their levels using GraphQL queries.  
+  - Storing the retrieved data, including factor URIs and level URIs, in a CSV file.  
+  - Returning the results as a pandas DataFrame for further analysis or processing.  
+
+- **Variables Retrieval by Experiment**:   
+  The `get_ls_var_by_exp` function retrieves all variables for a given experiment. Key features include:  
+  - Fetching variables and their associated metadata (e.g., entity, characteristic, method, and unit) for a specified experiment.  
+  - Saving the retrieved data to a CSV file for further analysis.  
+  - Returning the variables as a pandas DataFrame.   
+
+- **Scientific Objects Retrieval by Experiment**:   
+  The `get_os_by_exp` function retrieves scientific objects and their associated details for a given experiment and object type. Key features include:  
+  - Dynamic filtering for factor levels and germplasm (both by uri and name).  
+  - Supporting GraphQL queries to fetch detailed information about the scientific objects, including factors and germplasm data.  
+  - Saving the retrieved data to a CSV file for further analysis.  
+  - Returning the data as a pandas DataFrame, with optional filters applied for factor levels and germplasm.
+
+- **Data Retrieval by Variable**:   
+  The `get_data_by_variable` function retrieves data associated with scientific objects for a specified experiment and object type. Key features include:  
+  - Supports optional filtering by factor levels and germplasm.  
+  - Extracts data such as target, variable, value, and date for each scientific object.  
+  - Organizes the extracted data by variable and exports each variable's data to separate CSV files.  
+  - Returns a dictionary where keys are variable names and values are DataFrames containing the associated data.  
+  - The data can be filtered based on a provided list of variables (e.g., sensor readings, measurements).  
+  - Saves the CSV files in the `temp_files` directory.
+
+- **Environmental Variables by Facility**:   
+  The `get_variable_by_facility` function retrieves detailed environmental variable information linked to a facility. Key features include:  
+  - Allows filtering by a specific date range (optional).  
+  - Fetches a list of unique variables associated with the facility for the given date range.  
+  - Retrieves detailed information for each variable (e.g., entity, characteristic, method, unit).  
+  - Saves the variable details into a CSV file (default: `facility_env_var.csv`).  
+  - Returns the variable details as a DataFrame. 
+
+- **Retrieve and Export Environmental Data by Facility**:   
+  The `get_environmental_data_by_facility` function fetches environmental data for a specific facility within a given date range. Key features include:  
+  - Retrieves environmental data and exports it to CSV files, organized by variable.  
+  - Allows filtering by a list of environmental variables (optional). If none provided, variables are fetched using `get_variable_by_facility`.  
+  - Supports flexible date filtering (defaulting to today's date if no dates are provided).  
+  - The data is saved as separate CSV files for each variable, with a customizable prefix.  
+  - Returns a dictionary where keys are variable names and values are corresponding DataFrames. 
+
+- **Retrieve and Export Devices by Facility**:   
+  The `get_devices_by_facility` function fetches devices associated with a specific facility using pagination. Key features include:  
+  - Retrieves devices data for a given facility with pagination support.  
+  - Each device is represented with its URI, type, and name. 
+  - Saves the retrieved devices data to a CSV file.  
+  - Returns a list of dictionaries containing device details.  
+
+- **Retrieve Measured Data by Device**:   
+  The `get_data_by_device` function retrieves measured data associated with a specific device and exports it to a CSV file. Key features include:  
+  - Fetches measured data for a device based on a specified date range (optional).  
+  - Data includes device URI, target, value, variable, and measurement date.  
+  - Saves the data to a CSV file, with a customizable filename.  
+  - Returns the data as a Pandas DataFrame.  
+
+- **Retrieve and Export Moves for a Scientific Object**:  
+  The `get_moves_by_os` function retrieves the movement history of a scientific object and exports it to a CSV file. Key features include:  
+  - Retrieves moves based on the object's URI, experiment, and optional date range.  
+  - The moves include information about the "from" and "to" locations and the start and end times of each move.  
+  - Generates a CSV file with columns: From, To, HasBeginning, and HasEnd.  
+  - Returns a list of moves, each containing the relevant details.  
+
+## **Installation**
+1. Make sure you have Python 3.7+ installed:  
+ To check the version of Python installed on your system, run the following command:
+
+    ```bash
+    python3 --version
+    ```
+    It should display something like:
+    ```bash
+    Python 3.8.10
+    ```
+2. Install the package using pip from ForgeMIA:  
+  To install the package directly from ForgeMIA, use the following command:
+   ```bash
+   pip3 install git+https://forgemia.inra.fr/OpenSILEX/opensilex-graphql/python-package.git
+
+3. Install additional dependencies:
+   ```bash
+   pip3 install -r requirements.txt
+
+## **Quick Start**
+Here's a basic example of how to use the package:
+```python
+from package.exceptions.custom_exceptions import APIRequestError, AuthenticationError
+from package.auth.auth import login
+from package.experiment.ls_exp import get_ls_exp
+
+# Configuration for the OpenSILEX server (demo instance)
+        username = "admin@opensilex.org"
+        password = "******"  # Enter your password here
+        instance_rest = "138.102.159.36"
+        instance_name = "demo"
+        port_rest = "8084"
+        instance_graphql = "138.102.159.37"
+        
+        # Login to the OpenSILEX instance
+        session = login(username, password, instance_rest, instance_name, port_rest, instance_graphql)
+
+        # Get the list of experiments and save to CSV (in temp_files)
+        df_exp = get_ls_exp(session)
+```
+## **Project Structure**
 
 ```
-cd existing_repo
-git remote add origin https://forge.inrae.fr/OpenSILEX/opensilex-graphql/silexexplorerpy.git
-git branch -M main
-git push -uf origin main
+project/
+│
+├── docs/ — Documentation for the package
+├── examples/ — Usage examples
+├── package/ — Source code organized into modules
+│ ├── auth/ — Authentication management
+│ ├── device/ — Device management
+│ ├── exceptions/ — Custom error handling
+│ ├── experiment/ — Experiment management
+│ ├── facility/ — Facility management
+│ ├── factor/ — Factor management
+│ └── scientific_object/ — Scientific object management
+├── temp_files/ — Temporary files generated by the package
+├── tests/ — Unit and functional tests
+├── main.py — Main script
+├── README.md — General documentation
+├── requirements.txt — Project dependencies
+└── setup.py — Installation script
 ```
+## **Contributing**
 
-## Integrate with your tools
+Contributions are welcome!
 
-- [ ] [Set up project integrations](https://forge.inrae.fr/OpenSILEX/opensilex-graphql/silexexplorerpy/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+1. Fork the repository.  
+2. Create a branch for your changes:  
+   ```bash
+   git checkout -b feature/my-new-feature
+3. Commit your changes and push them:
+   ```bash
+   git push origin feature/my-new-feature
+4. Open a pull request.
