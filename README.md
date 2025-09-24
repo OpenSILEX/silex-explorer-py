@@ -1,6 +1,6 @@
 
 
-# **Python Package**
+# **SilexExplorerPy**
 > **Brief Description**: A Python package designed to help researchers extract, visualize, and analyze complex phenotypic and environmental data for in-depth scientific insights.
 
 ## **Table of Contents**
@@ -13,7 +13,7 @@
 - [Contributing](#contributing)
 
 ## **Description**
-`Package Name` is a Python package designed to help researchers extract, visualize, and analyze complex phenotypic and environmental data associated with scientific experiments. It provides a comprehensive set of tools for interacting with OpenSILEX instances to retrieve experimental data, manage scientific objects, and collect environmental information. Ideal for researchers in fields such as agriculture and environment, this package enables efficient data management and filtering by experiments, species, projects, and environmental conditions. It also supports exporting, visualizing, and analyzing the results, facilitating in-depth scientific insights and data-driven decision-making.
+`SilexExplorerPy` is a Python package designed to help researchers extract, visualize, and analyze complex phenotypic and environmental data associated with scientific experiments. It provides a comprehensive set of tools for interacting with OpenSILEX instances to retrieve experimental data, manage scientific objects, and collect environmental information. Ideal for researchers in fields such as agriculture and environment, this package enables efficient data management and filtering by experiments, species, projects, and environmental conditions. It also supports exporting, visualizing, and analyzing the results, facilitating in-depth scientific insights and data-driven decision-making.
 
 ## **Features**
 - **User Authentication**:   
