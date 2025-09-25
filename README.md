@@ -1,4 +1,21 @@
 
+<div align="center">
+
+# SilexExplorerR
+###  R Interface for OpenSILEX Platform
+
+[![Python](https://img.shields.io/badge/Python-%3E%3D%203.0-blue?style=flat-square&logo=python)](https://www.python.org/)
+[![OpenSILEX](https://img.shields.io/badge/OpenSILEX-Platform-green?style=flat-square)](https://opensilex.org/)
+[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat-square)](https://opensilex.org/documentation)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=flat-square&logo=github)](https://github.com/OpenSILEX/silex-explorer-py)
+
+[Documentation](https://opensilex.org/documentation) • 
+[Installation Guide](#installation) • 
+[Quick Start](#quick-start) • 
+[Examples](./examples) • 
+[Contributing](#contributing)
+---
+</div>
 
 # **SilexExplorerPy**
 > **Brief Description**: A Python package designed to help researchers extract, visualize, and analyze complex phenotypic and environmental data for in-depth scientific insights.
