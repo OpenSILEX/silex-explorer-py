@@ -1,8 +1,8 @@
 
 <div align="center">
 
-# SilexExplorerR
-###  R Interface for OpenSILEX Platform
+# SilexExplorerPy
+###  Python Interface for OpenSILEX Platform
 
 [![Python](https://img.shields.io/badge/Python-%3E%3D%203.0-blue?style=flat-square&logo=python)](https://www.python.org/)
 [![OpenSILEX](https://img.shields.io/badge/OpenSILEX-Platform-green?style=flat-square)](https://opensilex.org/)
