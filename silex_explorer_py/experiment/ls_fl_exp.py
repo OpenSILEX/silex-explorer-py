@@ -1,6 +1,6 @@
 import pandas as pd
-from package.exceptions.custom_exceptions import APIRequestError
-from package.factor.ls_fl_factor import get_fl_by_factor
+from silex_explorer_py.exceptions.custom_exceptions import APIRequestError
+from silex_explorer_py.factor.ls_fl_factor import get_fl_by_factor
 import os
 from .ls_factor_exp import get_factors_by_exp
 

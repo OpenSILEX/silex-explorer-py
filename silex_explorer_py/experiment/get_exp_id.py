@@ -1,4 +1,4 @@
-from package.uri_name_manager.uri_name_table import getURIbyName
+from silex_explorer_py.uri_name_manager.uri_name_table import getURIbyName
 import requests
 from datetime import datetime
 

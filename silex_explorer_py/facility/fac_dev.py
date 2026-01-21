@@ -1,8 +1,8 @@
 import requests
 import os
 import pandas as pd
-from package.exceptions.custom_exceptions import APIRequestError
-from package.uri_name_manager.uri_name_table import getURIbyName, insert_into_uri_name
+from silex_explorer_py.exceptions.custom_exceptions import APIRequestError
+from silex_explorer_py.uri_name_manager.uri_name_table import getURIbyName, insert_into_uri_name
 
 
 def get_devices_by_facility(session, facility_name, page_size=20, csv_filepath=None):

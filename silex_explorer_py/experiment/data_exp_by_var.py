@@ -1,11 +1,11 @@
 import requests
 import pandas as pd
 import os
-from package.exceptions.custom_exceptions import APIRequestError
+from silex_explorer_py.exceptions.custom_exceptions import APIRequestError
 from collections import defaultdict
-from package.experiment.ls_var_exp import get_ls_var_by_exp
-from package.experiment.get_exp_id import get_experiment_id
-from package.uri_name_manager.uri_name_table import getURIbyName
+from silex_explorer_py.experiment.ls_var_exp import get_ls_var_by_exp
+from silex_explorer_py.experiment.get_exp_id import get_experiment_id
+from silex_explorer_py.uri_name_manager.uri_name_table import getURIbyName
 
 
 def get_data_by_variable(session, experiment_name, obj_type_name, ls_var_exp=None, factor_level_uri=None, germplasm_uri=None, csv_filepath=None):
