@@ -158,6 +158,29 @@ from package.experiment.ls_exp import get_ls_exp
         # Get the list of experiments and save to CSV (in temp_files)
         df_exp = get_ls_exp(session)
 ```
+> For more examples and detailed usage of the available functions, please see the `examples` folder.
+
+> ⚠️  **Important Note:**  
+> For all functions where you filter using names or labels, the corresponding elements **must be loaded in advance** into the `uri_name` table.  
+> 
+> For example, if you want to filter the scientific objects of a specific experiment with label `"ZA17"` and object type `"Plant"`, you would normally write:  
+> 
+> ```r
+> get_os_by_exp(session, experiment_name, obj_type_name)
+> ```  
+> 
+> Before doing this, you must first load the experiment and the object types to populate the `uri_name` table:  
+> 
+> ```r
+> # Load all experiments
+> get_ls_exp(session=session)
+> 
+> # Load object types for the specific experiment
+> get_ls_os_types_by_exp(session, experiment_name ="ZA17")
+> ```  
+> 
+> This ensures that all names and URIs required for filtering are available for the functions to work correctly.
+
 ## **Project Structure**
 
 ```
