@@ -3,6 +3,8 @@
 
 # SilexExplorerPy
 ###  Python Interface for OpenSILEX Platform
+<img width="850" height="400" alt="logo_ligne_SilexExplorer_couleur" src="https://github.com/user-attachments/assets/9b6a7b83-98b4-499a-ab35-b7eba0982cd3" />
+
 
 [![Python](https://img.shields.io/badge/Python-%3E%3D%203.0-blue?style=flat-square&logo=python)](https://www.python.org/)
 [![OpenSILEX](https://img.shields.io/badge/OpenSILEX-Platform-green?style=flat-square)](https://opensilex.org/)
