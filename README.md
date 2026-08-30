@@ -1,217 +1,337 @@
+# silexexplorerpy
 
-<div align="center">
+A Python project created with pyscaf
 
-# SilexExplorerPy
-###  Python Interface for OpenSILEX Platform
+## uv Integration
 
-[![Python](https://img.shields.io/badge/Python-%3E%3D%203.0-blue?style=flat-square&logo=python)](https://www.python.org/)
-[![OpenSILEX](https://img.shields.io/badge/OpenSILEX-Platform-green?style=flat-square)](https://opensilex.org/)
-[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat-square)](https://opensilex.org/documentation)
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=flat-square&logo=github)](https://github.com/OpenSILEX/silex-explorer-py)
+This project uses uv for dependency management and packaging. uv provides a modern and extremely fast way to manage Python dependencies and build packages.
 
-[Documentation](https://opensilex.org/documentation) • 
-[Installation Guide](#installation) • 
-[Quick Start](#quick-start) • 
-[Examples](./examples) • 
-[Contributing](#contributing)
----
-</div>
+### Features
 
-# **SilexExplorerPy**
-> **Brief Description**: A Python package designed to help researchers extract, visualize, and analyze complex phenotypic and environmental data for in-depth scientific insights.
+- **Dependency Management**: uv manages project dependencies through `pyproject.toml`
+- **Virtual Environment**: Automatically creates and manages a virtual environment
+- **Build System**: Integrated build system for creating Python packages
+- **Lock File**: Generates a `uv.lock` file for reproducible installations
 
-## **Table of Contents**
+### Common Commands
 
-- [Description](#description)
-- [Features](#features)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
+```bash
+# Install dependencies
+uv sync
 
-## **Description**
-`SilexExplorerPy` is a Python package designed to help researchers extract, visualize, and analyze complex phenotypic and environmental data associated with scientific experiments. It provides a comprehensive set of tools for interacting with OpenSILEX instances to retrieve experimental data, manage scientific objects, and collect environmental information. Ideal for researchers in fields such as agriculture and environment, this package enables efficient data management and filtering by experiments, species, projects, and environmental conditions. It also supports exporting, visualizing, and analyzing the results, facilitating in-depth scientific insights and data-driven decision-making.
+# Add a new dependency
+uv add package-name
 
-## **Features**
-- **User Authentication**:   
-  The `login` function allows secure authentication to an OpenSILEX instance and facilitates seamless interaction with its REST and GraphQL services by:  
-  - Providing a token-based authentication mechanism.  
-  - Configuring and generating REST and GraphQL endpoints dynamically.  
-  - Preparing headers for secure and efficient API communication.  
-  - Supporting custom ports and flexible server setups.  
- 
-- **Experiment Retrieval and Filtering**:   
-  The `get_ls_exp` function allows you to retrieve and filter experiments from an OpenSILEX instance using a GraphQL query. Key features include:  
-  - Filtering experiments by species_uri, project_uri, date,species_name or project name.    
-  - Returning results as a pandas DataFrame. 
-  - Exporting filtered results to a CSV file for further analysis.  
+# Add a development dependency
+uv add --dev package-name
 
-- **Scientific Object Types Retrieval**:    
-  The `get_ls_os_types_by_exp` function retrieves all scientific object types associated with a specific experiment from an OpenSILEX instance. Key features include:   
-  - Filtering scientific object types by experiment URI.  
-  - Returning results, including URIs and namesas,as a pandas DataFrame.  
-  - Exporting results, to a CSV file.  
+# Update dependencies
+uv sync --upgrade
 
-- **Factors and Factor Levels Retrieval** :   
-  The `get_fl_by_exp` function retrieves all factors and their associated levels for a given experiment. Key features include:  
-  - Retrieving factors and their levels using GraphQL queries.  
-  - Storing the retrieved data, including factor URIs and level URIs, in a CSV file.  
-  - Returning the results as a pandas DataFrame for further analysis or processing.  
+# Run a command within the virtual environment
+uv run python script.py
 
-- **Variables Retrieval by Experiment**:   
-  The `get_ls_var_by_exp` function retrieves all variables for a given experiment. Key features include:  
-  - Fetching variables and their associated metadata (e.g., entity, characteristic, method, and unit) for a specified experiment.  
-  - Saving the retrieved data to a CSV file for further analysis.  
-  - Returning the variables as a pandas DataFrame.   
-
-- **Scientific Objects Retrieval by Experiment**:   
-  The `get_os_by_exp` function retrieves scientific objects and their associated details for a given experiment and object type. Key features include:  
-  - Dynamic filtering for factor levels and germplasm (both by uri and name).  
-  - Supporting GraphQL queries to fetch detailed information about the scientific objects, including factors and germplasm data.  
-  - Saving the retrieved data to a CSV file for further analysis.  
-  - Returning the data as a pandas DataFrame, with optional filters applied for factor levels and germplasm.
-
-- **Data Retrieval by Variable**:   
-  The `get_data_by_variable` function retrieves data associated with scientific objects for a specified experiment and object type. Key features include:  
-  - Supports optional filtering by factor levels and germplasm.  
-  - Extracts data such as target, variable, value, and date for each scientific object.  
-  - Organizes the extracted data by variable and exports each variable's data to separate CSV files.  
-  - Returns a dictionary where keys are variable names and values are DataFrames containing the associated data.  
-  - The data can be filtered based on a provided list of variables (e.g., sensor readings, measurements).  
-  - Saves the CSV files in the `temp_files` directory.
-
-- **Environmental Variables by Facility**:   
-  The `get_variable_by_facility` function retrieves detailed environmental variable information linked to a facility. Key features include:  
-  - Allows filtering by a specific date range (optional).  
-  - Fetches a list of unique variables associated with the facility for the given date range.  
-  - Retrieves detailed information for each variable (e.g., entity, characteristic, method, unit).  
-  - Saves the variable details into a CSV file (default: `facility_env_var.csv`).  
-  - Returns the variable details as a DataFrame. 
-
-- **Retrieve and Export Environmental Data by Facility**:   
-  The `get_environmental_data_by_facility` function fetches environmental data for a specific facility within a given date range. Key features include:  
-  - Retrieves environmental data and exports it to CSV files, organized by variable.  
-  - Allows filtering by a list of environmental variables (optional). If none provided, variables are fetched using `get_variable_by_facility`.  
-  - Supports flexible date filtering (defaulting to today's date if no dates are provided).  
-  - The data is saved as separate CSV files for each variable, with a customizable prefix.  
-  - Returns a dictionary where keys are variable names and values are corresponding DataFrames. 
-
-- **Retrieve and Export Devices by Facility**:   
-  The `get_devices_by_facility` function fetches devices associated with a specific facility using pagination. Key features include:  
-  - Retrieves devices data for a given facility with pagination support.  
-  - Each device is represented with its URI, type, and name. 
-  - Saves the retrieved devices data to a CSV file.  
-  - Returns a list of dictionaries containing device details.  
-
-- **Retrieve Measured Data by Device**:   
-  The `get_data_by_device` function retrieves measured data associated with a specific device and exports it to a CSV file. Key features include:  
-  - Fetches measured data for a device based on a specified date range (optional).  
-  - Data includes device URI, target, value, variable, and measurement date.  
-  - Saves the data to a CSV file, with a customizable filename.  
-  - Returns the data as a Pandas DataFrame.  
-
-- **Retrieve and Export Moves for a Scientific Object**:  
-  The `get_moves_by_os` function retrieves the movement history of a scientific object and exports it to a CSV file. Key features include:  
-  - Retrieves moves based on the object's URI, experiment, and optional date range.  
-  - The moves include information about the "from" and "to" locations and the start and end times of each move.  
-  - Generates a CSV file with columns: From, To, HasBeginning, and HasEnd.  
-  - Returns a list of moves, each containing the relevant details.  
-
-## **Installation**
-1. Make sure you have Python 3.7+ installed:  
- To check the version of Python installed on your system, run the following command:
-
-    ```bash
-    python3 --version
-    ```
-    It should display something like:
-    ```bash
-    Python 3.8.10
-    ```
-2. Install the package using pip from ForgeMIA:  
-  To install the package directly from ForgeMIA, use the following command:
-   ```bash
-   pip3 install git+https://forgemia.inra.fr/OpenSILEX/opensilex-graphql/python-package.git
-
-3. Install additional dependencies:
-   ```bash
-   pip3 install -r requirements.txt
-
-## **Quick Start**
-Here's a basic example of how to use the package:
-```python
-from package.exceptions.custom_exceptions import APIRequestError, AuthenticationError
-from package.auth.auth import login
-from package.experiment.ls_exp import get_ls_exp
-
-# Configuration for the OpenSILEX server (demo instance)
-        username = "admin@opensilex.org"
-        password = "******"  # Enter your password here
-        instance_rest = "138.102.159.36"
-        instance_name = "demo"
-        port_rest = "8084"
-        instance_graphql = "138.102.159.37"
-        
-        # Login to the OpenSILEX instance
-        session = login(username, password, instance_rest, instance_name, port_rest, instance_graphql)
-
-        # Get the list of experiments and save to CSV (in temp_files)
-        df_exp = get_ls_exp(session)
+# Activate the virtual environment
+uv run shell
 ```
-> For more examples and detailed usage of the available functions, please see the `examples` folder.
 
-> ⚠️  **Important Note:**  
-> For all functions where you filter using names or labels, the corresponding elements **must be loaded in advance** into the `uri_name` table.  
-> 
-> For example, if you want to filter the scientific objects of a specific experiment with label `"ZA17"` and object type `"Plant"`, you would normally write:  
-> 
-> ```r
-> get_os_by_exp(session, experiment_name, obj_type_name)
-> ```  
-> 
-> Before doing this, you must first load the experiment and the object types to populate the `uri_name` table:  
-> 
-> ```r
-> # Load all experiments
-> get_ls_exp(session=session)
-> 
-> # Load object types for the specific experiment
-> get_ls_os_types_by_exp(session, experiment_name ="ZA17")
-> ```  
-> 
-> This ensures that all names and URIs required for filtering are available for the functions to work correctly.
+### Project Structure
 
-## **Project Structure**
+The project follows a standard Python package structure:
+- `pyproject.toml`: Project configuration and dependencies
+- `uv.lock`: Locked dependencies for reproducible builds
+- `src/`: Source code directory
+- `tests/`: Test files directory
 
+### Development
+
+To start developing:
+1. Ensure uv is installed
+2. Run `uv sync` to install all dependencies
+3. Use `uv run` to execute scripts in the environment
+4. Start coding!
+
+For more information, visit [uv's official documentation](https://docs.astral.sh/uv/).
+
+## Ruff Integration
+
+Ruff is an extremely fast Python linter and code formatter, written in Rust. It can replace Flake8, Black, isort, pyupgrade, and more, while being much faster than any individual tool.
+
+### VSCode Default Configuration
+
+The file `.vscode/default_settings.json` provides a recommended configuration for using Ruff in VSCode:
+
+```json
+{
+    "[python]": {
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.organizeImports": "explicit"
+      },
+      "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    "notebook.formatOnSave.enabled": true,
+    "notebook.codeActionsOnSave": {
+      "notebook.source.fixAll": "explicit",
+      "notebook.source.organizeImports": "explicit"
+    },
+    "ruff.lineLength": 88
+}
 ```
-project/
-│
-├── docs/ — Documentation for the package
-├── examples/ — Usage examples
-├── package/ — Source code organized into modules
-│ ├── auth/ — Authentication management
-│ ├── device/ — Device management
-│ ├── exceptions/ — Custom error handling
-│ ├── experiment/ — Experiment management
-│ ├── facility/ — Facility management
-│ ├── factor/ — Factor management
-│ └── scientific_object/ — Scientific object management
-├── temp_files/ — Temporary files generated by the package
-├── tests/ — Unit and functional tests
-├── main.py — Main script
-├── README.md — General documentation
-├── requirements.txt — Project dependencies
-└── setup.py — Installation script
+
+#### Explanation of each line:
+- `editor.formatOnSave`: Enables automatic formatting on save for all files.
+- `[python].editor.defaultFormatter`: Sets Ruff as the default formatter for Python files.
+- `[python]editor.codeActionsOnSave.source.organizeImports`: Organizes Python imports automatically on save.
+- `[python]editor.codeActionsOnSave.source.fixAll`: Applies all available code fixes (including linting) on save.
+- `ruff.lineLength`: Line length for your python files
+
+### Useful Ruff Commands
+
+You can run the following commands commands directly in the shell
+
+```bash
+# Lint all Python files in the current directory
+ruff check .
+
+# Format all Python files in the current directory
+ruff format .
+
+# Automatically fix all auto-fixable problems
+ruff check . --fix
 ```
-## **Contributing**
 
-Contributions are welcome!
+For more information, see the [official Ruff VSCode extension documentation](https://github.com/astral-sh/ruff-vscode) and the [Ruff documentation](https://docs.astral.sh/ruff/). 
 
-1. Fork the repository.  
-2. Create a branch for your changes:  
-   ```bash
-   git checkout -b feature/my-new-feature
-3. Commit your changes and push them:
-   ```bash
-   git push origin feature/my-new-feature
-4. Open a pull request.
+You can enable specific rules over a catalog of over 800+ rules, depending on your needs or framework of choice. Check it out at the [Ruff documentation](docs.astral.sh/ruff/rules/). 
+
+## Documentation
+
+This action uses [pdoc](https://pdoc.dev/) to generate and serve documentation for your Python project.
+
+### Configuration
+
+The documentation configuration is managed in your `pyproject.toml` file:
+
+```toml
+[tool.pyscaf.documentation]
+output_path = "docs"
+
+[tool.pyscaf.documentation.pdoc]
+# pdoc arguments are automatically converted to CLI arguments
+# Boolean values: true -> --flag, false -> --no-flag
+# Lists: ["value1", "value2"] -> --flag value1 --flag value2
+# Strings: "value" -> --flag value
+```
+
+### Scripts
+
+Two scripts are available to manage documentation. Both scripts use the configuration defined in the `[tool.pyscaf.documentation.pdoc]`:
+
+#### `gen-doc`
+
+Generates static documentation files to the directory specified in `tool.pyscaf.documentation.output_path`.
+
+```bash
+uv run gen-doc
+```
+
+#### `serve-doc`
+
+Starts a local documentation server for interactive browsing.
+
+```bash
+uv run serve-doc
+```
+
+### pdoc Arguments
+
+All arguments in the `[tool.pyscaf.documentation.pdoc]` section are automatically converted to pdoc CLI arguments:
+
+- Boolean values: `true` becomes `--flag`, `false` becomes `--no-flag`
+- Lists: `["value1", "value2"]` becomes `--flag value1 --flag value2`
+- Strings: `"value"` becomes `--flag value`
+
+`output` argument is droped, as the behaviour to write instead of serve depends on the script use.
+
+For example:
+```toml
+[tool.pyscaf.documentation.pdoc]
+html = true
+show_source = false
+template_directory = "custom_templates"
+external_links = ["https://example.com"]
+```
+
+Becomes:
+```bash
+pdoc --html --no-show-source --template-directory custom_templates --external-links https://example.com
+``` 
+## Git Integration
+
+This project uses Git for version control, providing a robust system for tracking changes, collaborating, and managing code history.
+
+### Features
+
+- **Version Control**: Track changes and manage code history
+- **Branching**: Create and manage feature branches
+- **Collaboration**: Work with remote repositories
+- **Git Hooks**: Automated scripts for repository events
+
+### Common Commands
+
+```bash
+# Initialize repository
+git init
+
+# Clone repository
+git clone <repository-url>
+
+# Create and switch to new branch
+git checkout -b feature-name
+
+# Stage changes
+git add .
+
+# Commit changes
+git commit -m "commit message"
+
+# Push changes
+git push origin branch-name
+
+# Pull latest changes
+git pull origin branch-name
+```
+
+### Project Structure
+
+The project includes:
+- `.git/`: Git repository data
+- `.gitignore`: Specifies intentionally untracked files
+- `.gitattributes`: Defines attributes for paths
+- `hooks/`: Custom Git hooks (if present)
+
+### Development Workflow
+
+1. Create a new branch for features/fixes
+2. Make changes and commit regularly
+3. Push changes to remote repository
+4. Create pull requests for code review
+5. Merge approved changes to main branch
+
+### Best Practices
+
+- Write clear commit messages
+- Keep commits focused and atomic
+- Use meaningful branch names
+- Regularly pull from main branch
+- Review changes before committing
+
+For more information, visit [Git's official documentation](https://git-scm.com/doc). 
+## Semantic Release Configuration
+
+This action configures [python-semantic-release](https://python-semantic-release.readthedocs.io/) for automated versioning, changelog generation, and package publishing.
+
+### Overview
+
+Semantic release automates the process of:
+- **Version management**: Automatically bump version numbers based on commit messages
+- **Changelog generation**: Create detailed changelogs from conventional commits
+- **Package publishing**: Deploy to PyPI (TestPyPI automatically, Production PyPI manually)
+- **GitHub releases**: Create GitHub releases with assets
+
+### Prerequisites
+
+- Git repository with versioning enabled
+- GitHub repository (for workflows)
+- Credential for the publisher repository
+- PyPI credentials configured as GitHub secrets:
+  - `TEST_PYPI_PASSWORD` for TestPyPI
+  - `PYPI_PASSWORD` for Production PyPI
+
+#### PyPI Token Setup
+
+1. **TestPyPI** (https://test.pypi.org):
+   - Go to Account Settings → API tokens
+   - Create a new token with "Entire account" scope
+   - Copy the token value
+
+2. **Production PyPI** (https://pypi.org):
+   - Go to Account Settings → API tokens
+   - Create a new token with "Entire account" scope
+   - Copy the token value
+
+3. **Add to GitHub Secrets**:
+   - Go to your repository → Settings → Secrets and variables → Actions
+   - Add `TEST_PYPI_PASSWORD` with your TestPyPI token
+   - Add `PYPI_PASSWORD` with your production PyPI token
+
+### Features
+
+#### Automatic Configuration
+Configures `pyproject.toml` with some default semantic-release settings
+
+
+#### GitHub Workflows (when git_host is "github")
+- **Release workflow**: Automatically triggers on pushes to main branch
+- **Manual deploy workflow**: Allows manual deployment to production PyPI
+
+#### Commit Convention
+Uses [Conventional Commits](https://www.conventionalcommits.org/) format:
+- `feat:` - New features (minor version bump)
+- `fix:` - Bug fixes (patch version bump)
+- `BREAKING CHANGE:` - Breaking changes (major version bump)
+- `docs:`, `style:`, `refactor:`, `test:`, `chore:` - No version bump
+
+
+
+### Configuration
+
+The action automatically configures:
+```toml
+[tool.semantic_release]
+version_variables = ["src/your_project/__init__.py:__version__"]
+upload_to_pypi = true
+upload_to_release = true
+branch = "main"
+
+[tool.semantic_release.remote]
+type = "github"  # or "gitlab"
+```
+
+### Usage
+
+1. **Automatic releases**: Push conventional commits to main branch
+2. **Manual deployment**: Use GitHub Actions "Manual Deploy to Production PyPI" workflow
+
+### Resources
+
+#### Official Documentation
+- [python-semantic-release Documentation](https://python-semantic-release.readthedocs.io/)
+- [Conventional Commits Specification](https://www.conventionalcommits.org/)
+
+#### Related Tools
+- [Commitizen](https://commitizen-tools.github.io/commitizen/) - Interactive commit creation
+- [Semantic Release CLI](https://github.com/semantic-release/semantic-release) - JavaScript version
+- [GitHub Actions for Python](https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python)
+
+#### Best Practices
+- [Keep a Changelog](https://keepachangelog.com/) - Changelog format guidelines
+- [Semantic Versioning](https://semver.org/) - Version numbering specification
+- [Git Flow](https://nvie.com/posts/a-successful-git-branching-model/) - Git branching strategy
+
+### Example Workflow
+
+```bash
+# Make changes
+git add .
+git commit -m "feat: add new feature"
+git push origin main
+
+# Automatic release happens on GitHub
+# Package published to TestPyPI
+# GitHub release created
+
+# Manual deployment to Production PyPI via GitHub Actions
+```
