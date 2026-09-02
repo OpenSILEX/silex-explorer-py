@@ -1,12 +1,13 @@
+import os
+import re
+
+import matplotlib.dates as mdates
+import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-import re
-import matplotlib.pyplot as plt
-from silexexplorerpy.experiment.chunk_data_exp import get_data_by_os_uri_variable
-import os
-import matplotlib.dates as mdates
-import math
 from matplotlib.backends.backend_pdf import PdfPages
+
+from ..experiment.chunk_data_exp import get_data_by_os_uri_variable
 
 def replicate_scientific_objects(df, csv_filepath=None):
     """

@@ -1,11 +1,10 @@
 import requests
-import pandas as pd
-import os
-from silexexplorerpy.exceptions.custom_exceptions import APIRequestError
-from collections import defaultdict
-from silexexplorerpy.experiment.ls_var_exp import get_ls_var_by_exp
-from silexexplorerpy.experiment.get_exp_id import get_experiment_id
-from silexexplorerpy.uri_name_manager.uri_name_table import getURIbyName
+
+from ..exceptions import APIRequestError
+from ..uri_name_manager.uri_name_table import getURIbyName
+from .get_exp_id import get_experiment_id
+from .ls_var_exp import get_ls_var_by_exp
+from .export_data import export_data_by_variable_to_csv
 
 
 def get_data_by_variable(session, experiment_name, obj_type_name, ls_var_exp=None, factor_level_uri=None, germplasm_uri=None, csv_filepath=None):
@@ -122,72 +121,3 @@ def get_data_by_variable(session, experiment_name, obj_type_name, ls_var_exp=Non
     else:
         raise APIRequestError(f"Erreur: {response.status_code} - {response.text}")
 
-
-    
-def export_data_by_variable_to_csv(var_exp, data, csv_filepath=None):
-    """
-    Export data to CSV files organized by variable.
-
-    Args:
-    - variables (list): List of variables.
-    - data (list): List of dictionaries containing data.
-    - csv_prefix (str): Prefix for the CSV file names.
-
-    Returns:
-    - dict: A dictionary where keys are variable names and values are DataFrames.
-    
-    """
-    
-    if var_exp is None or var_exp.empty:
-        print("Warning: No variables provided. Nothing to export.")
-        return
-    
-    if not data:
-        print("Warning: No data provided. Nothing to export.")
-        return
-    
-    # Initialize a dictionary to store data by variable
-    variable_data = defaultdict(list)
-
-    # Construct a dictionary  URI -> Name
-    uri_to_name = var_exp.set_index('URI')['Name'].to_dict()
-    
-    # Get list of variable uris
-    if 'URI' in var_exp.columns:
-        variables = var_exp['URI'].dropna().tolist()
-                
-    # Iterate through the data and organize it by variable
-    for item in data:
-        
-        if not variables or item['variable'] in variables:  # Check if the variable is in the provided list
-            variable_data[item['variable']].append((item['target'], item['value'], item['date']))
-
-    
-    if not variable_data:
-            print("Warning: No data matched the variables provided.")
-            return
-        
-
-    # Dictionary to store DataFrames
-    dataframes = {}
-    
-    # For each unique variable, create a CSV file and write the corresponding data
-    for variable, measurements in variable_data.items():
-        
-        # Get variable name from dictionnary else shortname
-        variable_name = uri_to_name.get(variable, variable.split('/')[-1])
-
-        # Build the DataFrame for this variable
-        df = pd.DataFrame(measurements, columns=['URI', variable_name, 'Date'])
-
-        # Add the DataFrame to the dictionary with its short name
-        dataframes[f'df_{variable_name}'] = df
-        
-        if csv_filepath:
-                os.makedirs(csv_filepath, exist_ok=True)  # Assure que le dossier existe
-                csv_filename = os.path.join(csv_filepath, f'{variable_name}_data.csv')
-                df.to_csv(csv_filename, index=False)
-                print(f"✅ Data for variable '{variable_name}' has been saved to '{csv_filename}'.")
-    
-    return dataframes
-        

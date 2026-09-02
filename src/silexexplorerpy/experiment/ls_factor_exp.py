@@ -1,6 +1,6 @@
 import requests
-from silexexplorerpy.exceptions.custom_exceptions import APIRequestError
 
+from ..exceptions import APIRequestError
 
 def get_factors_by_exp(session, experiment_uri):
     """

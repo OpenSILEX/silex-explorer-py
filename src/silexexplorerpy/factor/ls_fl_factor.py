@@ -1,5 +1,6 @@
 import requests
-from silexexplorerpy.exceptions.custom_exceptions import APIRequestError
+
+from ..exceptions import APIRequestError
 
 def get_fl_by_factor(session, factor_id):
     """

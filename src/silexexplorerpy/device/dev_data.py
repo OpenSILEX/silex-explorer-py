@@ -1,8 +1,8 @@
 import requests
 import pandas as pd
-from silexexplorerpy.exceptions.custom_exceptions import APIRequestError
-from silexexplorerpy.uri_name_manager.uri_name_table import getURIbyName
 import os
+from ..exceptions import APIRequestError
+from ..uri_name_manager.uri_name_table import getURIbyName
 
 def get_data_by_device(
     session, device_name, date_beginning=None, date_end=None,  csv_filepath=None):

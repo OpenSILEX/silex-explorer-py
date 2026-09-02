@@ -1,9 +1,13 @@
-import requests
-import pandas as pd
-from silexexplorerpy.exceptions.custom_exceptions import APIRequestError
-from silexexplorerpy.uri_name_manager.uri_name_table import getURIbyName, insert_into_uri_name
 import os
-import warnings
+
+import pandas as pd
+import requests
+
+from ..exceptions import APIRequestError
+from ..uri_name_manager.uri_name_table import (
+    getURIbyName,
+    insert_into_uri_name,
+)
 
 
 def get_facilities_by_experiment(session, experiment_name,csv_filepath=None):

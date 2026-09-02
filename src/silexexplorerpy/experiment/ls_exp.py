@@ -1,9 +1,11 @@
-import requests
-import pandas as pd
-from silexexplorerpy.exceptions.custom_exceptions import APIRequestError
-from silexexplorerpy.uri_name_manager.uri_name_table import insert_into_uri_name
 import os
 from datetime import datetime
+
+import pandas as pd
+import requests
+
+from ..exceptions import APIRequestError
+from ..uri_name_manager.uri_name_table import insert_into_uri_name
 
 def get_ls_exp(session, species_uri=None, project_uri=None, active_date=None, 
                species_name=None, project_name=None,   csv_filepath=None):

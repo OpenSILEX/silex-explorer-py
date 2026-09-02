@@ -1,7 +1,9 @@
-import pandas as pd
-from silexexplorerpy.exceptions.custom_exceptions import APIRequestError
-from silexexplorerpy.factor.ls_fl_factor import get_fl_by_factor
 import os
+
+import pandas as pd
+
+from ..exceptions import APIRequestError
+from ..factor.ls_fl_factor import get_fl_by_factor
 from .ls_factor_exp import get_factors_by_exp
 
 

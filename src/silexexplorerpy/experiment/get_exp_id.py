@@ -1,6 +1,8 @@
-from silexexplorerpy.uri_name_manager.uri_name_table import getURIbyName
-import requests
 from datetime import datetime
+
+import requests
+
+from ..uri_name_manager.uri_name_table import getURIbyName
 
 def get_experiment_id(experiment_name, session):
     try:

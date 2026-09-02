@@ -1,9 +1,11 @@
-import requests
-import pandas as pd
-from silexexplorerpy.exceptions.custom_exceptions import APIRequestError
-from silexexplorerpy.uri_name_manager.uri_name_table import getURIbyName, insert_into_uri_name
-from silexexplorerpy.experiment.get_exp_id import get_experiment_id
 import os
+
+import pandas as pd
+import requests
+
+from ..exceptions import APIRequestError
+from ..uri_name_manager.uri_name_table import getURIbyName, insert_into_uri_name
+from .get_exp_id import get_experiment_id
 
 def get_os_by_exp(session, experiment_name, obj_type_name, factor_level_uri=None, germplasm_uri=None, factor_levels=None, germplasm_type=None, germplasm_name=None, csv_filepath=None):
     """

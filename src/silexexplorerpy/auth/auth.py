@@ -1,6 +1,6 @@
 import requests
-from silexexplorerpy.exceptions.custom_exceptions import AuthenticationError
-from silexexplorerpy.uri_name_manager.uri_name_table import init_uri_name
+from ..exceptions import AuthenticationError
+from ..uri_name_manager.uri_name_table import init_uri_name
 
 def login(username, password, instance_rest, url_graphql):
     """

@@ -1,10 +1,12 @@
-import requests
-import pandas as pd
-from silexexplorerpy.exceptions.custom_exceptions import APIRequestError
-from silexexplorerpy.uri_name_manager.uri_name_table import getURIbyName
-from silexexplorerpy.experiment.ls_os_exp import get_experiment_id
-import re
 import os
+import re
+
+import pandas as pd
+import requests
+
+from ..exceptions import APIRequestError
+from ..experiment.get_exp_id import get_experiment_id
+from ..uri_name_manager.uri_name_table import getURIbyName
 
 def get_moves_by_os(session, os_name, experiment_name, date_beginning=None, date_end=None, csv_filepath=None):
     """

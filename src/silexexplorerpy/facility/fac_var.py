@@ -1,9 +1,11 @@
-import requests
-import pandas as pd
 import os
-from silexexplorerpy.exceptions.custom_exceptions import APIRequestError
-from silexexplorerpy.uri_name_manager.uri_name_table import getURIbyName, insert_into_uri_name
-import warnings
+
+import pandas as pd
+import requests
+
+from ..exceptions import APIRequestError
+from ..uri_name_manager.uri_name_table import getURIbyName, insert_into_uri_name
+
 
 def get_variable_by_facility(session, facility_name, date_beginning=None, date_end=None, csv_filepath=None):
     """

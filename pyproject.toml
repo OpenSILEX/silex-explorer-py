@@ -1,6 +1,7 @@
 [project]
 name = "silexexplorerpy"
 version = "0.1.0"
+license = "GPL-3.0-only"
 requires-python = ">=3.9"
 dependencies = [
     "matplotlib",
@@ -167,3 +168,8 @@ select = [
     "UP", # pyupgrade - https://docs.astral.sh/ruff/rules/#pyupgrade-up
 ]
 line-length = 120
+
+[tool.uv.workspace]
+members = [
+    "test-silexexplorer",
+]

@@ -1,11 +1,13 @@
-import requests
-from silexexplorerpy.exceptions.custom_exceptions import APIRequestError
-from silexexplorerpy.uri_name_manager.uri_name_table import getURIbyName
 import os
 from collections import defaultdict
-import pandas as pd
-from silexexplorerpy.facility.fac_var import get_variable_by_facility 
 from datetime import datetime
+
+import pandas as pd
+import requests
+
+from ..exceptions import APIRequestError
+from ..uri_name_manager.uri_name_table import getURIbyName
+from .fac_var import get_variable_by_facility
 
 def get_environmental_data_by_facility(session, facility_name, var_env=None,date_beginning=None, date_end=None, csv_filepath=None):
     """
