@@ -6,10 +6,9 @@
 
 [![Python](https://img.shields.io/badge/Python-%3E%3D%203.12-blue?style=flat-square&logo=python)](https://www.python.org/)
 [![OpenSILEX](https://img.shields.io/badge/OpenSILEX-Platform-green?style=flat-square)](https://opensilex.org/)
-[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat-square)](https://opensilex.org/documentation)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=flat-square&logo=github)](https://github.com/OpenSILEX/silex-explorer-py)
 
-[Documentation](https://opensilex.org/documentation) •
+[Description](#description) •
 [Installation](#installation) •
 [Quick Start](#quick-start) •
 [Examples](./examples) •
@@ -20,49 +19,94 @@
 
 </div>
 
-## Description
+## **Description**
 
-`SilexExplorerPy` is a Python package designed to help researchers extract, visualize, and analyze complex phenotypic and environmental data associated with scientific experiments.
+`SilexExplorerPy` is a Python package designed to help researchers extract, visualize, and analyze complex phenotypic and environmental data associated with scientific experiments. It provides a comprehensive set of tools for interacting with OpenSILEX instances to retrieve experimental data and collect environmental information. Ideal for researchers in fields such as agriculture and environment, this package enables efficient data exploration and filtering by experiments, species, projects, and environmental conditions. It also supports exporting, visualizing, and analyzing the results, facilitating in-depth scientific insights and data-driven decision-making.
 
-It provides tools for interacting with OpenSILEX instances to retrieve experimental data, manage scientific objects, collect environmental information, export results, and support further analysis and visualization.
+## **Features**
+- **User Authentication**:   
+  The `login` function allows secure authentication to an OpenSILEX instance and facilitates seamless interaction with its REST and GraphQL services by:  
+  - Providing a token-based authentication mechanism.  
+  - Configuring and generating REST and GraphQL endpoints dynamically.  
+  - Preparing headers for secure and efficient API communication.  
+  - Supporting custom ports and flexible server setups.  
+ 
+- **Experiment Retrieval and Filtering**:   
+  The `get_ls_exp` function allows you to retrieve and filter experiments from an OpenSILEX instance using a GraphQL query. Key features include:  
+  - Filtering experiments by species_uri, project_uri, date,species_name or project name.    
+  - Returning results as a pandas DataFrame. 
+  - Exporting filtered results to a CSV file for further analysis.  
 
-## Features
+- **Scientific Object Types Retrieval**:    
+  The `get_ls_os_types_by_exp` function retrieves all scientific object types associated with a specific experiment from an OpenSILEX instance. Key features include:   
+  - Filtering scientific object types by experiment URI.  
+  - Returning results, including URIs and namesas,as a pandas DataFrame.  
+  - Exporting results, to a CSV file.  
 
-- **User Authentication**  
-  Authenticate to an OpenSILEX instance and prepare REST and GraphQL access through `login`.
+- **Factors and Factor Levels Retrieval** :   
+  The `get_fl_by_exp` function retrieves all factors and their associated levels for a given experiment. Key features include:  
+  - Retrieving factors and their levels using GraphQL queries.  
+  - Storing the retrieved data, including factor URIs and level URIs, in a CSV file.  
+  - Returning the results as a pandas DataFrame for further analysis or processing.  
 
-- **Experiment Retrieval and Filtering**  
-  Retrieve experiments with `get_ls_exp`, filter them using experiment metadata, return results as pandas DataFrames, and optionally export them to CSV.
+- **Variables Retrieval by Experiment**:   
+  The `get_ls_var_by_exp` function retrieves all variables for a given experiment. Key features include:  
+  - Fetching variables and their associated metadata (e.g., entity, characteristic, method, and unit) for a specified experiment.  
+  - Saving the retrieved data to a CSV file for further analysis.  
+  - Returning the variables as a pandas DataFrame.   
 
-- **Scientific Object Types Retrieval**  
-  Retrieve scientific object types associated with an experiment using `get_ls_os_types_by_exp`.
+- **Scientific Objects Retrieval by Experiment**:   
+  The `get_os_by_exp` function retrieves scientific objects and their associated details for a given experiment and object type. Key features include:  
+  - Dynamic filtering for factor levels and germplasm (both by uri and name).  
+  - Supporting GraphQL queries to fetch detailed information about the scientific objects, including factors and germplasm data.  
+  - Saving the retrieved data to a CSV file for further analysis.  
+  - Returning the data as a pandas DataFrame, with optional filters applied for factor levels and germplasm.
 
-- **Factors and Factor Levels Retrieval**  
-  Retrieve factors and their associated levels for an experiment using `get_fl_by_exp`.
+- **Data Retrieval by Variable**:   
+  The `get_data_by_variable` function retrieves data associated with scientific objects for a specified experiment and object type. Key features include:  
+  - Supports optional filtering by factor levels and germplasm.  
+  - Extracts data such as target, variable, value, and date for each scientific object.  
+  - Organizes the extracted data by variable and exports each variable's data to separate CSV files.  
+  - Returns a dictionary where keys are variable names and values are DataFrames containing the associated data.  
+  - The data can be filtered based on a provided list of variables (e.g., sensor readings, measurements).  
+  - Saves the CSV files in the `temp_files` directory.
 
-- **Variables Retrieval by Experiment**  
-  Retrieve variables and their metadata for an experiment using `get_ls_var_by_exp`.
+- **Environmental Variables by Facility**:   
+  The `get_variable_by_facility` function retrieves detailed environmental variable information linked to a facility. Key features include:  
+  - Allows filtering by a specific date range (optional).  
+  - Fetches a list of unique variables associated with the facility for the given date range.  
+  - Retrieves detailed information for each variable (e.g., entity, characteristic, method, unit).  
+  - Saves the variable details into a CSV file (default: `facility_env_var.csv`).  
+  - Returns the variable details as a DataFrame. 
 
-- **Scientific Objects Retrieval by Experiment**  
-  Retrieve scientific objects associated with an experiment and object type using `get_os_by_exp`, with optional factor-level and germplasm filtering.
+- **Retrieve and Export Environmental Data by Facility**:   
+  The `get_environmental_data_by_facility` function fetches environmental data for a specific facility within a given date range. Key features include:  
+  - Retrieves environmental data and exports it to CSV files, organized by variable.  
+  - Allows filtering by a list of environmental variables (optional). If none provided, variables are fetched using `get_variable_by_facility`.  
+  - Supports flexible date filtering (defaulting to today's date if no dates are provided).  
+  - The data is saved as separate CSV files for each variable, with a customizable prefix.  
+  - Returns a dictionary where keys are variable names and values are corresponding DataFrames. 
 
-- **Data Retrieval by Variable**  
-  Retrieve experimental data associated with scientific objects and variables using `get_data_by_variable`.
+- **Retrieve and Export Devices by Facility**:   
+  The `get_devices_by_facility` function fetches devices associated with a specific facility using pagination. Key features include:  
+  - Retrieves devices data for a given facility with pagination support.  
+  - Each device is represented with its URI, type, and name. 
+  - Saves the retrieved devices data to a CSV file.  
+  - Returns a list of dictionaries containing device details.  
 
-- **Environmental Variables by Facility**  
-  Retrieve environmental variables linked to a facility using `get_variable_by_facility`.
+- **Retrieve Measured Data by Device**:   
+  The `get_data_by_device` function retrieves measured data associated with a specific device and exports it to a CSV file. Key features include:  
+  - Fetches measured data for a device based on a specified date range (optional).  
+  - Data includes device URI, target, value, variable, and measurement date.  
+  - Saves the data to a CSV file, with a customizable filename.  
+  - Returns the data as a Pandas DataFrame.  
 
-- **Environmental Data by Facility**  
-  Retrieve environmental data for a facility and date range using `get_environmental_data_by_facility`.
-
-- **Devices by Facility**  
-  Retrieve devices associated with a facility using `get_devices_by_facility`.
-
-- **Measured Data by Device**  
-  Retrieve measured data associated with a device using `get_data_by_device`.
-
-- **Moves for Scientific Objects**  
-  Retrieve the movement history of a scientific object using `get_moves_by_os`.
+- **Retrieve and Export Moves for a Scientific Object**:  
+  The `get_moves_by_os` function retrieves the movement history of a scientific object and exports it to a CSV file. Key features include:  
+  - Retrieves moves based on the object's URI, experiment, and optional date range.  
+  - The moves include information about the "from" and "to" locations and the start and end times of each move.  
+  - Generates a CSV file with columns: From, To, HasBeginning, and HasEnd.  
+  - Returns a list of moves, each containing the relevant details.  
 
 ## Installation
 
