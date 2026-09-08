@@ -1,6 +1,8 @@
 [project]
 name = "silexexplorerpy"
 version = "0.1.0"
+description = "Python package for accessing, exploring, analyzing, and visualizing OpenSILEX data through SilexExplorer."
+readme = "README.md"
 license = "AGPL-3.0-only"
 requires-python = ">=3.12"
 dependencies = [
@@ -10,9 +12,23 @@ dependencies = [
     "seaborn",
     "tabulate",
 ]
-authors = [
-    { name = "ABIDRI", email = "sarra.abidri@inrae.fr" },
+keywords = [
+    "SilexExplorer",
+    "OpenSILEX",
+    "GraphQL",
+    "scientific data",
+    "phenotyping",
+    "agriculture",
+    "Web service",
+    "Data integration",
+    "Data visualisation",
 ]
+authors = [
+    { name = "Sarra Abidri", email = "sarra.abidri@inrae.fr" },
+]
+
+[project.urls]
+Repository = "https://github.com/OpenSILEX/silex-explorer-py"
 
 [project.scripts]
 gen-doc = "pyscaf.documentation.scripts.parse_doc:gen_doc"
@@ -169,7 +185,3 @@ select = [
 ]
 line-length = 120
 
-[tool.uv.workspace]
-members = [
-    "test-silexexplorer",
-]
