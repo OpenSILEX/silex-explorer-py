@@ -9,7 +9,8 @@ from ..exceptions import APIRequestError
 from ..uri_name_manager.uri_name_table import getURIbyName
 from .fac_var import get_variable_by_facility
 
-def get_environmental_data_by_facility(session, facility_name, var_env=None,date_beginning=None, date_end=None, csv_filepath=None):
+
+def get_environmental_data_by_facility(session, facility_name, var_env=None, date_beginning=None, date_end=None, csv_filepath=None):
     """
     Retrieve environmental data for a facility and export it to CSV files organized by variables.
 
@@ -57,28 +58,34 @@ def get_environmental_data_by_facility(session, facility_name, var_env=None,date
 
     
     #Get the list of env variables of a facility
-    ls_var_env=get_variable_by_facility(session, facility_name, date_beginning, date_end)
+    ls_var_env = get_variable_by_facility(session, facility_name, date_beginning, date_end)
     if var_env is not None:
         # Filter the DataFrame to keep only the rows corresponding to the specified variables
         ls_var_env = ls_var_env[ls_var_env['Name'].isin(var_env)]
     
     # GraphQL query to fetch environmental data
     data_query = '''
-    query GetEnvironmentalData($filter: FilterFindManyDataInput) {
-      Data_findMany(filter: $filter) {
-        target
-        value
-        variable
-        date
-        provenance {
-            provWasAssociatedWith {
-                uri
-            }
+    query GetEnvironmentalData($filter: FilterFindManyDataInput, $page: Int, $perPage: Int) {
+      Data_pagination(filter: $filter, page: $page, perPage: $perPage) {
+        items {
+          target
+          value
+          variable
+          date
+          provenance {
+              provWasAssociatedWith {
+                  uri
+              }
+          }
+          prov_agent {
+              agents {
+                  uri
+              }
+          }
         }
-        prov_agent {
-            agents {
-                uri
-            }
+        pageInfo {
+          hasNextPage
+          perPage
         }
       }
     }
@@ -106,33 +113,68 @@ def get_environmental_data_by_facility(session, facility_name, var_env=None,date
         if date_filter:
             filter_input["_operators"] = {"date": date_filter}
     
-        # Execute the query
-        response = requests.post(
-            session["url_graphql"],
-            json={"query": data_query, "variables": {"filter": filter_input}},
-            headers=session["headers_graphql"]
-        )
-        response.raise_for_status()
+        # Pagination parameters
+        per_page = 10000
+        page = 1
+        environmental_data = []
 
-        # Parse the JSON response
-        response_data = response.json()
-        if "errors" in response_data:
-            error_message = response_data["errors"][0]["message"]
-            raise APIRequestError(f"GraphQL query failed: {error_message}")
+        while True:
+            # Execute the query
+            response = requests.post(
+                session["url_graphql"],
+                json={
+                    "query": data_query,
+                    "variables": {
+                        "filter": filter_input,
+                        "page": page,
+                        "perPage": per_page
+                    }
+                },
+                headers=session["headers_graphql"]
+            )
+            response.raise_for_status()
+
+            # Parse the JSON response
+            response_data = response.json()
+            if "errors" in response_data:
+                error_message = response_data["errors"][0]["message"]
+                raise APIRequestError(f"GraphQL query failed: {error_message}")
+
+            # Extract the paginated data
+            pagination = response_data.get("data", {}).get("Data_pagination")
+
+            if not pagination:
+                break
+
+            items = pagination.get("items", [])
+
+            if not items:
+                break
+
+            environmental_data.extend(items)
+
+            print(f"Page {page} retrieved: {len(items)} rows")
+
+            page_info = pagination.get("pageInfo", {})
+
+            if not page_info.get("hasNextPage", False):
+                break
+
+            page += 1
 
         # Extract the data
-        environmental_data = response_data.get("data", {}).get("Data_findMany", [])
         if not environmental_data:
             print("No environmental data found for these variables.")
             return []
 
         # Export the data to CSV using the provided export function
-        dataframes=export_data_by_var_env_to_csv(ls_var_env, environmental_data, csv_filepath)
+        dataframes = export_data_by_var_env_to_csv(ls_var_env, environmental_data, csv_filepath)
         print(f"Environmental data for facility : '{facility_name} successfully exported.")
         return dataframes
 
     except requests.exceptions.RequestException as e:
         raise APIRequestError(f"GraphQL request failed. Error: {str(e)}")
+
 
 def export_data_by_var_env_to_csv(var_env, data, csv_filepath=None):
     """
@@ -228,4 +270,3 @@ def export_data_by_var_env_to_csv(var_env, data, csv_filepath=None):
         
     
     return dataframes
-        

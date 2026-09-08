@@ -49,9 +49,15 @@ def get_variable_by_facility(session, facility_name, date_beginning=None, date_e
         exit(1)  # Stop execution due to the error 
         
     data_query = '''
-    query GetEnvironmentalData($filter: FilterFindManyDataInput) {
-      Data_findMany(filter: $filter) {
-        variable
+    query GetEnvironmentalData($filter: FilterFindManyDataInput, $page: Int, $perPage: Int) {
+      Data_pagination(filter: $filter, page: $page, perPage: $perPage) {
+        items {
+          variable
+        }
+        pageInfo {
+          hasNextPage
+          perPage
+        }
       }
     }
     '''
@@ -74,20 +80,53 @@ def get_variable_by_facility(session, facility_name, date_beginning=None, date_e
         # Only include date filter if it contains valid conditions /
         if date_filter:
             filter_input["_operators"] = {"date": date_filter}
-            
-        response = requests.post(
-            session["url_graphql"],
-            json={'query': data_query, 'variables': {'filter': filter_input}},
-            headers=session["headers_graphql"]
-        )
-        response.raise_for_status()
-        json_response = response.json()
 
-        if 'errors' in json_response:
-            error_message = json_response['errors'][0]['message']
-            raise APIRequestError(f"Failed GraphQL request with error: {error_message}")
+        # Pagination
+        per_page = 10000
+        page = 1
+        data = []
 
-        data = json_response.get('data', {}).get('Data_findMany', [])
+        while True:
+            response = requests.post(
+                session["url_graphql"],
+                json={
+                    'query': data_query,
+                    'variables': {
+                        'filter': filter_input,
+                        'page': page,
+                        'perPage': per_page
+                    }
+                },
+                headers=session["headers_graphql"]
+            )
+            response.raise_for_status()
+            json_response = response.json()
+
+            if 'errors' in json_response:
+                error_message = json_response['errors'][0]['message']
+                raise APIRequestError(f"Failed GraphQL request with error: {error_message}")
+
+            pagination = json_response.get('data', {}).get('Data_pagination')
+
+            if not pagination:
+                break
+
+            items = pagination.get('items', [])
+
+            if not items:
+                break
+
+            data.extend(items)
+
+            print(f"Page {page} retrieved: {len(items)} rows")
+
+            page_info = pagination.get('pageInfo', {})
+
+            if not page_info.get('hasNextPage', False):
+                break
+
+            page += 1
+
         unique_variables = list({item.get('variable', '') for item in data})
 
         if not unique_variables:
