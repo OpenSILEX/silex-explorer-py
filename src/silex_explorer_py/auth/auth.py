@@ -2,20 +2,21 @@ import requests
 from ..exceptions import AuthenticationError
 from ..uri_name_manager.uri_name_table import init_uri_name
 
+
 def login(username, password, instance_rest, url_graphql):
     """
-    Authenticate with the OpenSILEX server and return authentication details, 
+    Authenticate with the OpenSILEX server and return authentication details,
     and initialize the URI-Name table.
 
-    This function authenticates a user with an OpenSILEX server using REST API 
+    This function authenticates a user with an OpenSILEX server using REST API
     and returns a token along with URLs and headers required for subsequent requests.
-    Additionally, after a successful login, it initializes the global URI-Name table 
+    Additionally, after a successful login, it initializes the global URI-Name table
     (using the `init_uri_name` function).
 
     Args:
         username (str): The email address of the user.
         password (str): The user's password.
-        instance_rest (str): Base URL of the REST API instance. 
+        instance_rest (str): Base URL of the REST API instance.
         url_graphql (str): Base URL for the GraphQL API instance.
     Returns:
         dict: A dictionary containing the following keys:
@@ -41,15 +42,17 @@ def login(username, password, instance_rest, url_graphql):
         )
         print(session["token"])
         ```
-        
+
     Additional Notes:
         - After a successful login, the `uri_name` table is initialized (either loaded from a CSV if it exists or created as an empty DataFrame).
         - The `uri_name` table is ready to be used in subsequent operations immediately after the login process.
-        
+
     """
     # Check that all parameters are provided and not empty
     if not all([username, password, instance_rest, url_graphql]):
-        raise ValueError("Tous les paramètres (nom d'utilisateur, mot de passe, instance REST, et URL GraphQL) sont requis.")
+        raise ValueError(
+            "Tous les paramètres (nom d'utilisateur, mot de passe, instance REST, et URL GraphQL) sont requis."
+        )
 
     # Remove any trailing slashes from the instance URLs
     url_rest = instance_rest.rstrip("/")
@@ -69,34 +72,32 @@ def login(username, password, instance_rest, url_graphql):
         # Check if authentication was successful
         if 200 <= response.status_code < 300:
             json_response = response.json()
-            token = json_response['result']['token']
+            token = json_response["result"]["token"]
 
             # Construct headers for GraphQL and REST requests using the token
             headers_graphql = {
-                'Authorization': f'Bearer {token}',
-                'Content-Type': 'application/json',
+                "Authorization": f"Bearer {token}",
+                "Content-Type": "application/json",
             }
 
-            headers_rest = {
-                "Authorization": f'Bearer {token}'
-            }
+            headers_rest = {"Authorization": f"Bearer {token}"}
 
             # Initialize the uri_name table after successful authentication
-            init_uri_name(save=True) 
-             
+            init_uri_name(save=True)
+
             # Return a dictionary with the token, instance, URLs, and headers
             return {
                 "token": token,
                 "url_rest": url_rest,
                 "url_graphql": url_graphql,
                 "headers_graphql": headers_graphql,
-                "headers_rest": headers_rest
+                "headers_rest": headers_rest,
             }
         else:
-             # Here we handle the failed authentication more gracefully
+            # Here we handle the failed authentication more gracefully
             response_json = response.json()
             # Extract the specific error message from the response JSON
-            error_message = response_json.get('result', {}).get('message', 'Unknown authentication error.')
+            error_message = response_json.get("result", {}).get("message", "Unknown authentication error.")
             raise AuthenticationError(f"Authentication failed: {error_message}")
 
     except requests.exceptions.RequestException as e:

@@ -19,11 +19,11 @@ def test_example():
 
 class TestExample:
     """Example test class to demonstrate pytest class-based tests."""
-    
+
     def test_class_method(self):
         """Test method within a class."""
         assert True
-        
+
     def test_with_fixture(self, example_fixture):
         """Test using a fixture."""
         assert example_fixture == "test_data"

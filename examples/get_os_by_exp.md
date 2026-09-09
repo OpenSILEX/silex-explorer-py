@@ -104,12 +104,7 @@ experiment = "ZA17_2017_03_30"  # Replace with the actual experiment ID
 obj_type = "http://www.opensilex.org/vocabulary/oeso#Plant"  # Replace with the actual object type URI
 germplasm_type = "Species"  # Filter for all scientific objects related to species-type germplasm
 
-df = get_os_by_exp(
-    session, 
-    experiment, 
-    obj_type, 
-    germplasm_type=germplasm_type
-)
+df = get_os_by_exp(session, experiment, obj_type, germplasm_type=germplasm_type)
 print(df.head())
 ```
 #### Explanation:
@@ -131,13 +126,7 @@ obj_type = "http://www.opensilex.org/vocabulary/oeso#Plant"  # Replace with the 
 germplasm_type = "Species"  # Specify germplasm type (e.g., species)
 germplasm_name = "GermplasmName"  # Specify germplasm name (e.g., name of the Species)
 
-df = get_os_by_exp(
-    session, 
-    experiment, 
-    obj_type, 
-    germplasm_type=germplasm_type, 
-    germplasm_name=germplasm_name
-)
+df = get_os_by_exp(session, experiment, obj_type, germplasm_type=germplasm_type, germplasm_name=germplasm_name)
 print(df.head())
 ```
 #### Explanation:
@@ -160,15 +149,11 @@ from package.experiment.ls_scientific_objects import get_os_by_exp
 experiment = "ZA17_2017_03_30"  # Replace with the actual experiment ID
 obj_type = "http://www.opensilex.org/vocabulary/oeso#Plant"  # Replace with the actual object type URI
 factor_level_uri = ["http://example.org/factor/Factor1.Level1"]  # Example URI of the factor level to filter
-germplasm_uri = ["http://example.org/germplasm/species1"]  # Example URI of the germplasm (can be species, variety, etc.)
+germplasm_uri = [
+    "http://example.org/germplasm/species1"
+]  # Example URI of the germplasm (can be species, variety, etc.)
 
-df = get_os_by_exp(
-    session, 
-    experiment, 
-    obj_type, 
-    factor_level_uri=factor_level_uri, 
-    germplasm_uri=germplasm_uri
-)
+df = get_os_by_exp(session, experiment, obj_type, factor_level_uri=factor_level_uri, germplasm_uri=germplasm_uri)
 print(df.head())
 ```
 #### Explanation:
@@ -193,9 +178,9 @@ from package.experiment.ls_scientific_objects import get_os_by_exp
 experiment = "ZA17_2017_03_30"  # Replace with the actual experiment ID
 obj_type = "http://www.opensilex.org/vocabulary/oeso#Plant"  # Replace with the actual object type URI
 df = get_os_by_exp(
-    session, 
-    experiment, 
-    obj_type, 
+    session,
+    experiment,
+    obj_type,
     factor_levels=["Factor1.Level1", "Factor2.Level1"],  # Filter by specific factor levels
 )
 print(df.head())

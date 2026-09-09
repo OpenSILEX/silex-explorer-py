@@ -2,6 +2,7 @@ import requests
 
 from ..exceptions import APIRequestError
 
+
 def get_fl_by_factor(session, factor_id):
     """
     Retrieve a list of factor levels for a given factor using GraphQL.
@@ -32,29 +33,28 @@ def get_fl_by_factor(session, factor_id):
         # The list contains dictionaries with the level ID and its corresponding label.
     """
 
-    query = '''
+    query = """
     query getFactorLevelsByFactor($factorId: [ID]) {
         FactorLevel(filter: {hasFactor: $factorId}) {
             _id
             label
         }
     }
-    '''
+    """
 
-    variables = {
-        "factorId": factor_id
-    }
+    variables = {"factorId": factor_id}
 
     try:
-        response = requests.post(session["url_graphql"], json={'query': query, 'variables': variables}, headers=session["headers_graphql"])
-        
+        response = requests.post(
+            session["url_graphql"], json={"query": query, "variables": variables}, headers=session["headers_graphql"]
+        )
+
         json_response = response.json()
-        if 'errors' in json_response:
-            error_message = json_response['errors'][0]['message']
-            raise APIRequestError(f"Failed GraphQL request with error: {error_message}")        
-         
-        return json_response.get('data', {}).get('FactorLevel', [])
-     
+        if "errors" in json_response:
+            error_message = json_response["errors"][0]["message"]
+            raise APIRequestError(f"Failed GraphQL request with error: {error_message}")
+
+        return json_response.get("data", {}).get("FactorLevel", [])
+
     except requests.exceptions.RequestException as e:
         raise APIRequestError(f"Failed to retrieve factor levels by factor: {str(e)}")
- 

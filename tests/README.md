@@ -76,10 +76,12 @@ class TestCalculator:
 ```python
 import pytest
 
+
 @pytest.fixture
 def sample_data():
     """Provide sample data for tests."""
     return {"name": "test", "value": 42}
+
 
 def test_with_fixture(sample_data):
     """Test using a fixture."""
@@ -91,11 +93,15 @@ def test_with_fixture(sample_data):
 ```python
 import pytest
 
-@pytest.mark.parametrize("input,expected", [
-    (1, 2),
-    (2, 4),
-    (3, 6),
-])
+
+@pytest.mark.parametrize(
+    "input,expected",
+    [
+        (1, 2),
+        (2, 4),
+        (3, 6),
+    ],
+)
 def test_double(input, expected):
     """Test doubling function with multiple inputs."""
     assert double(input) == expected
@@ -108,15 +114,18 @@ Use markers to categorize and control test execution:
 ```python
 import pytest
 
+
 @pytest.mark.unit
 def test_unit_functionality():
     """Unit test marker."""
     pass
 
-@pytest.mark.integration  
+
+@pytest.mark.integration
 def test_integration_functionality():
     """Integration test marker."""
     pass
+
 
 @pytest.mark.slow
 def test_slow_operation():
@@ -156,43 +165,46 @@ from myproject.auth import UserAuth, AuthError
 
 class TestUserAuth:
     """Test class for user authentication functionality."""
-    
+
     @pytest.fixture
     def user_auth(self):
         """Create UserAuth instance for testing."""
         return UserAuth()
-    
+
     @pytest.fixture
     def valid_credentials(self):
         """Provide valid test credentials."""
         return {"username": "testuser", "password": "testpass"}
-    
+
     def test_valid_login(self, user_auth, valid_credentials):
         """Test successful login with valid credentials."""
         # Arrange
         expected_token = "abc123"
-        
+
         # Act
-        with patch.object(user_auth, '_generate_token', return_value=expected_token):
+        with patch.object(user_auth, "_generate_token", return_value=expected_token):
             token = user_auth.login(**valid_credentials)
-        
+
         # Assert
         assert token == expected_token
-    
+
     def test_invalid_login(self, user_auth):
         """Test login failure with invalid credentials."""
         # Arrange
         invalid_creds = {"username": "invalid", "password": "wrong"}
-        
+
         # Act & Assert
         with pytest.raises(AuthError):
             user_auth.login(**invalid_creds)
-    
-    @pytest.mark.parametrize("username,password,expected_error", [
-        ("", "password", "Username required"),
-        ("user", "", "Password required"),
-        (None, "password", "Username required"),
-    ])
+
+    @pytest.mark.parametrize(
+        "username,password,expected_error",
+        [
+            ("", "password", "Username required"),
+            ("user", "", "Password required"),
+            (None, "password", "Username required"),
+        ],
+    )
     def test_login_validation(self, user_auth, username, password, expected_error):
         """Test login input validation."""
         with pytest.raises(AuthError, match=expected_error):

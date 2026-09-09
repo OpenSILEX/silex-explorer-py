@@ -10,15 +10,15 @@ from ..uri_name_manager.uri_name_table import (
 )
 
 
-def get_facilities_by_experiment(session, experiment_name,csv_filepath=None):
+def get_facilities_by_experiment(session, experiment_name, csv_filepath=None):
     """
-    Retrieve facilities associated with a given experience using GraphQL query, 
+    Retrieve facilities associated with a given experience using GraphQL query,
     including type and geometry data, and save the results in a CSV file.
 
     Args:
         session (dict): Authentication session with GraphQL endpoint and headers.
         experience_name (str): The label of the experience for which facilities are to be retrieved.
-        csv_filepath (str, optional): The path of the CSV file to save the resulting data. 
+        csv_filepath (str, optional): The path of the CSV file to save the resulting data.
 
     Returns:
         pd.DataFrame: A DataFrame containing the details of the facilities associated with the experience.
@@ -32,15 +32,15 @@ def get_facilities_by_experiment(session, experiment_name,csv_filepath=None):
         >>> df = get_facilities_by_experience(session, experiment_name)
         >>> print(df.head())
     """
-    
+
     try:
         experience_uri = getURIbyName(experiment_name)
     except ValueError as e:
         print(f"❌ {e}")
-        exit(1)  # Stop execution due to the error 
+        exit(1)  # Stop execution due to the error
 
     # Define the GraphQL query for fetching facilities associated with an experience
-    graphql_query = '''
+    graphql_query = """
     query GetFacilities($experienceUri: [ID]) {
         Experiment(filter: {_id: $experienceUri}) {
             usesFacility {
@@ -56,49 +56,49 @@ def get_facilities_by_experiment(session, experiment_name,csv_filepath=None):
             }
         }
     }
-    '''
-    
+    """
+
     try:
         # Execute the GraphQL request/
         response = requests.post(
             session["url_graphql"],
-            json={'query': graphql_query, 'variables': {'experienceUri': experience_uri}},
-            headers=session["headers_graphql"]
+            json={"query": graphql_query, "variables": {"experienceUri": experience_uri}},
+            headers=session["headers_graphql"],
         )
         response.raise_for_status()
 
         # Process the response
         json_response = response.json()
-        if 'errors' in json_response:
-            error_message = json_response['errors'][0]['message']
+        if "errors" in json_response:
+            error_message = json_response["errors"][0]["message"]
             raise APIRequestError(f"Failed GraphQL request with error: {error_message}")
 
-        facilities = json_response.get('data', {}).get('Experiment', [{}])[0].get('usesFacility', [])
+        facilities = json_response.get("data", {}).get("Experiment", [{}])[0].get("usesFacility", [])
         list_facilities = []
 
         # Parsing and structuring the facility data
         for facility in facilities:
             row = {
-                'URI': facility['_id'],
-                'Name': facility['label'],
-                'Type': facility['_type'][0] if facility['_type'] else None,
+                "URI": facility["_id"],
+                "Name": facility["label"],
+                "Type": facility["_type"][0] if facility["_type"] else None,
             }
 
             # Handling the geometry data
             # Handling geometry
-            if facility.get('geometry'):
-                for geo in facility['geometry']:
-                    geo_type = geo['geometry']['type']
-                    coordinates = geo['geometry']['coordinates']
-                    row['geometry'] = f'{geo_type}({", ".join(map(str, coordinates))})'
-            
+            if facility.get("geometry"):
+                for geo in facility["geometry"]:
+                    geo_type = geo["geometry"]["type"]
+                    coordinates = geo["geometry"]["coordinates"]
+                    row["geometry"] = f"{geo_type}({', '.join(map(str, coordinates))})"
+
             list_facilities.append(row)
 
         # Convert to DataFrame
         df = pd.DataFrame(list_facilities)
 
         # Remove columns that contain only missing values (NaN) from the DataFrame
-        df.dropna(axis=1, how='all', inplace=True)
+        df.dropna(axis=1, how="all", inplace=True)
 
         # Save to CSV if requested
         if csv_filepath:

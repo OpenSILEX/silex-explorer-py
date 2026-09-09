@@ -7,8 +7,15 @@ from .ls_var_exp import get_ls_var_by_exp
 from .export_data import export_data_by_variable_to_csv
 
 
-def get_data_by_variable(session, experiment_name, obj_type_name, ls_var_exp=None, factor_level_uri=None, germplasm_uri=None, csv_filepath=None):
-    
+def get_data_by_variable(
+    session,
+    experiment_name,
+    obj_type_name,
+    ls_var_exp=None,
+    factor_level_uri=None,
+    germplasm_uri=None,
+    csv_filepath=None,
+):
     """
     Retrieve data associated with scientific objects by experiment and object type, with optional filtering by factor levels and germplasm.
 
@@ -27,13 +34,13 @@ def get_data_by_variable(session, experiment_name, obj_type_name, ls_var_exp=Non
 
     Raises:
         APIRequestError: If the API request fails, providing details on the HTTP status code and error message.
-    
+
     Description:
         This function first performs a GraphQL query to retrieve scientific objects of the specified type, associated with the
         given experiment. It applies optional filters for factor levels and germplasm. The function then extracts the target,
         value, and date data from each object and organizes them by variable. Finally, it exports the data for each variable into
         separate CSV files, where each CSV contains the measurements for one variable.
-        
+
     Example:
     >>> session = session
     >>> experience = ["experiment_123_2023_01_01"]
@@ -57,18 +64,17 @@ def get_data_by_variable(session, experiment_name, obj_type_name, ls_var_exp=Non
     ...     print(df.head())  # Display first few rows of data for each variable
     """
 
-    
-    # Get object type URI 
+    # Get object type URI
     try:
         obj_type = getURIbyName(obj_type_name)
     except ValueError as e:
         print(f"❌ {e}")
-        exit(1)  # Stop execution due to the error 
-    
+        exit(1)  # Stop execution due to the error
+
     # Get the list of variables by experiment and save to CSV
     if ls_var_exp is None or ls_var_exp.empty:
         ls_var_exp = get_ls_var_by_exp(session, experiment_name, page_size=20)
-    
+
     # Get experiment id
     experience = get_experiment_id(experiment_name, session)
 
@@ -76,12 +82,19 @@ def get_data_by_variable(session, experiment_name, obj_type_name, ls_var_exp=Non
     if isinstance(experience, str):
         experience = [experience]
 
-    graphql_query = """
-    query ScientificObject($experience: [DataSource!]!, $objType: String!""" + (", $factorLevel: [ID]" if factor_level_uri is not None else "")+ (", $germplasm: [ID]" if germplasm_uri is not None else "")  + """) {
+    graphql_query = (
+        """
+    query ScientificObject($experience: [DataSource!]!, $objType: String!"""
+        + (", $factorLevel: [ID]" if factor_level_uri is not None else "")
+        + (", $germplasm: [ID]" if germplasm_uri is not None else "")
+        + """) {
         ScientificObject(
             inferred: true,
             Experience: $experience,
-            filter: {type: $objType""" + (", hasFactorLevel: $factorLevel" if factor_level_uri is not None else "") +(", hasGermplasm: $germplasm" if germplasm_uri is not None else "")+ """}
+            filter: {type: $objType"""
+        + (", hasFactorLevel: $factorLevel" if factor_level_uri is not None else "")
+        + (", hasGermplasm: $germplasm" if germplasm_uri is not None else "")
+        + """}
         )  {
             data {
                 target
@@ -92,6 +105,7 @@ def get_data_by_variable(session, experiment_name, obj_type_name, ls_var_exp=Non
         }
     }
     """
+    )
 
     variables = {
         "experience": experience,
@@ -100,24 +114,23 @@ def get_data_by_variable(session, experiment_name, obj_type_name, ls_var_exp=Non
 
     if factor_level_uri is not None:
         variables["factorLevel"] = factor_level_uri
-        
+
     if germplasm_uri is not None:
         variables["germplasm"] = germplasm_uri
 
     response = requests.post(
         session["url_graphql"],
-        json={'query': graphql_query, 'variables': variables},
-        headers=session["headers_graphql"]
+        json={"query": graphql_query, "variables": variables},
+        headers=session["headers_graphql"],
     )
-    list_data_os=[]
+    list_data_os = []
     if response.status_code == 200:
-        scientific_objects = response.json().get('data', {}).get('ScientificObject', [])
+        scientific_objects = response.json().get("data", {}).get("ScientificObject", [])
         for obj in scientific_objects:
-            if isinstance(obj['data'], list):
-                list_data_os.extend(obj['data'])
-     
-        dataframes=export_data_by_variable_to_csv(ls_var_exp, list_data_os,csv_filepath=csv_filepath)
+            if isinstance(obj["data"], list):
+                list_data_os.extend(obj["data"])
+
+        dataframes = export_data_by_variable_to_csv(ls_var_exp, list_data_os, csv_filepath=csv_filepath)
         return dataframes
     else:
         raise APIRequestError(f"Erreur: {response.status_code} - {response.text}")
-

@@ -6,6 +6,7 @@ import requests
 from ..exceptions import APIRequestError
 from ..uri_name_manager.uri_name_table import getURIbyName, insert_into_uri_name
 
+
 def get_ls_os_types_by_exp(session, experiment_name, page_size=20, csv_filepath=None):
     """
     Retrieve all scientific object types for a given experiment using pagination and save to a CSV file.
@@ -30,17 +31,17 @@ def get_ls_os_types_by_exp(session, experiment_name, page_size=20, csv_filepath=
         # Additionally, the data will be saved to 'temp_files/scientific_object_types.csv'.
 
     """
-    
+
     try:
         experiment_uri = getURIbyName(experiment_name)
     except ValueError as e:
         print(f"❌ {e}")
-        exit(1)  # Stop execution due to the error 
-        
+        exit(1)  # Stop execution due to the error
+
     os_types_service_route = "/core/scientific_objects/used_types"
 
     url = f"{session['url_rest']}{os_types_service_route}"
-    
+
     # Initialize pagination variables
     list_OS_types_by_experiment = []
     current_page = 0
@@ -48,43 +49,36 @@ def get_ls_os_types_by_exp(session, experiment_name, page_size=20, csv_filepath=
 
     while current_page < total_pages:
         # Define parameters for the GET request
-        params_get_os_types_by_experiment = {
-            "experiment": experiment_uri,
-            'pageSize': page_size,
-            'page': current_page
-        }
-        
+        params_get_os_types_by_experiment = {"experiment": experiment_uri, "pageSize": page_size, "page": current_page}
+
         try:
             # Send GET request with parameters
             response = requests.get(url, params=params_get_os_types_by_experiment, headers=session["headers_rest"])
             response.raise_for_status()
-            
+
             # Parse JSON response
             json_response = response.json()
-            results = json_response.get('result', [])
-            
+            results = json_response.get("result", [])
+
             # Append URIs to the list
-            
+
             for result in results:
-                list_OS_types_by_experiment.append({
-                    'URI': result['uri'],
-                    'Name': result['name']
-                })
-                
+                list_OS_types_by_experiment.append({"URI": result["uri"], "Name": result["name"]})
+
             # Update pagination info
-            metadata = json_response.get('metadata', {}).get('pagination', {})
-            total_pages = metadata.get('totalPages', 1)
-            
+            metadata = json_response.get("metadata", {}).get("pagination", {})
+            total_pages = metadata.get("totalPages", 1)
+
             # Move to the next page
             current_page += 1
-        
+
         except requests.exceptions.RequestException as e:
             # Raise a custom exception with a descriptive message
             raise APIRequestError(f"API request error: {str(e)}")
-    
+
     # Save the list to a CSV file
     df = pd.DataFrame(list_OS_types_by_experiment)
-    
+
     ## Save to CSV if requested
     if csv_filepath:
         if os.path.dirname(csv_filepath):  # Ensure the directory exists
@@ -98,4 +92,3 @@ def get_ls_os_types_by_exp(session, experiment_name, page_size=20, csv_filepath=
 
     # Return the filtered experiments as a list
     return df
-    

@@ -39,7 +39,7 @@ from package.exceptions.custom_exceptions import APIRequestError
 from package.facility.env_var import get_variable_by_facility
 
 # Assuming `session` is already defined with authentication details
-facility_uri = "http://phenome.inrae.fr/m3p/id/organization/facility.test1"# Replace with the actual facility URI
+facility_uri = "http://phenome.inrae.fr/m3p/id/organization/facility.test1"  # Replace with the actual facility URI
 date_beginning = "2023-01-01"
 date_end = "2023-01-31"
 

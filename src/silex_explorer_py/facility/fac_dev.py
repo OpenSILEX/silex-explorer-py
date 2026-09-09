@@ -26,7 +26,7 @@ def get_devices_by_facility(session, facility_name, page_size=20, csv_filepath=N
         session = session
         facility_name = '/facilities/12345'
         devices = get_devices_by_facility(session,facility_name)
-        
+
         # This will retrieve device data associated with the facility and return a list like:
         # [{'uri': '/devices/1', 'type': 'Sensor', 'name': 'Temperature Sensor'},
         #  {'uri': '/devices/2', 'type': 'Sensor', 'name': 'Humidity Sensor'}]
@@ -35,48 +35,40 @@ def get_devices_by_facility(session, facility_name, page_size=20, csv_filepath=N
         facility_uri = getURIbyName(facility_name)
     except ValueError as e:
         print(f"❌ {e}")
-        exit(1)  # Stop execution due to the error 
-        
+        exit(1)  # Stop execution due to the error
+
     devices_service_route = "/core/devices"
     url = f"{session['url_rest']}{devices_service_route}"
-    
+
     list_devices = []
     current_page = 0
     has_next_page = True
 
     while has_next_page:
         # Construct parameters for the GET request
-        params = {
-            "facility": facility_uri,
-            "page": current_page,
-            "pageSize": page_size
-        }
-        
+        params = {"facility": facility_uri, "page": current_page, "pageSize": page_size}
+
         try:
             # Send a GET request with the parameters
             response = requests.get(url, params=params, headers=session["headers_rest"])
             response.raise_for_status()  # Raise an HTTPError if the response code is 4xx/5xx
-            
+
             json_response = response.json()
-            results = json_response.get('result', [])
-            
+            results = json_response.get("result", [])
+
             for result in results:
-                list_devices.append({
-                    "URI": result["uri"],
-                    "type": result["rdf_type_name"],
-                    "Name": result["name"]
-                })
-            
+                list_devices.append({"URI": result["uri"], "type": result["rdf_type_name"], "Name": result["name"]})
+
             # Update pagination info
-            metadata = json_response.get('metadata', {}).get('pagination', {})
-            has_next_page = metadata.get('hasNextPage', False)
-            
+            metadata = json_response.get("metadata", {}).get("pagination", {})
+            has_next_page = metadata.get("hasNextPage", False)
+
             # Move to the next page
             current_page += 1
-        
+
         except requests.exceptions.RequestException as e:
             raise APIRequestError(f"API request error: {str(e)}")
-    
+
     # Save the extracted data to a CSV file
     df = pd.DataFrame(list_devices)
     # Save to CSV if requested
@@ -89,5 +81,5 @@ def get_devices_by_facility(session, facility_name, page_size=20, csv_filepath=N
     # Insert into global table if data exists
     if not df.empty:
         insert_into_uri_name(df)
-        
+
     return df

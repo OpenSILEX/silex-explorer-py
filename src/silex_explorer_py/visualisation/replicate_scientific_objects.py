@@ -9,6 +9,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 
 from ..experiment.chunk_data_exp import get_data_by_os_uri_variable
 
+
 def replicate_scientific_objects(df, csv_filepath=None):
     """
     Group scientific objects based on variable combinations and optionally
@@ -33,40 +34,32 @@ def replicate_scientific_objects(df, csv_filepath=None):
     """
 
     # Exclude 'URI' and 'Name' columns from the comparison
-    columns_to_compare = [
-        col for col in df.columns if col not in ['URI', 'Name']
-    ]
-    
+    columns_to_compare = [col for col in df.columns if col not in ["URI", "Name"]]
+
     # Exclude columns where all values are identical
-    columns_to_compare = [
-        col for col in columns_to_compare
-        if df[col].nunique(dropna=False) > 1
-    ]
+    columns_to_compare = [col for col in columns_to_compare if df[col].nunique(dropna=False) > 1]
 
     # Convert all values in relevant columns to string to avoid type issues
     df[columns_to_compare] = df[columns_to_compare].astype(str)
+
     # Function to remove trailing NaNs from the group identifier
     def remove_trailing_nans_from_identifier(group_identifier):
         """
         Remove trailing 'nan' values only at the end of the group identifier.
         """
-        parts = group_identifier.split('_')
-        while parts and parts[-1] == 'nan':
+        parts = group_identifier.split("_")
+        while parts and parts[-1] == "nan":
             parts.pop()
-        return '_'.join(parts)
+        return "_".join(parts)
 
     # Create a unique identifier for each row based on selected columns
-    df['group_identifier'] = df[columns_to_compare].agg('_'.join, axis=1)
+    df["group_identifier"] = df[columns_to_compare].agg("_".join, axis=1)
 
     # Clean group identifiers by removing trailing NaNs
-    df['group_identifier'] = df['group_identifier'].apply(
-        remove_trailing_nans_from_identifier
-    )
+    df["group_identifier"] = df["group_identifier"].apply(remove_trailing_nans_from_identifier)
 
     # Assign a default identifier if the result is empty
-    df['group_identifier'] = df['group_identifier'].apply(
-        lambda x: x if x != '' else 'NaN_group'
-    )
+    df["group_identifier"] = df["group_identifier"].apply(lambda x: x if x != "" else "NaN_group")
 
     # Dictionary to store grouped DataFrames
     group_dict = {}
@@ -75,9 +68,9 @@ def replicate_scientific_objects(df, csv_filepath=None):
     group_summary = []
 
     # Group DataFrame by group identifier
-    for group, group_df in df.groupby('group_identifier'):
+    for group, group_df in df.groupby("group_identifier"):
         # Store group DataFrame without the group identifier column
-        group_dict[group] = group_df.drop(columns=['group_identifier'])
+        group_dict[group] = group_df.drop(columns=["group_identifier"])
         # Store group name and number of elements
         group_summary.append([group, len(group_df)])
 
@@ -88,17 +81,13 @@ def replicate_scientific_objects(df, csv_filepath=None):
             os.makedirs(os.path.dirname(csv_filepath), exist_ok=True)
 
         # Create and save the summary DataFrame
-        group_summary_df = pd.DataFrame(
-            group_summary,
-            columns=['Group', 'Number of Elements']
-        )
+        group_summary_df = pd.DataFrame(group_summary, columns=["Group", "Number of Elements"])
         group_summary_df.to_csv(csv_filepath, index=False)
         print(f"✅ Group summary has been saved to '{csv_filepath}'.")
 
     return group_dict
 
-   
-        
+
 def extract_group_os(group_dict, group_identifier, csv_filepath=None):
     """
     Extract a specific group of scientific objects from a grouped dictionary
@@ -143,10 +132,7 @@ def extract_group_os(group_dict, group_identifier, csv_filepath=None):
 
     # Check if the requested group exists
     if group_identifier not in group_dict:
-        print(
-            f"❌ Invalid group identifier. "
-            f"Available groups: {list(group_dict.keys())}"
-        )
+        print(f"❌ Invalid group identifier. Available groups: {list(group_dict.keys())}")
         return None
 
     # Retrieve the DataFrame for the requested group
@@ -182,11 +168,7 @@ def visualize_all_variables(df_variables, pdf_filepath=None):
         print("⚠️ No variables to visualize.")
         return
 
-    valid_variables = {
-        key: df
-        for key, df in df_variables.items()
-        if df is not None and not df.empty
-    }
+    valid_variables = {key: df for key, df in df_variables.items() if df is not None and not df.empty}
 
     if not valid_variables:
         print("⚠️ No non-empty variables to visualize.")
@@ -218,18 +200,10 @@ def visualize_all_variables(df_variables, pdf_filepath=None):
     # --------------------------------------------------
 
     with PdfPages(pdf_filepath) as pdf:
-
         for page_start in range(0, len(variables), graphs_per_page):
+            page_variables = variables[page_start : page_start + graphs_per_page]
 
-            page_variables = variables[
-                page_start:page_start + graphs_per_page
-            ]
-
-            fig, axes = plt.subplots(
-                rows,
-                cols,
-                figsize=(16, 12)
-            )
+            fig, axes = plt.subplots(rows, cols, figsize=(16, 12))
 
             axes = axes.flatten()
 
@@ -241,79 +215,49 @@ def visualize_all_variables(df_variables, pdf_filepath=None):
             # ------------------------------------------
 
             for i, (key, df) in enumerate(page_variables):
-
                 variable_name = key.replace("df_", "")
 
                 ax = axes[i]
 
-                required = [
-                    "URI",
-                    "Date",
-                    variable_name
-                ]
+                required = ["URI", "Date", variable_name]
 
                 if not all(col in df.columns for col in required):
-
                     ax.text(
                         0.5,
                         0.5,
                         f"Missing columns\n{variable_name}",
                         horizontalalignment="center",
                         verticalalignment="center",
-                        transform=ax.transAxes
+                        transform=ax.transAxes,
                     )
 
                     ax.set_axis_off()
 
-                    print(
-                        f"⚠️ Missing columns for '{variable_name}'."
-                    )
+                    print(f"⚠️ Missing columns for '{variable_name}'.")
 
                     continue
 
                 data_df = df.copy()
 
-                data_df["Date"] = pd.to_datetime(
-                    data_df["Date"],
-                    errors="coerce"
-                )
+                data_df["Date"] = pd.to_datetime(data_df["Date"], errors="coerce")
 
-                data_df = data_df.dropna(
-                    subset=["Date"]
-                )
+                data_df = data_df.dropna(subset=["Date"])
 
-                data_df = data_df.sort_values(
-                    "Date"
-                )
+                data_df = data_df.sort_values("Date")
 
                 # --------------------------------------
                 # Une courbe par URI
                 # --------------------------------------
 
-                for j, uri in enumerate(
-                    data_df["URI"].dropna().unique()
-                ):
+                for j, uri in enumerate(data_df["URI"].dropna().unique()):
+                    data = data_df[data_df["URI"] == uri]
 
-                    data = data_df[
-                        data_df["URI"] == uri
-                    ]
-
-                    color = colors[
-                        j % len(colors)
-                    ]
+                    color = colors[j % len(colors)]
 
                     if data[variable_name].notna().sum() <= 1:
-
-                        ax.scatter(
-                            data["Date"],
-                            data[variable_name],
-                            color=color,
-                            label=uri,
-                            s=30
-                        )
+                        ax.scatter(data["Date"], data[variable_name], color=color, label=uri, s=30)
 
                     else:
-
                         ax.plot(
                             data["Date"],
                             data[variable_name],
@@ -321,84 +265,51 @@ def visualize_all_variables(df_variables, pdf_filepath=None):
                             label=uri,
                             linewidth=1.8,
                             marker="o",
-                            markersize=3
+                            markersize=3,
                         )
 
                 # --------------------------------------
                 # Titre
                 # --------------------------------------
 
-                title = variable_name.replace(
-                    "_",
-                    " "
-                )
+                title = variable_name.replace("_", " ")
 
-                ax.set_title(
-                    title,
-                    fontsize=10,
-                    fontweight="bold",
-                    pad=8
-                )
+                ax.set_title(title, fontsize=10, fontweight="bold", pad=8)
 
                 # --------------------------------------
                 # Grille
                 # --------------------------------------
 
-                ax.grid(
-                    True,
-                    linestyle="--",
-                    alpha=0.3
-                )
+                ax.grid(True, linestyle="--", alpha=0.3)
 
                 # --------------------------------------
                 # Dates
                 # --------------------------------------
 
-                locator = mdates.AutoDateLocator(
-                    minticks=3,
-                    maxticks=6
-                )
+                locator = mdates.AutoDateLocator(minticks=3, maxticks=6)
 
-                formatter = mdates.ConciseDateFormatter(
-                    locator
-                )
+                formatter = mdates.ConciseDateFormatter(locator)
 
-                ax.xaxis.set_major_locator(
-                    locator
-                )
+                ax.xaxis.set_major_locator(locator)
 
-                ax.xaxis.set_major_formatter(
-                    formatter
-                )
+                ax.xaxis.set_major_formatter(formatter)
 
-                ax.tick_params(
-                    axis="x",
-                    labelsize=8
-                )
+                ax.tick_params(axis="x", labelsize=8)
 
-                ax.tick_params(
-                    axis="y",
-                    labelsize=8
-                )
+                ax.tick_params(axis="y", labelsize=8)
 
                 # --------------------------------------
                 # Legend commune
                 # --------------------------------------
 
                 if not common_handles:
-
-                    common_handles, common_labels = (
-                        ax.get_legend_handles_labels()
-                    )
+                    common_handles, common_labels = ax.get_legend_handles_labels()
 
             # ------------------------------------------
             # Cacher cases inutilisées
             # ------------------------------------------
 
-            for i in range(
-                len(page_variables),
-                len(axes)
-            ):
+            for i in range(len(page_variables), len(axes)):
                 axes[i].set_visible(False)
 
             # ------------------------------------------
@@ -406,51 +317,35 @@ def visualize_all_variables(df_variables, pdf_filepath=None):
             # ------------------------------------------
 
             if common_handles:
-
                 fig.legend(
                     common_handles,
                     common_labels,
                     loc="lower center",
                     bbox_to_anchor=(0.5, 0.01),
-                    ncol=min(
-                        5,
-                        len(common_labels)
-                    ),
-                    fontsize=8
+                    ncol=min(5, len(common_labels)),
+                    fontsize=8,
                 )
 
             # ------------------------------------------
             # Espacement
             # ------------------------------------------
 
-            fig.subplots_adjust(
-                left=0.07,
-                right=0.98,
-                top=0.95,
-                bottom=0.10,
-                hspace=0.45,
-                wspace=0.25
-            )
+            fig.subplots_adjust(left=0.07, right=0.98, top=0.95, bottom=0.10, hspace=0.45, wspace=0.25)
 
             # ------------------------------------------
             # Sauvegarde de la page
             # ------------------------------------------
 
-            pdf.savefig(
-                fig,
-                bbox_inches="tight"
-            )
+            pdf.savefig(fig, bbox_inches="tight")
 
             plt.show()
 
             plt.close(fig)
 
-    print(
-        f"✅ Visualization saved to '{pdf_filepath}'."
-    )
+    print(f"✅ Visualization saved to '{pdf_filepath}'.")
 
-def transform_data_for_plot(group_dict, session, experiment_name, 
-                            group1_id, group2_id, factor):
+
+def transform_data_for_plot(group_dict, session, experiment_name, group1_id, group2_id, factor):
     """
     Prépare les données pour une visualisation en courbes temporelles,
     en utilisant les identifiants de groupe au lieu des numéros.
@@ -481,29 +376,29 @@ def transform_data_for_plot(group_dict, session, experiment_name,
 
     # 3️⃣ Ajouter les colonnes "Groupe" et "Factor Level"
     for var in df_var1.keys():
-        df_var1[var]['Groupe'] = f"{factor.capitalize()} {df_os1[factor].iloc[0]}" if not df_os1.empty else None
+        df_var1[var]["Groupe"] = f"{factor.capitalize()} {df_os1[factor].iloc[0]}" if not df_os1.empty else None
         df_var1[var][factor] = df_os1[factor].iloc[0] if not df_os1.empty else None
 
-        df_var2[var]['Groupe'] = f"{factor.capitalize()} {df_os2[factor].iloc[0]}" if not df_os2.empty else None
+        df_var2[var]["Groupe"] = f"{factor.capitalize()} {df_os2[factor].iloc[0]}" if not df_os2.empty else None
         df_var2[var][factor] = df_os2[factor].iloc[0] if not df_os2.empty else None
 
     # 4️⃣ Rassembler toutes les variables en un seul DataFrame
     df_list = []
     for var in df_var1.keys():
-        cleaned_var = var.replace('df_', '')
+        cleaned_var = var.replace("df_", "")
 
         if not df_var1[var].empty:
             df_temp1 = df_var1[var].copy()
-            df_temp1['Variable'] = cleaned_var
-            df_temp1 = df_temp1[['Date', 'URI', 'Groupe', factor, 'Variable', cleaned_var]]
-            df_temp1 = df_temp1.rename(columns={cleaned_var: 'Valeur'})
+            df_temp1["Variable"] = cleaned_var
+            df_temp1 = df_temp1[["Date", "URI", "Groupe", factor, "Variable", cleaned_var]]
+            df_temp1 = df_temp1.rename(columns={cleaned_var: "Valeur"})
             df_list.append(df_temp1)
 
         if not df_var2[var].empty:
             df_temp2 = df_var2[var].copy()
-            df_temp2['Variable'] = cleaned_var
-            df_temp2 = df_temp2[['Date', 'URI', 'Groupe', factor, 'Variable', cleaned_var]]
-            df_temp2 = df_temp2.rename(columns={cleaned_var: 'Valeur'})
+            df_temp2["Variable"] = cleaned_var
+            df_temp2 = df_temp2[["Date", "URI", "Groupe", factor, "Variable", cleaned_var]]
+            df_temp2 = df_temp2.rename(columns={cleaned_var: "Valeur"})
             df_list.append(df_temp2)
 
     if not df_list:
@@ -514,15 +409,9 @@ def transform_data_for_plot(group_dict, session, experiment_name,
     df_final = pd.concat(df_list, ignore_index=True)
     return df_final
 
+
 def compare_groups_by_factor_level(
-    group_dict,
-    session,
-    experiment_name,
-    group1_id,
-    group2_id,
-    factor,
-    csv_filepath=None,
-    pdf_filepath=None
+    group_dict, session, experiment_name, group1_id, group2_id, factor, csv_filepath=None, pdf_filepath=None
 ):
     """
     Compare two groups by a factor level, transform data,
@@ -565,14 +454,7 @@ def compare_groups_by_factor_level(
     # 1. Transform data
     # --------------------------------------------------
 
-    df_final = transform_data_for_plot(
-        group_dict,
-        session,
-        experiment_name,
-        group1_id,
-        group2_id,
-        factor
-    )
+    df_final = transform_data_for_plot(group_dict, session, experiment_name, group1_id, group2_id, factor)
 
     # Protection against None
     if df_final is None:
@@ -588,16 +470,10 @@ def compare_groups_by_factor_level(
     # --------------------------------------------------
 
     if csv_filepath is None:
-        csv_filepath = os.path.join(
-            "output",
-            "data.csv"
-        )
+        csv_filepath = os.path.join("output", "data.csv")
 
     if pdf_filepath is None:
-        pdf_filepath = os.path.join(
-            "output",
-            "comparison_groups.pdf"
-        )
+        pdf_filepath = os.path.join("output", "comparison_groups.pdf")
 
     # --------------------------------------------------
     # 3. Create output directories
@@ -606,89 +482,52 @@ def compare_groups_by_factor_level(
     csv_dir = os.path.dirname(csv_filepath)
 
     if csv_dir:
-        os.makedirs(
-            csv_dir,
-            exist_ok=True
-        )
+        os.makedirs(csv_dir, exist_ok=True)
 
     pdf_dir = os.path.dirname(pdf_filepath)
 
     if pdf_dir:
-        os.makedirs(
-            pdf_dir,
-            exist_ok=True
-        )
+        os.makedirs(pdf_dir, exist_ok=True)
 
     # --------------------------------------------------
     # 4. Save combined CSV
     # --------------------------------------------------
 
-    df_final.to_csv(
-        csv_filepath,
-        index=False
-    )
+    df_final.to_csv(csv_filepath, index=False)
 
-    print(
-        f"✅ Combined CSV saved at "
-        f"'{csv_filepath}'."
-    )
+    print(f"✅ Combined CSV saved at '{csv_filepath}'.")
 
     # --------------------------------------------------
     # 5. Prepare plotting
     # --------------------------------------------------
 
-    df_final["Date"] = pd.to_datetime(
-        df_final["Date"],
-        errors="coerce"
-    )
+    df_final["Date"] = pd.to_datetime(df_final["Date"], errors="coerce")
 
-    df_final = df_final.sort_values(
-        by="Date"
-    )
+    df_final = df_final.sort_values(by="Date")
 
     # --------------------------------------------------
     # Groups and colors
     # --------------------------------------------------
 
-    groupes_uniques = (
-        df_final["Groupe"]
-        .dropna()
-        .unique()
-    )
+    groupes_uniques = df_final["Groupe"].dropna().unique()
 
-    palette = sns.color_palette(
-        "husl",
-        len(groupes_uniques)
-    )
+    palette = sns.color_palette("husl", len(groupes_uniques))
 
-    palette_dict = dict(
-        zip(
-            groupes_uniques,
-            palette
-        )
-    )
+    palette_dict = dict(zip(groupes_uniques, palette))
 
     # --------------------------------------------------
     # Variables
     # --------------------------------------------------
 
-    variables = (
-        df_final["Variable"]
-        .dropna()
-        .unique()
-    )
+    variables = df_final["Variable"].dropna().unique()
 
     # --------------------------------------------------
     # 6. Create ONE multipage PDF
     # --------------------------------------------------
 
     with PdfPages(pdf_filepath) as pdf:
-
         for var in variables:
-
-            var_df = df_final[
-                df_final["Variable"] == var
-            ]
+            var_df = df_final[df_final["Variable"] == var]
 
             if var_df.empty:
                 continue
@@ -697,11 +536,7 @@ def compare_groups_by_factor_level(
             # Create figure
             # ==========================================
 
-            fig, axes = plt.subplots(
-                1,
-                2,
-                figsize=(12, 5)
-            )
+            fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
             # ==========================================
             # Graph 1
@@ -720,33 +555,20 @@ def compare_groups_by_factor_level(
                 alpha=0.5,
                 palette=palette_dict,
                 dashes=False,
-                ax=axes[0]
+                ax=axes[0],
             )
 
             # Extract readable variable name
-            match = re.match(
-                r"[^_]+_([^_]+)",
-                str(var)
-            )
+            match = re.match(r"[^_]+_([^_]+)", str(var))
 
-            extracted_part = (
-                match.group(1)
-                if match
-                else str(var)
-            )
+            extracted_part = match.group(1) if match else str(var)
 
-            axes[0].set_title(
-                f"Évolution des OS - "
-                f"{extracted_part}"
-            )
+            axes[0].set_title(f"Évolution des OS - {extracted_part}")
 
             axes[0].set_xlabel("Date")
             axes[0].set_ylabel(str(var))
 
-            axes[0].tick_params(
-                axis="x",
-                rotation=45
-            )
+            axes[0].tick_params(axis="x", rotation=45)
 
             # ==========================================
             # Graph 2
@@ -764,21 +586,15 @@ def compare_groups_by_factor_level(
                 dashes=False,
                 errorbar="sd",
                 palette=palette_dict,
-                ax=axes[1]
+                ax=axes[1],
             )
 
-            axes[1].set_title(
-                f"Moyenne des groupes - "
-                f"{extracted_part}"
-            )
+            axes[1].set_title(f"Moyenne des groupes - {extracted_part}")
 
             axes[1].set_xlabel("Date")
             axes[1].set_ylabel(str(var))
 
-            axes[1].tick_params(
-                axis="x",
-                rotation=45
-            )
+            axes[1].tick_params(axis="x", rotation=45)
 
             # ==========================================
             # Layout
@@ -790,14 +606,9 @@ def compare_groups_by_factor_level(
             # Add this figure as ONE page
             # ==========================================
 
-            pdf.savefig(
-                fig,
-                bbox_inches="tight"
-            )
+            pdf.savefig(fig, bbox_inches="tight")
 
-            print(
-                f"✅ Variable '{var}' added to PDF."
-            )
+            print(f"✅ Variable '{var}' added to PDF.")
 
             # Display
             plt.show()
@@ -809,9 +620,6 @@ def compare_groups_by_factor_level(
     # 7. Final message
     # --------------------------------------------------
 
-    print(
-        f"✅ Multipage PDF saved at "
-        f"'{pdf_filepath}'."
-    )
+    print(f"✅ Multipage PDF saved at '{pdf_filepath}'.")
 
     return df_final

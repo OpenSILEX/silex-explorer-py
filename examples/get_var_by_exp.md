@@ -37,7 +37,7 @@ from package.experiment.ls_var_exp import get_ls_var_by_exp
 
 # Assuming `session` is already defined with authentication details
 experiment_uri = "https://example.com/experiment/123"  # Replace with the actual experiment URI
-df = get_ls_var_by_exp(session, experiment_uri, page_size=20, csv_filename='variables.csv')
+df = get_ls_var_by_exp(session, experiment_uri, page_size=20, csv_filename="variables.csv")
 print(df.head())
 ```
 ## Expected Output:

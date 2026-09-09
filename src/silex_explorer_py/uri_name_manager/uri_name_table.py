@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import warnings
 
+
 def init_uri_name(csv_path=None, save=False):
     """
     Initializes the global variable `uri_name_table`, and optionally saves it to a CSV file.
@@ -20,7 +21,7 @@ def init_uri_name(csv_path=None, save=False):
     - pd.DataFrame: The global URI-Name table.
     """
     global uri_name_table  # Use the global variable
-    
+
     if csv_path and os.path.exists(csv_path):
         # Load the provided CSV file into the DataFrame
         uri_name_table = pd.read_csv(csv_path)
@@ -44,6 +45,7 @@ def init_uri_name(csv_path=None, save=False):
 
     return uri_name_table
 
+
 def insert_into_uri_name(new_data):
     """
     Inserts multiple rows into the global uri_name_table.
@@ -59,16 +61,19 @@ def insert_into_uri_name(new_data):
     new_data = new_data[["URI", "Name"]]
     combined_data = pd.concat([uri_name_table, new_data], ignore_index=True)
     # Check for duplicates between the new data and existing table
-    combined_data.drop_duplicates(subset=["URI", "Name"], keep='first', inplace=True)
-    
+    combined_data.drop_duplicates(subset=["URI", "Name"], keep="first", inplace=True)
+
     # Identify new unique entries to insert
-    unique_entries = combined_data[~combined_data.set_index(['URI', 'Name']).index.isin(uri_name_table.set_index(['URI', 'Name']).index)]
+    unique_entries = combined_data[
+        ~combined_data.set_index(["URI", "Name"]).index.isin(uri_name_table.set_index(["URI", "Name"]).index)
+    ]
 
     # Append unique entries to the uri_name_table
     uri_name_table = pd.concat([uri_name_table, unique_entries], ignore_index=True)
     # Check for consistency after insertion
     check_uri_name_consistency()
-    
+
+
 def check_uri_name_consistency():
     """
     Checks for inconsistencies in the uri_name_table:
@@ -86,9 +91,10 @@ def check_uri_name_consistency():
 
     if not uri_issues.empty:
         for uri in uri_issues.index:
-            associated_names = uri_name_table[uri_name_table['URI'] == uri]['Name'].unique()
-            warnings.warn(f"⚠️ Inconsistency: URI '{uri}' is associated with multiple names: {', '.join(associated_names)}.")
-
+            associated_names = uri_name_table[uri_name_table["URI"] == uri]["Name"].unique()
+            warnings.warn(
+                f"⚠️ Inconsistency: URI '{uri}' is associated with multiple names: {', '.join(associated_names)}."
+            )
 
     # Find Names with multiple URIs
     name_duplicates = uri_name_table.groupby("Name")["URI"].nunique()
@@ -96,13 +102,16 @@ def check_uri_name_consistency():
 
     if not name_issues.empty:
         for name in name_issues.index:
-            associated_uris = uri_name_table[uri_name_table['Name'] == name]['URI'].unique()
-            warnings.warn(f"⚠️ Inconsistency: Name '{name}' is associated with multiple URIs: {', '.join(associated_uris)}.")
+            associated_uris = uri_name_table[uri_name_table["Name"] == name]["URI"].unique()
+            warnings.warn(
+                f"⚠️ Inconsistency: Name '{name}' is associated with multiple URIs: {', '.join(associated_uris)}."
+            )
+
 
 def getURIbyName(name):
     """
     Retrieves all URIs associated with the given name.
-    
+
     Parameters:
     - name (str): The name for which to retrieve associated URIs.
 
@@ -128,6 +137,7 @@ def getURIbyName(name):
         raise ValueError(f"Error: Multiple URIs found for '{name}': {uris}")
 
     return uris[0]  # Return the unique URI
+
 
 def getNamesByURI(uri):
     """
@@ -169,4 +179,3 @@ def print_table():
         print("The table is empty.")
     else:
         print(uri_name_table.to_string(index=False))  # Display the table without the index
-        

@@ -4,6 +4,7 @@ import requests
 
 from ..uri_name_manager.uri_name_table import getURIbyName
 
+
 def get_experiment_id(experiment_name, session):
     try:
         experiment_uri = getURIbyName(experiment_name)
@@ -11,39 +12,39 @@ def get_experiment_id(experiment_name, session):
         print(f"❌ {e}")
         exit(1)  # Stop execution due to the error
 
-    graphql_query = '''
+    graphql_query = """
     query MyQuery($id: [ID]) {
       Experiment(filter: {_id: $id}) {
         label
         startDate
       }
     }
-    '''
+    """
 
     try:
         response = requests.post(
             session["url_graphql"],
-            json={'query': graphql_query, 'variables': {'id': experiment_uri}},
-            headers=session["headers_graphql"]
+            json={"query": graphql_query, "variables": {"id": experiment_uri}},
+            headers=session["headers_graphql"],
         )
         response.raise_for_status()
         json_response = response.json()
 
-        if 'errors' in json_response:
-            error_message = json_response['errors'][0]['message']
+        if "errors" in json_response:
+            error_message = json_response["errors"][0]["message"]
             raise Exception(f"Failed GraphQL request with error: {error_message}")
 
-        experiment_data = json_response.get('data', {}).get('Experiment', [])
-        
+        experiment_data = json_response.get("data", {}).get("Experiment", [])
+
         if not experiment_data:
             print("❌ No experiment found")
             exit(1)
 
         obj = experiment_data[0]
-        label = obj.get('label', 'Unknown')
-        label = label.replace('-', '_')
-        start_date = obj.get('startDate', '')
-        
+        label = obj.get("label", "Unknown")
+        label = label.replace("-", "_")
+        start_date = obj.get("startDate", "")
+
         def parse_date(date_str):
             for fmt in ("%Y-%m-%dT%H:%M:%S.%fZ", "%Y-%m-%d"):
                 try:

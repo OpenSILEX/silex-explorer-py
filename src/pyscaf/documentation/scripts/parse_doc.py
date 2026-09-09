@@ -34,7 +34,14 @@ def get_package_paths() -> list:
         pyproject = tomli.load(f)
 
     # First try hatchling explicit packages
-    hatch_packages = pyproject.get("tool", {}).get("hatch", {}).get("build", {}).get("targets", {}).get("wheel", {}).get("packages", [])
+    hatch_packages = (
+        pyproject.get("tool", {})
+        .get("hatch", {})
+        .get("build", {})
+        .get("targets", {})
+        .get("wheel", {})
+        .get("packages", [])
+    )
     if hatch_packages:
         return hatch_packages
 
@@ -43,7 +50,7 @@ def get_package_paths() -> list:
     if project_name:
         curated_name = project_name.replace("-", "_")
         return [f"src/{curated_name}"]
-    
+
     return []
 
 

@@ -89,7 +89,7 @@ This function supports several filters that can be applied individually or in co
 
 ```python
 from package.exceptions.custom_exceptions import APIRequestError
-from package.experiment.ls_exp import get_ls_exp 
+from package.experiment.ls_exp import get_ls_exp
 
 df = get_ls_exp(
     session=session,
@@ -98,7 +98,7 @@ df = get_ls_exp(
     active_date="2023-01-01",
     species_name="Arabidopsis",
     project_name="Plant Research",
-    csv_filename="filtered_experiments.csv"
+    csv_filename="filtered_experiments.csv",
 )
 print(df.head())
 ```

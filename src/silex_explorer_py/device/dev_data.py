@@ -4,8 +4,8 @@ import os
 from ..exceptions import APIRequestError
 from ..uri_name_manager.uri_name_table import getURIbyName
 
-def get_data_by_device(
-    session, device_name, date_beginning=None, date_end=None,  csv_filepath=None):
+
+def get_data_by_device(session, device_name, date_beginning=None, date_end=None, csv_filepath=None):
     """
     Retrieve measured data for a given device and optionally generate a CSV file.
     Args:
@@ -36,17 +36,17 @@ def get_data_by_device(
         ...     date_end="2023-01-31",
         ...     csv_filepath="path/to/save/output.csv"        ... )
         >>> print(df.head())
-        
-        For more examples, see the file `examples/get_data_by_device.py`.  
+
+        For more examples, see the file `examples/get_data_by_device.py`.
     """
     try:
         device_uri = getURIbyName(device_name)
     except ValueError as e:
         print(f"❌ {e}")
-        exit(1)  # Stop execution due to the error 
-    
+        exit(1)  # Stop execution due to the error
+
     # GraphQL query to retrieve measured data
-    data_query = '''
+    data_query = """
     query GetMeasuredData($filter: FilterFindManyDataInput) {
       Data_findMany(filter: $filter) {
         target
@@ -55,7 +55,7 @@ def get_data_by_device(
         date
       }
     }
-    '''
+    """
 
     try:
         # Construct filter for GraphQL query
@@ -74,7 +74,7 @@ def get_data_by_device(
         response = requests.post(
             session["url_graphql"],
             json={"query": data_query, "variables": {"filter": filter_input}},
-            headers=session["headers_graphql"]
+            headers=session["headers_graphql"],
         )
         response.raise_for_status()
 
@@ -104,16 +104,14 @@ def get_data_by_device(
 
         # Convert to DataFrame and save as CSV
         df = pd.DataFrame(csv_data, columns=["URI", "Target", "Value", "Variable", "Date"])
-        
-        
+
         if csv_filepath:
             if os.path.dirname(csv_filepath):  # Ensure the directory exists
                 os.makedirs(os.path.dirname(csv_filepath), exist_ok=True)
             df.to_csv(csv_filepath, index=False)
             print(f"✅ Measured data on device has been saved to :'{csv_filepath}'.")
-        
+
         return df
 
     except requests.exceptions.RequestException as e:
         raise APIRequestError(f"GraphQL request failed. Error: {str(e)}")
-

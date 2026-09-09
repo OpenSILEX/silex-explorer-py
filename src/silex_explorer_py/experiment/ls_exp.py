@@ -7,8 +7,16 @@ import requests
 from ..exceptions import APIRequestError
 from ..uri_name_manager.uri_name_table import insert_into_uri_name
 
-def get_ls_exp(session, species_uri=None, project_uri=None, active_date=None, 
-               species_name=None, project_name=None,   csv_filepath=None):
+
+def get_ls_exp(
+    session,
+    species_uri=None,
+    project_uri=None,
+    active_date=None,
+    species_name=None,
+    project_name=None,
+    csv_filepath=None,
+):
     """
     Retrieve a list of experiments using GraphQL with optional filtering by space uri, project uri, specific date, species name, and project name.
 
@@ -47,7 +55,7 @@ def get_ls_exp(session, species_uri=None, project_uri=None, active_date=None,
         >>> print(df.head())
     """
     # GraphQL query with optional filters
-    query = '''
+    query = """
     query list_experiments($filter: FilterExperiment) {
         Experiment(filter: $filter) {
             _id
@@ -62,7 +70,7 @@ def get_ls_exp(session, species_uri=None, project_uri=None, active_date=None,
             }
         }
     }
-    '''
+    """
 
     # Construct filter dynamically
     filter_input = {}
@@ -75,39 +83,43 @@ def get_ls_exp(session, species_uri=None, project_uri=None, active_date=None,
         # Make the GraphQL request
         response = requests.post(
             session["url_graphql"],
-            json={'query': query, 'variables': {'filter': filter_input}},
-            headers=session["headers_graphql"]
+            json={"query": query, "variables": {"filter": filter_input}},
+            headers=session["headers_graphql"],
         )
         response.raise_for_status()
 
         json_response = response.json()
-        if 'errors' in json_response:
-            error_message = json_response['errors'][0]['message']
+        if "errors" in json_response:
+            error_message = json_response["errors"][0]["message"]
             raise APIRequestError(f"Failed GraphQL request with error: {error_message}")
 
-        list_experiments = json_response.get('data', {}).get('Experiment', [])
+        list_experiments = json_response.get("data", {}).get("Experiment", [])
 
         # Flatten species and project information for better readability
         for experiment in list_experiments:
-            experiment['hasSpecies'] = ', '.join(species.get('label', '') for species in experiment.get('hasSpecies', []))
-            experiment['hasProject'] = ', '.join(project.get('label', '') for project in experiment.get('hasProject', []))
+            experiment["hasSpecies"] = ", ".join(
+                species.get("label", "") for species in experiment.get("hasSpecies", [])
+            )
+            experiment["hasProject"] = ", ".join(
+                project.get("label", "") for project in experiment.get("hasProject", [])
+            )
 
         # Convert the list to a DataFrame
         df = pd.DataFrame(list_experiments)
         df.rename(columns={"_id": "URI", "label": "Name"}, inplace=True)
-        
+
         # Filter by date
         if active_date:
-            date_obj = datetime.strptime(active_date, '%Y-%m-%d')
-            df['startDate'] = pd.to_datetime(df['startDate'], errors='coerce')
-            df['endDate'] = pd.to_datetime(df['endDate'], errors='coerce')
-            df = df[(df['startDate'] <= date_obj) & (df['endDate'] >= date_obj)]
+            date_obj = datetime.strptime(active_date, "%Y-%m-%d")
+            df["startDate"] = pd.to_datetime(df["startDate"], errors="coerce")
+            df["endDate"] = pd.to_datetime(df["endDate"], errors="coerce")
+            df = df[(df["startDate"] <= date_obj) & (df["endDate"] >= date_obj)]
 
         # Filter by species name and project name
         if species_name:
-            df = df[df['hasSpecies'].str.contains(species_name, case=False, na=False)]
+            df = df[df["hasSpecies"].str.contains(species_name, case=False, na=False)]
         if project_name:
-            df = df[df['hasProject'].str.contains(project_name, case=False, na=False)]
+            df = df[df["hasProject"].str.contains(project_name, case=False, na=False)]
 
         # Save to CSV if requested
         if csv_filepath:

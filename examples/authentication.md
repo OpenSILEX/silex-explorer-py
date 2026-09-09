@@ -40,12 +40,7 @@ instance_rest = "http://138.102.159.36:8084/demo/rest"  # REST API instance
 url_graphql = "http://138.102.159.37/graphql"  # GraphQL API instance
 
 # Perform authentication
-session = login(
-    username=username,
-    password=password,
-    instance_rest=instance_rest,
-    url_graphql=url_graphql
-)
+session = login(username=username, password=password, instance_rest=instance_rest, url_graphql=url_graphql)
 
 # Output the authentication token
 print(session["token"])
@@ -76,7 +71,7 @@ try:
         username="admin@opensilex.org",
         password="",  # Empty password
         instance_rest="http://localhost/rest",
-        url_graphql="http://localhost/graphql"
+        url_graphql="http://localhost/graphql",
     )
 except ValueError as e:
     print(f"Error: {e}")

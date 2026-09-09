@@ -34,9 +34,7 @@ def export_data_by_variable_to_csv(var_exp, data, csv_filepath=None):
 
     for item in data:
         if not variables or item["variable"] in variables:
-            variable_data[item["variable"]].append(
-                (item["target"], item["value"], item["date"])
-            )
+            variable_data[item["variable"]].append((item["target"], item["value"], item["date"]))
 
     if not variable_data:
         print("Warning: No data matched the variables provided.")
@@ -45,31 +43,19 @@ def export_data_by_variable_to_csv(var_exp, data, csv_filepath=None):
     dataframes = {}
 
     for variable, measurements in variable_data.items():
-        variable_name = uri_to_name.get(
-            variable,
-            variable.split("/")[-1]
-        )
+        variable_name = uri_to_name.get(variable, variable.split("/")[-1])
 
-        df = pd.DataFrame(
-            measurements,
-            columns=["URI", variable_name, "Date"]
-        )
+        df = pd.DataFrame(measurements, columns=["URI", variable_name, "Date"])
 
         dataframes[f"df_{variable_name}"] = df
 
         if csv_filepath:
             os.makedirs(csv_filepath, exist_ok=True)
 
-            csv_filename = os.path.join(
-                csv_filepath,
-                f"{variable_name}_data.csv"
-            )
+            csv_filename = os.path.join(csv_filepath, f"{variable_name}_data.csv")
 
             df.to_csv(csv_filename, index=False)
 
-            print(
-                f"✅ Data for variable '{variable_name}' "
-                f"has been saved to '{csv_filename}'."
-            )
+            print(f"✅ Data for variable '{variable_name}' has been saved to '{csv_filename}'.")
 
     return dataframes

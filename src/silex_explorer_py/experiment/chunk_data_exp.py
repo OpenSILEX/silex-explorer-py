@@ -11,14 +11,16 @@ from .export_data import export_data_by_variable_to_csv
 
 
 def fetch_chunk_data(chunk, experience, session):
-    
     """Fetch data for a given chunk of OS URIs."""
-    graphql_query = """
+    graphql_query = (
+        """
         query ScientificObject($experience: [DataSource!]!, $osUris: [ID]) {
             ScientificObject(
                 inferred: true,
                 Experience: $experience,
-                filter: {""" + ("_id: $osUris" ) + """}
+                filter: {"""
+        + ("_id: $osUris")
+        + """}
             ) {
                 data {
                     target
@@ -29,24 +31,22 @@ def fetch_chunk_data(chunk, experience, session):
             }
         }
     """
+    )
 
-    variables = {
-        "experience": experience,
-        "osUris": chunk
-    }
+    variables = {"experience": experience, "osUris": chunk}
 
     response = requests.post(
         session["url_graphql"],
-        json={'query': graphql_query, 'variables': variables},
-        headers=session["headers_graphql"]
+        json={"query": graphql_query, "variables": variables},
+        headers=session["headers_graphql"],
     )
-    
+
     list_data_os = []
     if response.status_code == 200:
-        scientific_objects = response.json().get('data', {}).get('ScientificObject', [])
+        scientific_objects = response.json().get("data", {}).get("ScientificObject", [])
         for obj in scientific_objects:
-            if 'data' in obj and isinstance(obj['data'], list):
-                list_data_os.extend(obj['data'])
+            if "data" in obj and isinstance(obj["data"], list):
+                list_data_os.extend(obj["data"])
     else:
         print(f"Error in chunk: {chunk}, status code: {response.status_code}, response: {response.text}")
         raise APIRequestError(f"Error: {response.status_code} - {response.text}")
@@ -108,19 +108,15 @@ def get_data_by_os_uri_variable(session, experiment_name, df_os, ls_var_exp=None
 
     # Retrieve variables associated with the experiment if not provided
     if ls_var_exp is None or ls_var_exp.empty:
-        ls_var_exp = get_ls_var_by_exp(
-            session,
-            experiment_name,
-            page_size=20
-        )
+        ls_var_exp = get_ls_var_by_exp(session, experiment_name, page_size=20)
 
     # Validate input DataFrame
-    if df_os is None or df_os.empty or 'URI' not in df_os.columns:
+    if df_os is None or df_os.empty or "URI" not in df_os.columns:
         print("⚠️ Input DataFrame is empty or does not contain 'URI' column.")
         return {}
 
     # Extract scientific object URIs
-    ls_os_uris = df_os['URI'].dropna().tolist()
+    ls_os_uris = df_os["URI"].dropna().tolist()
 
     if not ls_os_uris:
         print("⚠️ No valid scientific object URIs found.")
@@ -131,10 +127,7 @@ def get_data_by_os_uri_variable(session, experiment_name, df_os, ls_var_exp=None
 
     # Fetch data in parallel
     with ThreadPoolExecutor(max_workers=5) as executor:
-        future_to_chunk = {
-            executor.submit(fetch_chunk_data, chunk, experience, session): chunk
-            for chunk in chunks
-        }
+        future_to_chunk = {executor.submit(fetch_chunk_data, chunk, experience, session): chunk for chunk in chunks}
 
         all_results_lock = Lock()
 
@@ -157,11 +150,7 @@ def get_data_by_os_uri_variable(session, experiment_name, df_os, ls_var_exp=None
         return {}
 
     # Organize data by variable and optionally export to CSV
-    dataFrames = export_data_by_variable_to_csv(
-        ls_var_exp,
-        all_results,
-        csv_filepath=csv_filepath
-    )
+    dataFrames = export_data_by_variable_to_csv(ls_var_exp, all_results, csv_filepath=csv_filepath)
 
     # Final safety check
     if not dataFrames:
@@ -169,9 +158,9 @@ def get_data_by_os_uri_variable(session, experiment_name, df_os, ls_var_exp=None
 
     return dataFrames
 
-        
+
 def chunk_list(data_list, chunk_size):
     """Divides a list into several sub-lists of size chunk_size."""
     for i in range(0, len(data_list), chunk_size):
-        chunk = data_list[i:i + chunk_size]
+        chunk = data_list[i : i + chunk_size]
         yield chunk
