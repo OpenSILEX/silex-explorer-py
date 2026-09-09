@@ -157,9 +157,9 @@ uv run python script.py
 ## Quick Start
 
 ```python
-from silexexplorerpy.auth import login
-from silexexplorerpy.exceptions import APIRequestError, AuthenticationError
-from silexexplorerpy.experiment import get_ls_exp
+from silex_explorer_py.auth import login
+from silex_explorer_py.exceptions import APIRequestError, AuthenticationError
+from silex_explorer_py.experiment import get_ls_exp
 
 
 def main():

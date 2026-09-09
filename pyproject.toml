@@ -1,6 +1,6 @@
 [project]
 name = "silex_explorer_py"
-version = "0.1.0"
+version = "1.0.0-rc2"
 description = "Python package for accessing, exploring, analyzing, and visualizing OpenSILEX data through SilexExplorer."
 readme = "README.md"
 license = "AGPL-3.0-only"
