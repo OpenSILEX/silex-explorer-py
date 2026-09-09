@@ -1,5 +1,5 @@
 [project]
-name = "silexexplorerpy"
+name = "silex_explorer_py"
 version = "0.1.0"
 description = "Python package for accessing, exploring, analyzing, and visualizing OpenSILEX data through SilexExplorer."
 readme = "README.md"
@@ -57,7 +57,7 @@ version_toml = [
     "pyproject.toml:project.version",
 ]
 version_variables = [
-    "src/silexexplorerpy/__init__.py:__version__",
+    "src/silex_explorer_py/__init__.py:__version__",
 ]
 branch = "main"
 upload_to_pypi = true

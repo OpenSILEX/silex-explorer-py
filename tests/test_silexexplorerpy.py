@@ -3,7 +3,7 @@ Test module for silexexplorerpy.
 """
 
 import pytest
-from silexexplorerpy import __version__
+from silex_explorer_py import __version__
 
 
 def test_version():

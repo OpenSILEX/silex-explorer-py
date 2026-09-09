@@ -1,0 +1,1183 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="pdoc 16.0.0"/>
+    <title>silex_explorer_py.visualisation API documentation</title>
+
+    <style>/*! * Bootstrap Reboot v5.0.0 (https://getbootstrap.com/) * Copyright 2011-2021 The Bootstrap Authors * Copyright 2011-2021 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md) */*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;background-color:currentColor;border:0;opacity:.25}hr:not([size]){height:1px}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-top:0;margin-bottom:1rem}abbr[data-bs-original-title],abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted;cursor:help;-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}dl,ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}dt{font-weight:700}dd{margin-bottom:.5rem;margin-left:0}blockquote{margin:0 0 1rem}b,strong{font-weight:bolder}small{font-size:.875em}mark{padding:.2em;background-color:#fcf8e3}sub,sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}a{color:#0d6efd;text-decoration:underline}a:hover{color:#0a58ca}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,kbd,pre,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em;direction:ltr;unicode-bidi:bidi-override}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}pre code{font-size:inherit;color:inherit;word-break:normal}code{font-size:.875em;color:#d63384;word-wrap:break-word}a>code{color:inherit}kbd{padding:.2rem .4rem;font-size:.875em;color:#fff;background-color:#212529;border-radius:.2rem}kbd kbd{padding:0;font-size:1em;font-weight:700}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}caption{padding-top:.5rem;padding-bottom:.5rem;color:#6c757d;text-align:left}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,tfoot,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}label{display:inline-block}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,select{text-transform:none}[role=button]{cursor:pointer}select{word-wrap:normal}select:disabled{opacity:1}[list]::-webkit-calendar-picker-indicator{display:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}textarea{resize:vertical}fieldset{min-width:0;padding:0;margin:0;border:0}legend{float:left;width:100%;padding:0;margin-bottom:.5rem;font-size:calc(1.275rem + .3vw);line-height:inherit}@media (min-width:1200px){legend{font-size:1.5rem}}legend+*{clear:left}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::file-selector-button{font:inherit}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}output{display:inline-block}iframe{border:0}summary{display:list-item;cursor:pointer}progress{vertical-align:baseline}[hidden]{display:none!important}</style>
+    <style>/*! syntax-highlighting.css */pre{line-height:125%;}span.linenos{color:inherit; background-color:transparent; padding-left:5px; padding-right:20px;}.pdoc-code .hll{background-color:#ffffcc}.pdoc-code{background:#f8f8f8;}.pdoc-code .c{color:#3D7B7B; font-style:italic}.pdoc-code .err{border:1px solid #FF0000}.pdoc-code .k{color:#008000; font-weight:bold}.pdoc-code .o{color:#666666}.pdoc-code .ch{color:#3D7B7B; font-style:italic}.pdoc-code .cm{color:#3D7B7B; font-style:italic}.pdoc-code .cp{color:#9C6500}.pdoc-code .cpf{color:#3D7B7B; font-style:italic}.pdoc-code .c1{color:#3D7B7B; font-style:italic}.pdoc-code .cs{color:#3D7B7B; font-style:italic}.pdoc-code .gd{color:#A00000}.pdoc-code .ge{font-style:italic}.pdoc-code .gr{color:#E40000}.pdoc-code .gh{color:#000080; font-weight:bold}.pdoc-code .gi{color:#008400}.pdoc-code .go{color:#717171}.pdoc-code .gp{color:#000080; font-weight:bold}.pdoc-code .gs{font-weight:bold}.pdoc-code .gu{color:#800080; font-weight:bold}.pdoc-code .gt{color:#0044DD}.pdoc-code .kc{color:#008000; font-weight:bold}.pdoc-code .kd{color:#008000; font-weight:bold}.pdoc-code .kn{color:#008000; font-weight:bold}.pdoc-code .kp{color:#008000}.pdoc-code .kr{color:#008000; font-weight:bold}.pdoc-code .kt{color:#B00040}.pdoc-code .m{color:#666666}.pdoc-code .s{color:#BA2121}.pdoc-code .na{color:#687822}.pdoc-code .nb{color:#008000}.pdoc-code .nc{color:#0000FF; font-weight:bold}.pdoc-code .no{color:#880000}.pdoc-code .nd{color:#AA22FF}.pdoc-code .ni{color:#717171; font-weight:bold}.pdoc-code .ne{color:#CB3F38; font-weight:bold}.pdoc-code .nf{color:#0000FF}.pdoc-code .nl{color:#767600}.pdoc-code .nn{color:#0000FF; font-weight:bold}.pdoc-code .nt{color:#008000; font-weight:bold}.pdoc-code .nv{color:#19177C}.pdoc-code .ow{color:#AA22FF; font-weight:bold}.pdoc-code .w{color:#bbbbbb}.pdoc-code .mb{color:#666666}.pdoc-code .mf{color:#666666}.pdoc-code .mh{color:#666666}.pdoc-code .mi{color:#666666}.pdoc-code .mo{color:#666666}.pdoc-code .sa{color:#BA2121}.pdoc-code .sb{color:#BA2121}.pdoc-code .sc{color:#BA2121}.pdoc-code .dl{color:#BA2121}.pdoc-code .sd{color:#BA2121; font-style:italic}.pdoc-code .s2{color:#BA2121}.pdoc-code .se{color:#AA5D1F; font-weight:bold}.pdoc-code .sh{color:#BA2121}.pdoc-code .si{color:#A45A77; font-weight:bold}.pdoc-code .sx{color:#008000}.pdoc-code .sr{color:#A45A77}.pdoc-code .s1{color:#BA2121}.pdoc-code .ss{color:#19177C}.pdoc-code .bp{color:#008000}.pdoc-code .fm{color:#0000FF}.pdoc-code .vc{color:#19177C}.pdoc-code .vg{color:#19177C}.pdoc-code .vi{color:#19177C}.pdoc-code .vm{color:#19177C}.pdoc-code .il{color:#666666}</style>
+    <style>/*! theme.css */:root{--pdoc-background:#fff;}.pdoc{--text:#212529;--muted:#6c757d;--link:#3660a5;--link-hover:#1659c5;--code:#f8f8f8;--active:#fff598;--accent:#eee;--accent2:#c1c1c1;--nav-hover:rgba(255, 255, 255, 0.5);--name:#0066BB;--def:#008800;--annotation:#007020;}</style>
+    <style>/*! layout.css */html, body{width:100%;height:100%;}html, main{scroll-behavior:smooth;}body{background-color:var(--pdoc-background);}@media (max-width:769px){#navtoggle{cursor:pointer;position:absolute;width:50px;height:40px;top:1rem;right:1rem;border-color:var(--text);color:var(--text);display:flex;opacity:0.8;z-index:999;}#navtoggle:hover{opacity:1;}#togglestate + div{display:none;}#togglestate:checked + div{display:inherit;}main, header{padding:2rem 3vw;}header + main{margin-top:-3rem;}.git-button{display:none !important;}nav input[type="search"]{max-width:77%;}nav input[type="search"]:first-child{margin-top:-6px;}nav input[type="search"]:valid ~ *{display:none !important;}}@media (min-width:770px){:root{--sidebar-width:clamp(12.5rem, 28vw, 22rem);}nav{position:fixed;overflow:auto;height:100vh;width:var(--sidebar-width);}main, header{padding:3rem 2rem 3rem calc(var(--sidebar-width) + 3rem);width:calc(54rem + var(--sidebar-width));max-width:100%;}header + main{margin-top:-4rem;}#navtoggle{display:none;}}#togglestate{position:absolute;height:0;opacity:0;}nav.pdoc{--pad:clamp(0.5rem, 2vw, 1.75rem);--indent:1.5rem;background-color:var(--accent);border-right:1px solid var(--accent2);box-shadow:0 0 20px rgba(50, 50, 50, .2) inset;padding:0 0 0 var(--pad);overflow-wrap:anywhere;scrollbar-width:thin; scrollbar-color:var(--accent2) transparent; z-index:1}nav.pdoc::-webkit-scrollbar{width:.4rem; }nav.pdoc::-webkit-scrollbar-thumb{background-color:var(--accent2); }nav.pdoc > div{padding:var(--pad) 0;}nav.pdoc .module-list-button{display:inline-flex;align-items:center;color:var(--text);border-color:var(--muted);margin-bottom:1rem;}nav.pdoc .module-list-button:hover{border-color:var(--text);}nav.pdoc input[type=search]{display:block;outline-offset:0;width:calc(100% - var(--pad));}nav.pdoc .logo{max-width:calc(100% - var(--pad));max-height:35vh;display:block;margin:0 auto 1rem;transform:translate(calc(-.5 * var(--pad)), 0);}nav.pdoc ul{list-style:none;padding-left:0;}nav.pdoc > div > ul{margin-left:calc(0px - var(--pad));}nav.pdoc li a{padding:.2rem 0 .2rem calc(var(--pad) + var(--indent));}nav.pdoc > div > ul > li > a{padding-left:var(--pad);}nav.pdoc li{transition:all 100ms;}nav.pdoc li:hover{background-color:var(--nav-hover);}nav.pdoc a, nav.pdoc a:hover{color:var(--text);}nav.pdoc a{display:block;}nav.pdoc > h2:first-of-type{margin-top:1.5rem;}nav.pdoc .class:before{content:"class ";color:var(--muted);}nav.pdoc .function:after{content:"()";color:var(--muted);}nav.pdoc footer:before{content:"";display:block;width:calc(100% - var(--pad));border-top:solid var(--accent2) 1px;margin-top:1.5rem;padding-top:.5rem;}nav.pdoc footer{font-size:small;}</style>
+    <style>/*! content.css */.pdoc{color:var(--text);box-sizing:border-box;line-height:1.5;background:none;}.pdoc .pdoc-button{cursor:pointer;display:inline-block;border:solid black 1px;border-radius:2px;font-size:.75rem;padding:calc(0.5em - 1px) 1em;transition:100ms all;}.pdoc .alert{padding:1rem 1rem 1rem calc(1.5rem + 24px);border:1px solid transparent;border-radius:.25rem;background-repeat:no-repeat;background-position:.75rem center;margin-bottom:1rem;}.pdoc .alert > em{display:none;}.pdoc .alert > *:last-child{margin-bottom:0;}.pdoc .alert.note{color:#084298;background-color:#cfe2ff;border-color:#b6d4fe;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23084298%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8%2016A8%208%200%201%200%208%200a8%208%200%200%200%200%2016zm.93-9.412-1%204.705c-.07.34.029.533.304.533.194%200%20.487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703%200-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381%202.29-.287zM8%205.5a1%201%200%201%201%200-2%201%201%200%200%201%200%202z%22/%3E%3C/svg%3E");}.pdoc .alert.tip{color:#0a3622;background-color:#d1e7dd;border-color:#a3cfbb;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%230a3622%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2%206a6%206%200%201%201%2010.174%204.31c-.203.196-.359.4-.453.619l-.762%201.769A.5.5%200%200%201%2010.5%2013a.5.5%200%200%201%200%201%20.5.5%200%200%201%200%201l-.224.447a1%201%200%200%201-.894.553H6.618a1%201%200%200%201-.894-.553L5.5%2015a.5.5%200%200%201%200-1%20.5.5%200%200%201%200-1%20.5.5%200%200%201-.46-.302l-.761-1.77a2%202%200%200%200-.453-.618A5.98%205.98%200%200%201%202%206m6-5a5%205%200%200%200-3.479%208.592c.263.254.514.564.676.941L5.83%2012h4.342l.632-1.467c.162-.377.413-.687.676-.941A5%205%200%200%200%208%201%22/%3E%3C/svg%3E");}.pdoc .alert.important{color:#055160;background-color:#cff4fc;border-color:#9eeaf9;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23055160%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2%200a2%202%200%200%200-2%202v12a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V2a2%202%200%200%200-2-2zm6%204c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%204.995A.905.905%200%200%201%208%204m.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E");}.pdoc .alert.warning{color:#664d03;background-color:#fff3cd;border-color:#ffecb5;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23664d03%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8.982%201.566a1.13%201.13%200%200%200-1.96%200L.165%2013.233c-.457.778.091%201.767.98%201.767h13.713c.889%200%201.438-.99.98-1.767L8.982%201.566zM8%205c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%205.995A.905.905%200%200%201%208%205zm.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2z%22/%3E%3C/svg%3E");}.pdoc .alert.caution{color:#842029;background-color:#f8d7da;border-color:#f5c2c7;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23842029%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M11.46.146A.5.5%200%200%200%2011.107%200H4.893a.5.5%200%200%200-.353.146L.146%204.54A.5.5%200%200%200%200%204.893v6.214a.5.5%200%200%200%20.146.353l4.394%204.394a.5.5%200%200%200%20.353.146h6.214a.5.5%200%200%200%20.353-.146l4.394-4.394a.5.5%200%200%200%20.146-.353V4.893a.5.5%200%200%200-.146-.353zM8%204c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%204.995A.905.905%200%200%201%208%204m.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E");}.pdoc .alert.danger{color:#842029;background-color:#f8d7da;border-color:#f5c2c7;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23842029%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5.52.359A.5.5%200%200%201%206%200h4a.5.5%200%200%201%20.474.658L8.694%206H12.5a.5.5%200%200%201%20.395.807l-7%209a.5.5%200%200%201-.873-.454L6.823%209.5H3.5a.5.5%200%200%201-.48-.641l2.5-8.5z%22/%3E%3C/svg%3E");}.pdoc .visually-hidden{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0, 0, 0, 0) !important;white-space:nowrap !important;border:0 !important;}.pdoc h1, .pdoc h2, .pdoc h3{font-weight:300;margin:.3em 0;padding:.2em 0;}.pdoc > section:not(.module-info) h1{font-size:1.5rem;font-weight:500;}.pdoc > section:not(.module-info) h2{font-size:1.4rem;font-weight:500;}.pdoc > section:not(.module-info) h3{font-size:1.3rem;font-weight:500;}.pdoc > section:not(.module-info) h4{font-size:1.2rem;}.pdoc > section:not(.module-info) h5{font-size:1.1rem;}.pdoc a{text-decoration:none;color:var(--link);}.pdoc a:hover{color:var(--link-hover);}.pdoc blockquote{margin-left:2rem;}.pdoc pre{border-top:1px solid var(--accent2);border-bottom:1px solid var(--accent2);margin-top:0;margin-bottom:1em;padding:.5rem 0 .5rem .5rem;overflow-x:auto;background-color:var(--code);}.pdoc code{color:var(--text);padding:.2em .4em;margin:0;font-size:85%;background-color:var(--accent);border-radius:6px;}.pdoc a > code{color:inherit;}.pdoc pre > code{display:inline-block;font-size:inherit;background:none;border:none;padding:0;}.pdoc > section:not(.module-info){margin-bottom:1.5rem;}.pdoc .modulename{margin-top:0;font-weight:bold;}.pdoc .modulename a{color:var(--link);transition:100ms all;}.pdoc .git-button{float:right;border:solid var(--link) 1px;}.pdoc .git-button:hover{background-color:var(--link);color:var(--pdoc-background);}.view-source-toggle-state,.view-source-toggle-state ~ .pdoc-code{display:none;}.view-source-toggle-state:checked ~ .pdoc-code{display:block;}.view-source-button{display:inline-block;float:right;font-size:.75rem;line-height:1.5rem;color:var(--muted);padding:0 .4rem 0 1.3rem;cursor:pointer;text-indent:-2px;}.view-source-button > span{visibility:hidden;}.module-info .view-source-button{float:none;display:flex;justify-content:flex-end;margin:-1.2rem .4rem -.2rem 0;}.view-source-button::before{position:absolute;content:"View Source";display:list-item;list-style-type:disclosure-closed;}.view-source-toggle-state:checked ~ .attr .view-source-button::before,.view-source-toggle-state:checked ~ .view-source-button::before{list-style-type:disclosure-open;}.pdoc .docstring{margin-bottom:1.5rem;}.pdoc section:not(.module-info) .docstring{margin-left:clamp(0rem, 5vw - 2rem, 1rem);}.pdoc .docstring .pdoc-code{margin-left:1em;margin-right:1em;}.pdoc h1:target,.pdoc h2:target,.pdoc h3:target,.pdoc h4:target,.pdoc h5:target,.pdoc h6:target,.pdoc .pdoc-code > pre > span:target{background-color:var(--active);box-shadow:-1rem 0 0 0 var(--active);}.pdoc .pdoc-code > pre > span:target{display:block;}.pdoc div:target > .attr,.pdoc section:target > .attr,.pdoc dd:target > a{background-color:var(--active);}.pdoc *{scroll-margin:2rem;}.pdoc .pdoc-code .linenos{user-select:none;}.pdoc .attr:hover{filter:contrast(0.95);}.pdoc section, .pdoc .classattr{position:relative;}.pdoc .headerlink{--width:clamp(1rem, 3vw, 2rem);position:absolute;top:0;left:calc(0rem - var(--width));transition:all 100ms ease-in-out;opacity:0;}.pdoc .headerlink::before{content:"#";display:block;text-align:center;width:var(--width);height:2.3rem;line-height:2.3rem;font-size:1.5rem;}.pdoc .attr:hover ~ .headerlink,.pdoc *:target > .headerlink,.pdoc .headerlink:hover{opacity:1;}.pdoc .attr{display:block;margin:.5rem 0 .5rem;padding:.4rem .4rem .4rem 1rem;background-color:var(--accent);overflow-x:auto;}.pdoc .classattr{margin-left:2rem;}.pdoc .decorator-deprecated{color:#842029;}.pdoc .decorator-deprecated ~ span{filter:grayscale(1) opacity(0.8);}.pdoc .name{color:var(--name);font-weight:bold;}.pdoc .def{color:var(--def);font-weight:bold;}.pdoc .signature{background-color:transparent;}.pdoc .param, .pdoc .return-annotation{white-space:pre;}.pdoc .signature.multiline .param{display:block;}.pdoc .signature.condensed .param{display:inline-block;}.pdoc .annotation{color:var(--annotation);}.pdoc .view-value-toggle-state,.pdoc .view-value-toggle-state ~ .default_value{display:none;}.pdoc .view-value-toggle-state:checked ~ .default_value{display:inherit;}.pdoc .view-value-button{font-size:.5rem;vertical-align:middle;border-style:dashed;margin-top:-0.1rem;}.pdoc .view-value-button:hover{background:white;}.pdoc .view-value-button::before{content:"show";text-align:center;width:2.2em;display:inline-block;}.pdoc .view-value-toggle-state:checked ~ .view-value-button::before{content:"hide";}.pdoc .inherited{margin-left:2rem;}.pdoc .inherited dt{font-weight:700;}.pdoc .inherited dt, .pdoc .inherited dd{display:inline;margin-left:0;margin-bottom:.5rem;}.pdoc .inherited dd:not(:last-child):after{content:", ";}.pdoc .inherited .class:before{content:"class ";}.pdoc .inherited .function a:after{content:"()";}.pdoc .search-result .docstring{overflow:auto;max-height:25vh;}.pdoc .search-result.focused > .attr{background-color:var(--active);}.pdoc .attribution{margin-top:2rem;display:block;opacity:0.5;transition:all 200ms;filter:grayscale(100%);}.pdoc .attribution:hover{opacity:1;filter:grayscale(0%);}.pdoc .attribution img{margin-left:5px;height:27px;vertical-align:bottom;width:50px;transition:all 200ms;}.pdoc table{display:block;width:max-content;max-width:100%;overflow:auto;margin-bottom:1rem;}.pdoc table th{font-weight:600;}.pdoc table th, .pdoc table td{padding:6px 13px;border:1px solid var(--accent2);}</style>
+    <style>/*! custom.css */</style></head>
+<body>
+    <nav class="pdoc">
+        <label id="navtoggle" for="togglestate" class="pdoc-button"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke-linecap='round' stroke="currentColor" stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg></label>
+        <input id="togglestate" type="checkbox" aria-hidden="true" tabindex="-1">
+        <div>            <a class="pdoc-button module-list-button" href="../silex_explorer_py.html">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
+  <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+</svg>                &nbsp;silex_explorer_py</a>
+
+
+            <input type="search" placeholder="Search..." role="searchbox" aria-label="search"
+                   pattern=".+" required>
+
+
+            <h2>Submodules</h2>
+            <ul>
+                    <li><a href="visualisation/replicate_scientific_objects.html">replicate_scientific_objects</a></li>
+            </ul>
+
+            <h2>API Documentation</h2>
+                <ul class="memberlist">
+            <li>
+                    <a class="function" href="#replicate_scientific_objects">replicate_scientific_objects</a>
+            </li>
+            <li>
+                    <a class="function" href="#extract_group_os">extract_group_os</a>
+            </li>
+            <li>
+                    <a class="function" href="#visualize_all_variables">visualize_all_variables</a>
+            </li>
+            <li>
+                    <a class="function" href="#compare_groups_by_factor_level">compare_groups_by_factor_level</a>
+            </li>
+    </ul>
+
+
+
+        <a class="attribution" title="pdoc: Python API documentation generator" href="https://pdoc.dev" target="_blank">
+            built with <span class="visually-hidden">pdoc</span><img
+                alt="pdoc logo"
+                src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20role%3D%22img%22%20aria-label%3D%22pdoc%20logo%22%20width%3D%22300%22%20height%3D%22160%22%20viewBox%3D%220%200%20150%2080%22%3E%3Ctitle%3Epdoc%3C/title%3E%3Cpath%20d%3D%22M132.316%2048.886c.276-4.679%202.342-6.698%204.409-7.982s4.27-1.165%206.751-1.055c1.586.07%203.044.156%204.222-.482%201.142-.619%202.026-1.932%202.162-3.739.268-3.576-1.929-5.368-5.006-5.551s-7.599.524-10.517%201.606c-4.455%201.652-8.588%206.606-9.552%208.992s-2.342%206.193-1.745%2010.873%202.664%209.221%205.878%2011.79%205.878%203.808%2010.103%204.312%203.444.229%206.062.229%205.006-2.202%204.914-4.909-2.296-5.001-4.501-4.863-3.077.505-5.281.229-7.715-2.064-7.899-9.451z%22%20fill%3D%22%23198754%22/%3E%3Ccircle%20cx%3D%22101.504%22%20cy%3D%2248.943%22%20r%3D%2214.208%22%20fill%3D%22none%22%20stroke%3D%22%23198754%22%20stroke-width%3D%229.354%22/%3E%3Cpath%20d%3D%22M87.81.002c-3.637.065-5.001.454-7.014%201.232s-3.443%201.363-6.3%204.282c-1.723%201.76-3.148%205.019-3.776%207.329-.413%201.521-.316%202.63-.316%202.63l-.195%2034.612c.065%205.774-6.755%208.305-9.612%208.37s-9.678-1.038-9.743-9.408%207.128-9.521%208.362-9.521c1.413-.13%202.526-.021%203.718-.016%202.071.009%204.157-.778%204.092-4.671s-4.157-4.736-4.157-4.736c-6.3-.843-11.43%202.206-11.43%202.206S40.917%2038.15%2041.372%2049.634%2051.568%2068.19%2061.311%2068.125s18.316-7.007%2018.445-17.193l.13-22.772c.046-2.291%202.683-3.644%204.476-4.203.745-.232%201.694-.274%201.694-.274l10.457-.13s4.871-.324%207.729-3.114%204.352-6.294%204.352-6.294.974-3.049.13-4.606-.195-1.233-2.792-3.309-8.573-4.477-8.573-4.477S91.447-.063%2087.81.002zM0%2047.169l.065%2028.417S0%2080.127%204.481%2079.997s5.072-3.866%205.049-4.152l-.113-28.482s1.624-7.656%209.937-7.721%2010.002%206.942%2010.002%208.499-.909%2010.51-9.093%2010.51c-.948%200-2.99-.567-4.145-.272-3.919%201-3.194%204.554-3.194%204.554s.065%205.061%207.404%204.996%2018.575-6.034%2018.575-19.074S26.953%2030.04%2019.549%2029.91%201.234%2035.296%200%2047.169z%22%20fill%3D%22%23198754%22/%3E%3Cg%20transform%3D%22matrix%28.325601%200%200%20.325256%20-10.32669%20-45.802786%29%22%3E%3Ccircle%20cx%3D%22297.554%22%20cy%3D%22172.286%22%20r%3D%2216.5%22%20fill%3D%22%23fff%22/%3E%3Cellipse%20cx%3D%22297.709%22%20cy%3D%22172.642%22%20rx%3D%2211.071%22%20ry%3D%2210.871%22%20fill%3D%22%23105a48%22/%3E%3Ccircle%20cx%3D%22304.104%22%20cy%3D%22167.667%22%20r%3D%224.5%22%20fill%3D%22%23fff%22/%3E%3C/g%3E%3Cpath%20d%3D%22M94.661%2017.032l.893-1.476s.99.714%201.916.925%201.575.114%202.955.114l14.565-.162c1.283-.032%203.085-.762%203.02-3.293s-.373-3.503-.373-3.503l1.283-.487s.52.503.877%201.573.309%201.995.292%202.66-.227%201.541-.227%201.541%201.564-.308%202.359-1.038.823-.779%201.489-1.508.812-.86.812-.86.552-.13.877.26.341.957.065%201.46-1.672%202.206-3.247%203.066-2.76%201.427-3.929%201.768-3.848.73-7.063.714l-10.944-.114s-2.143-.081-3.02-.373-2.241-.973-2.598-1.265z%22%20fill%3D%22%23d36d49%22/%3E%3Cg%20fill%3D%22%23105a48%22%3E%3Cellipse%20cx%3D%2293.052%22%20cy%3D%2243.567%22%20rx%3D%22.869%22%20ry%3D%221.014%22%20transform%3D%22rotate%28341.022%29%22/%3E%3Cellipse%20cx%3D%22104.3%22%20cy%3D%22-16.184%22%20rx%3D%22.865%22%20ry%3D%221.009%22%20transform%3D%22rotate%2814.786%29%22/%3E%3C/g%3E%3C/svg%3E"/>
+        </a>
+</div>
+    </nav>
+    <main class="pdoc">
+            <section class="module-info">
+                    <h1 class="modulename">
+<a href="./../silex_explorer_py.html">silex_explorer_py</a><wbr>.visualisation    </h1>
+
+                
+                        <input id="mod-visualisation-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+
+                        <label class="view-source-button" for="mod-visualisation-view-source"><span>View Source</span></label>
+
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.replicate_scientific_objects</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+</span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a>    <span class="n">replicate_scientific_objects</span><span class="p">,</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a>    <span class="n">extract_group_os</span><span class="p">,</span>
+</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a>    <span class="n">visualize_all_variables</span><span class="p">,</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a>    <span class="n">compare_groups_by_factor_level</span><span class="p">,</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="p">)</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a>
+</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>    <span class="s2">"replicate_scientific_objects"</span><span class="p">,</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a>    <span class="s2">"extract_group_os"</span><span class="p">,</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>    <span class="s2">"visualize_all_variables"</span><span class="p">,</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a>    <span class="s2">"compare_groups_by_factor_level"</span><span class="p">,</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="p">]</span>
+</span></pre></div>
+
+
+            </section>
+                <section id="replicate_scientific_objects">
+                            <input id="replicate_scientific_objects-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">replicate_scientific_objects</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">df</span>, </span><span class="param"><span class="n">csv_filepath</span><span class="o">=</span><span class="kc">None</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="replicate_scientific_objects-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#replicate_scientific_objects"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="replicate_scientific_objects-13"><a href="#replicate_scientific_objects-13"><span class="linenos">13</span></a><span class="k">def</span><span class="w"> </span><span class="nf">replicate_scientific_objects</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">csv_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="replicate_scientific_objects-14"><a href="#replicate_scientific_objects-14"><span class="linenos">14</span></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="replicate_scientific_objects-15"><a href="#replicate_scientific_objects-15"><span class="linenos">15</span></a><span class="sd">    Group scientific objects based on variable combinations and optionally</span>
+</span><span id="replicate_scientific_objects-16"><a href="#replicate_scientific_objects-16"><span class="linenos">16</span></a><span class="sd">    generate a CSV summary of the resulting groups.</span>
+</span><span id="replicate_scientific_objects-17"><a href="#replicate_scientific_objects-17"><span class="linenos">17</span></a>
+</span><span id="replicate_scientific_objects-18"><a href="#replicate_scientific_objects-18"><span class="linenos">18</span></a><span class="sd">    Parameters</span>
+</span><span id="replicate_scientific_objects-19"><a href="#replicate_scientific_objects-19"><span class="linenos">19</span></a><span class="sd">    ----------</span>
+</span><span id="replicate_scientific_objects-20"><a href="#replicate_scientific_objects-20"><span class="linenos">20</span></a><span class="sd">    df : pandas.DataFrame</span>
+</span><span id="replicate_scientific_objects-21"><a href="#replicate_scientific_objects-21"><span class="linenos">21</span></a><span class="sd">        Input DataFrame containing scientific objects metadata.</span>
+</span><span id="replicate_scientific_objects-22"><a href="#replicate_scientific_objects-22"><span class="linenos">22</span></a><span class="sd">        Must include at least the columns 'URI' and 'Name'.</span>
+</span><span id="replicate_scientific_objects-23"><a href="#replicate_scientific_objects-23"><span class="linenos">23</span></a>
+</span><span id="replicate_scientific_objects-24"><a href="#replicate_scientific_objects-24"><span class="linenos">24</span></a><span class="sd">    csv_filepath : str, optional</span>
+</span><span id="replicate_scientific_objects-25"><a href="#replicate_scientific_objects-25"><span class="linenos">25</span></a><span class="sd">        Path to the CSV file where the group summary will be saved.</span>
+</span><span id="replicate_scientific_objects-26"><a href="#replicate_scientific_objects-26"><span class="linenos">26</span></a><span class="sd">        If None, no CSV file is generated.</span>
+</span><span id="replicate_scientific_objects-27"><a href="#replicate_scientific_objects-27"><span class="linenos">27</span></a><span class="sd">        Parent directories are automatically created if they do not exist.</span>
+</span><span id="replicate_scientific_objects-28"><a href="#replicate_scientific_objects-28"><span class="linenos">28</span></a>
+</span><span id="replicate_scientific_objects-29"><a href="#replicate_scientific_objects-29"><span class="linenos">29</span></a><span class="sd">    Returns</span>
+</span><span id="replicate_scientific_objects-30"><a href="#replicate_scientific_objects-30"><span class="linenos">30</span></a><span class="sd">    -------</span>
+</span><span id="replicate_scientific_objects-31"><a href="#replicate_scientific_objects-31"><span class="linenos">31</span></a><span class="sd">    dict</span>
+</span><span id="replicate_scientific_objects-32"><a href="#replicate_scientific_objects-32"><span class="linenos">32</span></a><span class="sd">        Dictionary where keys are group identifiers and values are DataFrames</span>
+</span><span id="replicate_scientific_objects-33"><a href="#replicate_scientific_objects-33"><span class="linenos">33</span></a><span class="sd">        corresponding to each group.</span>
+</span><span id="replicate_scientific_objects-34"><a href="#replicate_scientific_objects-34"><span class="linenos">34</span></a><span class="sd">    """</span>
+</span><span id="replicate_scientific_objects-35"><a href="#replicate_scientific_objects-35"><span class="linenos">35</span></a>
+</span><span id="replicate_scientific_objects-36"><a href="#replicate_scientific_objects-36"><span class="linenos">36</span></a>    <span class="c1"># Exclude 'URI' and 'Name' columns from the comparison</span>
+</span><span id="replicate_scientific_objects-37"><a href="#replicate_scientific_objects-37"><span class="linenos">37</span></a>    <span class="n">columns_to_compare</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="replicate_scientific_objects-38"><a href="#replicate_scientific_objects-38"><span class="linenos">38</span></a>        <span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'URI'</span><span class="p">,</span> <span class="s1">'Name'</span><span class="p">]</span>
+</span><span id="replicate_scientific_objects-39"><a href="#replicate_scientific_objects-39"><span class="linenos">39</span></a>    <span class="p">]</span>
+</span><span id="replicate_scientific_objects-40"><a href="#replicate_scientific_objects-40"><span class="linenos">40</span></a>    
+</span><span id="replicate_scientific_objects-41"><a href="#replicate_scientific_objects-41"><span class="linenos">41</span></a>    <span class="c1"># Exclude columns where all values are identical</span>
+</span><span id="replicate_scientific_objects-42"><a href="#replicate_scientific_objects-42"><span class="linenos">42</span></a>    <span class="n">columns_to_compare</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="replicate_scientific_objects-43"><a href="#replicate_scientific_objects-43"><span class="linenos">43</span></a>        <span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns_to_compare</span>
+</span><span id="replicate_scientific_objects-44"><a href="#replicate_scientific_objects-44"><span class="linenos">44</span></a>        <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+</span><span id="replicate_scientific_objects-45"><a href="#replicate_scientific_objects-45"><span class="linenos">45</span></a>    <span class="p">]</span>
+</span><span id="replicate_scientific_objects-46"><a href="#replicate_scientific_objects-46"><span class="linenos">46</span></a>
+</span><span id="replicate_scientific_objects-47"><a href="#replicate_scientific_objects-47"><span class="linenos">47</span></a>    <span class="c1"># Convert all values in relevant columns to string to avoid type issues</span>
+</span><span id="replicate_scientific_objects-48"><a href="#replicate_scientific_objects-48"><span class="linenos">48</span></a>    <span class="n">df</span><span class="p">[</span><span class="n">columns_to_compare</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columns_to_compare</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</span><span id="replicate_scientific_objects-49"><a href="#replicate_scientific_objects-49"><span class="linenos">49</span></a>    <span class="c1"># Function to remove trailing NaNs from the group identifier</span>
+</span><span id="replicate_scientific_objects-50"><a href="#replicate_scientific_objects-50"><span class="linenos">50</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">remove_trailing_nans_from_identifier</span><span class="p">(</span><span class="n">group_identifier</span><span class="p">):</span>
+</span><span id="replicate_scientific_objects-51"><a href="#replicate_scientific_objects-51"><span class="linenos">51</span></a><span class="w">        </span><span class="sd">"""</span>
+</span><span id="replicate_scientific_objects-52"><a href="#replicate_scientific_objects-52"><span class="linenos">52</span></a><span class="sd">        Remove trailing 'nan' values only at the end of the group identifier.</span>
+</span><span id="replicate_scientific_objects-53"><a href="#replicate_scientific_objects-53"><span class="linenos">53</span></a><span class="sd">        """</span>
+</span><span id="replicate_scientific_objects-54"><a href="#replicate_scientific_objects-54"><span class="linenos">54</span></a>        <span class="n">parts</span> <span class="o">=</span> <span class="n">group_identifier</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'_'</span><span class="p">)</span>
+</span><span id="replicate_scientific_objects-55"><a href="#replicate_scientific_objects-55"><span class="linenos">55</span></a>        <span class="k">while</span> <span class="n">parts</span> <span class="ow">and</span> <span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'nan'</span><span class="p">:</span>
+</span><span id="replicate_scientific_objects-56"><a href="#replicate_scientific_objects-56"><span class="linenos">56</span></a>            <span class="n">parts</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</span><span id="replicate_scientific_objects-57"><a href="#replicate_scientific_objects-57"><span class="linenos">57</span></a>        <span class="k">return</span> <span class="s1">'_'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span>
+</span><span id="replicate_scientific_objects-58"><a href="#replicate_scientific_objects-58"><span class="linenos">58</span></a>
+</span><span id="replicate_scientific_objects-59"><a href="#replicate_scientific_objects-59"><span class="linenos">59</span></a>    <span class="c1"># Create a unique identifier for each row based on selected columns</span>
+</span><span id="replicate_scientific_objects-60"><a href="#replicate_scientific_objects-60"><span class="linenos">60</span></a>    <span class="n">df</span><span class="p">[</span><span class="s1">'group_identifier'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columns_to_compare</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">'_'</span><span class="o">.</span><span class="n">join</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="replicate_scientific_objects-61"><a href="#replicate_scientific_objects-61"><span class="linenos">61</span></a>
+</span><span id="replicate_scientific_objects-62"><a href="#replicate_scientific_objects-62"><span class="linenos">62</span></a>    <span class="c1"># Clean group identifiers by removing trailing NaNs</span>
+</span><span id="replicate_scientific_objects-63"><a href="#replicate_scientific_objects-63"><span class="linenos">63</span></a>    <span class="n">df</span><span class="p">[</span><span class="s1">'group_identifier'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'group_identifier'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+</span><span id="replicate_scientific_objects-64"><a href="#replicate_scientific_objects-64"><span class="linenos">64</span></a>        <span class="n">remove_trailing_nans_from_identifier</span>
+</span><span id="replicate_scientific_objects-65"><a href="#replicate_scientific_objects-65"><span class="linenos">65</span></a>    <span class="p">)</span>
+</span><span id="replicate_scientific_objects-66"><a href="#replicate_scientific_objects-66"><span class="linenos">66</span></a>
+</span><span id="replicate_scientific_objects-67"><a href="#replicate_scientific_objects-67"><span class="linenos">67</span></a>    <span class="c1"># Assign a default identifier if the result is empty</span>
+</span><span id="replicate_scientific_objects-68"><a href="#replicate_scientific_objects-68"><span class="linenos">68</span></a>    <span class="n">df</span><span class="p">[</span><span class="s1">'group_identifier'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'group_identifier'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+</span><span id="replicate_scientific_objects-69"><a href="#replicate_scientific_objects-69"><span class="linenos">69</span></a>        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="s1">''</span> <span class="k">else</span> <span class="s1">'NaN_group'</span>
+</span><span id="replicate_scientific_objects-70"><a href="#replicate_scientific_objects-70"><span class="linenos">70</span></a>    <span class="p">)</span>
+</span><span id="replicate_scientific_objects-71"><a href="#replicate_scientific_objects-71"><span class="linenos">71</span></a>
+</span><span id="replicate_scientific_objects-72"><a href="#replicate_scientific_objects-72"><span class="linenos">72</span></a>    <span class="c1"># Dictionary to store grouped DataFrames</span>
+</span><span id="replicate_scientific_objects-73"><a href="#replicate_scientific_objects-73"><span class="linenos">73</span></a>    <span class="n">group_dict</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="replicate_scientific_objects-74"><a href="#replicate_scientific_objects-74"><span class="linenos">74</span></a>
+</span><span id="replicate_scientific_objects-75"><a href="#replicate_scientific_objects-75"><span class="linenos">75</span></a>    <span class="c1"># List to store group summary information</span>
+</span><span id="replicate_scientific_objects-76"><a href="#replicate_scientific_objects-76"><span class="linenos">76</span></a>    <span class="n">group_summary</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="replicate_scientific_objects-77"><a href="#replicate_scientific_objects-77"><span class="linenos">77</span></a>
+</span><span id="replicate_scientific_objects-78"><a href="#replicate_scientific_objects-78"><span class="linenos">78</span></a>    <span class="c1"># Group DataFrame by group identifier</span>
+</span><span id="replicate_scientific_objects-79"><a href="#replicate_scientific_objects-79"><span class="linenos">79</span></a>    <span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">group_df</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'group_identifier'</span><span class="p">):</span>
+</span><span id="replicate_scientific_objects-80"><a href="#replicate_scientific_objects-80"><span class="linenos">80</span></a>        <span class="c1"># Store group DataFrame without the group identifier column</span>
+</span><span id="replicate_scientific_objects-81"><a href="#replicate_scientific_objects-81"><span class="linenos">81</span></a>        <span class="n">group_dict</span><span class="p">[</span><span class="n">group</span><span class="p">]</span> <span class="o">=</span> <span class="n">group_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'group_identifier'</span><span class="p">])</span>
+</span><span id="replicate_scientific_objects-82"><a href="#replicate_scientific_objects-82"><span class="linenos">82</span></a>        <span class="c1"># Store group name and number of elements</span>
+</span><span id="replicate_scientific_objects-83"><a href="#replicate_scientific_objects-83"><span class="linenos">83</span></a>        <span class="n">group_summary</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">group</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_df</span><span class="p">)])</span>
+</span><span id="replicate_scientific_objects-84"><a href="#replicate_scientific_objects-84"><span class="linenos">84</span></a>
+</span><span id="replicate_scientific_objects-85"><a href="#replicate_scientific_objects-85"><span class="linenos">85</span></a>    <span class="c1"># Save group summary to CSV if requested</span>
+</span><span id="replicate_scientific_objects-86"><a href="#replicate_scientific_objects-86"><span class="linenos">86</span></a>    <span class="k">if</span> <span class="n">csv_filepath</span><span class="p">:</span>
+</span><span id="replicate_scientific_objects-87"><a href="#replicate_scientific_objects-87"><span class="linenos">87</span></a>        <span class="c1"># Ensure output directory exists</span>
+</span><span id="replicate_scientific_objects-88"><a href="#replicate_scientific_objects-88"><span class="linenos">88</span></a>        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">):</span>
+</span><span id="replicate_scientific_objects-89"><a href="#replicate_scientific_objects-89"><span class="linenos">89</span></a>            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="replicate_scientific_objects-90"><a href="#replicate_scientific_objects-90"><span class="linenos">90</span></a>
+</span><span id="replicate_scientific_objects-91"><a href="#replicate_scientific_objects-91"><span class="linenos">91</span></a>        <span class="c1"># Create and save the summary DataFrame</span>
+</span><span id="replicate_scientific_objects-92"><a href="#replicate_scientific_objects-92"><span class="linenos">92</span></a>        <span class="n">group_summary_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+</span><span id="replicate_scientific_objects-93"><a href="#replicate_scientific_objects-93"><span class="linenos">93</span></a>            <span class="n">group_summary</span><span class="p">,</span>
+</span><span id="replicate_scientific_objects-94"><a href="#replicate_scientific_objects-94"><span class="linenos">94</span></a>            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'Group'</span><span class="p">,</span> <span class="s1">'Number of Elements'</span><span class="p">]</span>
+</span><span id="replicate_scientific_objects-95"><a href="#replicate_scientific_objects-95"><span class="linenos">95</span></a>        <span class="p">)</span>
+</span><span id="replicate_scientific_objects-96"><a href="#replicate_scientific_objects-96"><span class="linenos">96</span></a>        <span class="n">group_summary_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="replicate_scientific_objects-97"><a href="#replicate_scientific_objects-97"><span class="linenos">97</span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✅ Group summary has been saved to '</span><span class="si">{</span><span class="n">csv_filepath</span><span class="si">}</span><span class="s2">'."</span><span class="p">)</span>
+</span><span id="replicate_scientific_objects-98"><a href="#replicate_scientific_objects-98"><span class="linenos">98</span></a>
+</span><span id="replicate_scientific_objects-99"><a href="#replicate_scientific_objects-99"><span class="linenos">99</span></a>    <span class="k">return</span> <span class="n">group_dict</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Group scientific objects based on variable combinations and optionally
+generate a CSV summary of the resulting groups.</p>
+
+<h2 id="parameters">Parameters</h2>
+
+<p>df : pandas.DataFrame
+    Input DataFrame containing scientific objects metadata.
+    Must include at least the columns 'URI' and 'Name'.</p>
+
+<p>csv_filepath : str, optional
+    Path to the CSV file where the group summary will be saved.
+    If None, no CSV file is generated.
+    Parent directories are automatically created if they do not exist.</p>
+
+<h2 id="returns">Returns</h2>
+
+<p>dict
+    Dictionary where keys are group identifiers and values are DataFrames
+    corresponding to each group.</p>
+</div>
+
+
+                </section>
+                <section id="extract_group_os">
+                            <input id="extract_group_os-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">extract_group_os</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">group_dict</span>, </span><span class="param"><span class="n">group_identifier</span>, </span><span class="param"><span class="n">csv_filepath</span><span class="o">=</span><span class="kc">None</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="extract_group_os-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#extract_group_os"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="extract_group_os-103"><a href="#extract_group_os-103"><span class="linenos">103</span></a><span class="k">def</span><span class="w"> </span><span class="nf">extract_group_os</span><span class="p">(</span><span class="n">group_dict</span><span class="p">,</span> <span class="n">group_identifier</span><span class="p">,</span> <span class="n">csv_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="extract_group_os-104"><a href="#extract_group_os-104"><span class="linenos">104</span></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="extract_group_os-105"><a href="#extract_group_os-105"><span class="linenos">105</span></a><span class="sd">    Extract a specific group of scientific objects from a grouped dictionary</span>
+</span><span id="extract_group_os-106"><a href="#extract_group_os-106"><span class="linenos">106</span></a><span class="sd">    and optionally save it to a CSV file.</span>
+</span><span id="extract_group_os-107"><a href="#extract_group_os-107"><span class="linenos">107</span></a>
+</span><span id="extract_group_os-108"><a href="#extract_group_os-108"><span class="linenos">108</span></a><span class="sd">    Parameters</span>
+</span><span id="extract_group_os-109"><a href="#extract_group_os-109"><span class="linenos">109</span></a><span class="sd">    ----------</span>
+</span><span id="extract_group_os-110"><a href="#extract_group_os-110"><span class="linenos">110</span></a><span class="sd">    group_dict : dict</span>
+</span><span id="extract_group_os-111"><a href="#extract_group_os-111"><span class="linenos">111</span></a><span class="sd">        Dictionary of grouped DataFrames, typically returned by</span>
+</span><span id="extract_group_os-112"><a href="#extract_group_os-112"><span class="linenos">112</span></a><span class="sd">        `replicate_scientific_objects`.</span>
+</span><span id="extract_group_os-113"><a href="#extract_group_os-113"><span class="linenos">113</span></a><span class="sd">        Keys are group identifiers and values are pandas DataFrames.</span>
+</span><span id="extract_group_os-114"><a href="#extract_group_os-114"><span class="linenos">114</span></a>
+</span><span id="extract_group_os-115"><a href="#extract_group_os-115"><span class="linenos">115</span></a><span class="sd">    group_identifier : str</span>
+</span><span id="extract_group_os-116"><a href="#extract_group_os-116"><span class="linenos">116</span></a><span class="sd">        Identifier of the group to extract.</span>
+</span><span id="extract_group_os-117"><a href="#extract_group_os-117"><span class="linenos">117</span></a><span class="sd">        Must exactly match one of the keys in `group_dict`.</span>
+</span><span id="extract_group_os-118"><a href="#extract_group_os-118"><span class="linenos">118</span></a>
+</span><span id="extract_group_os-119"><a href="#extract_group_os-119"><span class="linenos">119</span></a><span class="sd">    csv_filepath : str, optional</span>
+</span><span id="extract_group_os-120"><a href="#extract_group_os-120"><span class="linenos">120</span></a><span class="sd">        Path to the CSV file where the extracted group will be saved.</span>
+</span><span id="extract_group_os-121"><a href="#extract_group_os-121"><span class="linenos">121</span></a><span class="sd">        If None, the group is not written to disk.</span>
+</span><span id="extract_group_os-122"><a href="#extract_group_os-122"><span class="linenos">122</span></a><span class="sd">        Parent directories are automatically created if they do not exist.</span>
+</span><span id="extract_group_os-123"><a href="#extract_group_os-123"><span class="linenos">123</span></a>
+</span><span id="extract_group_os-124"><a href="#extract_group_os-124"><span class="linenos">124</span></a><span class="sd">    Returns</span>
+</span><span id="extract_group_os-125"><a href="#extract_group_os-125"><span class="linenos">125</span></a><span class="sd">    -------</span>
+</span><span id="extract_group_os-126"><a href="#extract_group_os-126"><span class="linenos">126</span></a><span class="sd">    pandas.DataFrame or None</span>
+</span><span id="extract_group_os-127"><a href="#extract_group_os-127"><span class="linenos">127</span></a><span class="sd">        The DataFrame corresponding to the selected group if it exists.</span>
+</span><span id="extract_group_os-128"><a href="#extract_group_os-128"><span class="linenos">128</span></a><span class="sd">        Returns None if the group identifier is not found.</span>
+</span><span id="extract_group_os-129"><a href="#extract_group_os-129"><span class="linenos">129</span></a>
+</span><span id="extract_group_os-130"><a href="#extract_group_os-130"><span class="linenos">130</span></a><span class="sd">    Notes</span>
+</span><span id="extract_group_os-131"><a href="#extract_group_os-131"><span class="linenos">131</span></a><span class="sd">    -----</span>
+</span><span id="extract_group_os-132"><a href="#extract_group_os-132"><span class="linenos">132</span></a><span class="sd">    - The CSV file is written without the index column.</span>
+</span><span id="extract_group_os-133"><a href="#extract_group_os-133"><span class="linenos">133</span></a><span class="sd">    - If the provided group identifier does not exist, a warning message</span>
+</span><span id="extract_group_os-134"><a href="#extract_group_os-134"><span class="linenos">134</span></a><span class="sd">      is printed and no file is created.</span>
+</span><span id="extract_group_os-135"><a href="#extract_group_os-135"><span class="linenos">135</span></a>
+</span><span id="extract_group_os-136"><a href="#extract_group_os-136"><span class="linenos">136</span></a><span class="sd">    Example</span>
+</span><span id="extract_group_os-137"><a href="#extract_group_os-137"><span class="linenos">137</span></a><span class="sd">    -------</span>
+</span><span id="extract_group_os-138"><a href="#extract_group_os-138"><span class="linenos">138</span></a><span class="sd">    &gt;&gt;&gt; group_df = extract_group_os(</span>
+</span><span id="extract_group_os-139"><a href="#extract_group_os-139"><span class="linenos">139</span></a><span class="sd">    ...     group_dict,</span>
+</span><span id="extract_group_os-140"><a href="#extract_group_os-140"><span class="linenos">140</span></a><span class="sd">    ...     group_identifier="WD_ScionLot_ZM4383_Zea mays",</span>
+</span><span id="extract_group_os-141"><a href="#extract_group_os-141"><span class="linenos">141</span></a><span class="sd">    ...     csv_filepath="outputs/group_WD_ScionLot_ZM4383_Zea mays.csv"</span>
+</span><span id="extract_group_os-142"><a href="#extract_group_os-142"><span class="linenos">142</span></a><span class="sd">    ... )</span>
+</span><span id="extract_group_os-143"><a href="#extract_group_os-143"><span class="linenos">143</span></a><span class="sd">    """</span>
+</span><span id="extract_group_os-144"><a href="#extract_group_os-144"><span class="linenos">144</span></a>
+</span><span id="extract_group_os-145"><a href="#extract_group_os-145"><span class="linenos">145</span></a>    <span class="c1"># Check if the requested group exists</span>
+</span><span id="extract_group_os-146"><a href="#extract_group_os-146"><span class="linenos">146</span></a>    <span class="k">if</span> <span class="n">group_identifier</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">group_dict</span><span class="p">:</span>
+</span><span id="extract_group_os-147"><a href="#extract_group_os-147"><span class="linenos">147</span></a>        <span class="nb">print</span><span class="p">(</span>
+</span><span id="extract_group_os-148"><a href="#extract_group_os-148"><span class="linenos">148</span></a>            <span class="sa">f</span><span class="s2">"❌ Invalid group identifier. "</span>
+</span><span id="extract_group_os-149"><a href="#extract_group_os-149"><span class="linenos">149</span></a>            <span class="sa">f</span><span class="s2">"Available groups: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">group_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="extract_group_os-150"><a href="#extract_group_os-150"><span class="linenos">150</span></a>        <span class="p">)</span>
+</span><span id="extract_group_os-151"><a href="#extract_group_os-151"><span class="linenos">151</span></a>        <span class="k">return</span> <span class="kc">None</span>
+</span><span id="extract_group_os-152"><a href="#extract_group_os-152"><span class="linenos">152</span></a>
+</span><span id="extract_group_os-153"><a href="#extract_group_os-153"><span class="linenos">153</span></a>    <span class="c1"># Retrieve the DataFrame for the requested group</span>
+</span><span id="extract_group_os-154"><a href="#extract_group_os-154"><span class="linenos">154</span></a>    <span class="n">group_df</span> <span class="o">=</span> <span class="n">group_dict</span><span class="p">[</span><span class="n">group_identifier</span><span class="p">]</span>
+</span><span id="extract_group_os-155"><a href="#extract_group_os-155"><span class="linenos">155</span></a>
+</span><span id="extract_group_os-156"><a href="#extract_group_os-156"><span class="linenos">156</span></a>    <span class="c1"># Save to CSV if requested</span>
+</span><span id="extract_group_os-157"><a href="#extract_group_os-157"><span class="linenos">157</span></a>    <span class="k">if</span> <span class="n">csv_filepath</span><span class="p">:</span>
+</span><span id="extract_group_os-158"><a href="#extract_group_os-158"><span class="linenos">158</span></a>        <span class="c1"># Ensure output directory exists</span>
+</span><span id="extract_group_os-159"><a href="#extract_group_os-159"><span class="linenos">159</span></a>        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">):</span>
+</span><span id="extract_group_os-160"><a href="#extract_group_os-160"><span class="linenos">160</span></a>            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="extract_group_os-161"><a href="#extract_group_os-161"><span class="linenos">161</span></a>
+</span><span id="extract_group_os-162"><a href="#extract_group_os-162"><span class="linenos">162</span></a>        <span class="n">group_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="extract_group_os-163"><a href="#extract_group_os-163"><span class="linenos">163</span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✅ Group '</span><span class="si">{</span><span class="n">group_identifier</span><span class="si">}</span><span class="s2">' has been saved to '</span><span class="si">{</span><span class="n">csv_filepath</span><span class="si">}</span><span class="s2">'."</span><span class="p">)</span>
+</span><span id="extract_group_os-164"><a href="#extract_group_os-164"><span class="linenos">164</span></a>
+</span><span id="extract_group_os-165"><a href="#extract_group_os-165"><span class="linenos">165</span></a>    <span class="k">return</span> <span class="n">group_df</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Extract a specific group of scientific objects from a grouped dictionary
+and optionally save it to a CSV file.</p>
+
+<h2 id="parameters">Parameters</h2>
+
+<p>group_dict : dict
+    Dictionary of grouped DataFrames, typically returned by
+    <code><a href="#replicate_scientific_objects">replicate_scientific_objects</a></code>.
+    Keys are group identifiers and values are pandas DataFrames.</p>
+
+<p>group_identifier : str
+    Identifier of the group to extract.
+    Must exactly match one of the keys in <code>group_dict</code>.</p>
+
+<p>csv_filepath : str, optional
+    Path to the CSV file where the extracted group will be saved.
+    If None, the group is not written to disk.
+    Parent directories are automatically created if they do not exist.</p>
+
+<h2 id="returns">Returns</h2>
+
+<p>pandas.DataFrame or None
+    The DataFrame corresponding to the selected group if it exists.
+    Returns None if the group identifier is not found.</p>
+
+<h2 id="notes">Notes</h2>
+
+<ul>
+<li>The CSV file is written without the index column.</li>
+<li>If the provided group identifier does not exist, a warning message
+is printed and no file is created.</li>
+</ul>
+
+<h2 id="example">Example</h2>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">group_df</span> <span class="o">=</span> <span class="n">extract_group_os</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">group_dict</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">group_identifier</span><span class="o">=</span><span class="s2">"WD_ScionLot_ZM4383_Zea mays"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">csv_filepath</span><span class="o">=</span><span class="s2">"outputs/group_WD_ScionLot_ZM4383_Zea mays.csv"</span>
+<span class="gp">... </span><span class="p">)</span>
+</code></pre>
+</div>
+</div>
+
+
+                </section>
+                <section id="visualize_all_variables">
+                            <input id="visualize_all_variables-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">visualize_all_variables</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">df_variables</span>, </span><span class="param"><span class="n">pdf_filepath</span><span class="o">=</span><span class="kc">None</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="visualize_all_variables-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#visualize_all_variables"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="visualize_all_variables-168"><a href="#visualize_all_variables-168"><span class="linenos">168</span></a><span class="k">def</span><span class="w"> </span><span class="nf">visualize_all_variables</span><span class="p">(</span><span class="n">df_variables</span><span class="p">,</span> <span class="n">pdf_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="visualize_all_variables-169"><a href="#visualize_all_variables-169"><span class="linenos">169</span></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="visualize_all_variables-170"><a href="#visualize_all_variables-170"><span class="linenos">170</span></a><span class="sd">    Visualize all variables contained in a dictionary of DataFrames.</span>
+</span><span id="visualize_all_variables-171"><a href="#visualize_all_variables-171"><span class="linenos">171</span></a><span class="sd">    Several graphs are displayed per PDF page to keep them readable.</span>
+</span><span id="visualize_all_variables-172"><a href="#visualize_all_variables-172"><span class="linenos">172</span></a>
+</span><span id="visualize_all_variables-173"><a href="#visualize_all_variables-173"><span class="linenos">173</span></a><span class="sd">    Parameters</span>
+</span><span id="visualize_all_variables-174"><a href="#visualize_all_variables-174"><span class="linenos">174</span></a><span class="sd">    ----------</span>
+</span><span id="visualize_all_variables-175"><a href="#visualize_all_variables-175"><span class="linenos">175</span></a><span class="sd">    df_variables : dict[str, pandas.DataFrame]</span>
+</span><span id="visualize_all_variables-176"><a href="#visualize_all_variables-176"><span class="linenos">176</span></a><span class="sd">        Dictionary where keys are variable identifiers and values are DataFrames.</span>
+</span><span id="visualize_all_variables-177"><a href="#visualize_all_variables-177"><span class="linenos">177</span></a>
+</span><span id="visualize_all_variables-178"><a href="#visualize_all_variables-178"><span class="linenos">178</span></a><span class="sd">    pdf_filepath : str, optional</span>
+</span><span id="visualize_all_variables-179"><a href="#visualize_all_variables-179"><span class="linenos">179</span></a><span class="sd">        Output PDF file.</span>
+</span><span id="visualize_all_variables-180"><a href="#visualize_all_variables-180"><span class="linenos">180</span></a><span class="sd">    """</span>
+</span><span id="visualize_all_variables-181"><a href="#visualize_all_variables-181"><span class="linenos">181</span></a>
+</span><span id="visualize_all_variables-182"><a href="#visualize_all_variables-182"><span class="linenos">182</span></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">df_variables</span><span class="p">:</span>
+</span><span id="visualize_all_variables-183"><a href="#visualize_all_variables-183"><span class="linenos">183</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠️ No variables to visualize."</span><span class="p">)</span>
+</span><span id="visualize_all_variables-184"><a href="#visualize_all_variables-184"><span class="linenos">184</span></a>        <span class="k">return</span>
+</span><span id="visualize_all_variables-185"><a href="#visualize_all_variables-185"><span class="linenos">185</span></a>
+</span><span id="visualize_all_variables-186"><a href="#visualize_all_variables-186"><span class="linenos">186</span></a>    <span class="n">valid_variables</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="visualize_all_variables-187"><a href="#visualize_all_variables-187"><span class="linenos">187</span></a>        <span class="n">key</span><span class="p">:</span> <span class="n">df</span>
+</span><span id="visualize_all_variables-188"><a href="#visualize_all_variables-188"><span class="linenos">188</span></a>        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">df_variables</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</span><span id="visualize_all_variables-189"><a href="#visualize_all_variables-189"><span class="linenos">189</span></a>        <span class="k">if</span> <span class="n">df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span>
+</span><span id="visualize_all_variables-190"><a href="#visualize_all_variables-190"><span class="linenos">190</span></a>    <span class="p">}</span>
+</span><span id="visualize_all_variables-191"><a href="#visualize_all_variables-191"><span class="linenos">191</span></a>
+</span><span id="visualize_all_variables-192"><a href="#visualize_all_variables-192"><span class="linenos">192</span></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">valid_variables</span><span class="p">:</span>
+</span><span id="visualize_all_variables-193"><a href="#visualize_all_variables-193"><span class="linenos">193</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠️ No non-empty variables to visualize."</span><span class="p">)</span>
+</span><span id="visualize_all_variables-194"><a href="#visualize_all_variables-194"><span class="linenos">194</span></a>        <span class="k">return</span>
+</span><span id="visualize_all_variables-195"><a href="#visualize_all_variables-195"><span class="linenos">195</span></a>
+</span><span id="visualize_all_variables-196"><a href="#visualize_all_variables-196"><span class="linenos">196</span></a>    <span class="k">if</span> <span class="n">pdf_filepath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="visualize_all_variables-197"><a href="#visualize_all_variables-197"><span class="linenos">197</span></a>        <span class="n">pdf_filepath</span> <span class="o">=</span> <span class="s2">"visualization_output.pdf"</span>
+</span><span id="visualize_all_variables-198"><a href="#visualize_all_variables-198"><span class="linenos">198</span></a>
+</span><span id="visualize_all_variables-199"><a href="#visualize_all_variables-199"><span class="linenos">199</span></a>    <span class="n">output_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">pdf_filepath</span><span class="p">)</span>
+</span><span id="visualize_all_variables-200"><a href="#visualize_all_variables-200"><span class="linenos">200</span></a>
+</span><span id="visualize_all_variables-201"><a href="#visualize_all_variables-201"><span class="linenos">201</span></a>    <span class="k">if</span> <span class="n">output_dir</span><span class="p">:</span>
+</span><span id="visualize_all_variables-202"><a href="#visualize_all_variables-202"><span class="linenos">202</span></a>        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="visualize_all_variables-203"><a href="#visualize_all_variables-203"><span class="linenos">203</span></a>
+</span><span id="visualize_all_variables-204"><a href="#visualize_all_variables-204"><span class="linenos">204</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="visualize_all_variables-205"><a href="#visualize_all_variables-205"><span class="linenos">205</span></a>    <span class="c1"># Configuration</span>
+</span><span id="visualize_all_variables-206"><a href="#visualize_all_variables-206"><span class="linenos">206</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="visualize_all_variables-207"><a href="#visualize_all_variables-207"><span class="linenos">207</span></a>
+</span><span id="visualize_all_variables-208"><a href="#visualize_all_variables-208"><span class="linenos">208</span></a>    <span class="n">cols</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span id="visualize_all_variables-209"><a href="#visualize_all_variables-209"><span class="linenos">209</span></a>    <span class="n">rows</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="visualize_all_variables-210"><a href="#visualize_all_variables-210"><span class="linenos">210</span></a>
+</span><span id="visualize_all_variables-211"><a href="#visualize_all_variables-211"><span class="linenos">211</span></a>    <span class="n">graphs_per_page</span> <span class="o">=</span> <span class="n">cols</span> <span class="o">*</span> <span class="n">rows</span>  <span class="c1"># 6 graphiques par page</span>
+</span><span id="visualize_all_variables-212"><a href="#visualize_all_variables-212"><span class="linenos">212</span></a>
+</span><span id="visualize_all_variables-213"><a href="#visualize_all_variables-213"><span class="linenos">213</span></a>    <span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">"tab10"</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span><span id="visualize_all_variables-214"><a href="#visualize_all_variables-214"><span class="linenos">214</span></a>
+</span><span id="visualize_all_variables-215"><a href="#visualize_all_variables-215"><span class="linenos">215</span></a>    <span class="n">variables</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">valid_variables</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+</span><span id="visualize_all_variables-216"><a href="#visualize_all_variables-216"><span class="linenos">216</span></a>
+</span><span id="visualize_all_variables-217"><a href="#visualize_all_variables-217"><span class="linenos">217</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="visualize_all_variables-218"><a href="#visualize_all_variables-218"><span class="linenos">218</span></a>    <span class="c1"># PDF multipage</span>
+</span><span id="visualize_all_variables-219"><a href="#visualize_all_variables-219"><span class="linenos">219</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="visualize_all_variables-220"><a href="#visualize_all_variables-220"><span class="linenos">220</span></a>
+</span><span id="visualize_all_variables-221"><a href="#visualize_all_variables-221"><span class="linenos">221</span></a>    <span class="k">with</span> <span class="n">PdfPages</span><span class="p">(</span><span class="n">pdf_filepath</span><span class="p">)</span> <span class="k">as</span> <span class="n">pdf</span><span class="p">:</span>
+</span><span id="visualize_all_variables-222"><a href="#visualize_all_variables-222"><span class="linenos">222</span></a>
+</span><span id="visualize_all_variables-223"><a href="#visualize_all_variables-223"><span class="linenos">223</span></a>        <span class="k">for</span> <span class="n">page_start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">variables</span><span class="p">),</span> <span class="n">graphs_per_page</span><span class="p">):</span>
+</span><span id="visualize_all_variables-224"><a href="#visualize_all_variables-224"><span class="linenos">224</span></a>
+</span><span id="visualize_all_variables-225"><a href="#visualize_all_variables-225"><span class="linenos">225</span></a>            <span class="n">page_variables</span> <span class="o">=</span> <span class="n">variables</span><span class="p">[</span>
+</span><span id="visualize_all_variables-226"><a href="#visualize_all_variables-226"><span class="linenos">226</span></a>                <span class="n">page_start</span><span class="p">:</span><span class="n">page_start</span> <span class="o">+</span> <span class="n">graphs_per_page</span>
+</span><span id="visualize_all_variables-227"><a href="#visualize_all_variables-227"><span class="linenos">227</span></a>            <span class="p">]</span>
+</span><span id="visualize_all_variables-228"><a href="#visualize_all_variables-228"><span class="linenos">228</span></a>
+</span><span id="visualize_all_variables-229"><a href="#visualize_all_variables-229"><span class="linenos">229</span></a>            <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
+</span><span id="visualize_all_variables-230"><a href="#visualize_all_variables-230"><span class="linenos">230</span></a>                <span class="n">rows</span><span class="p">,</span>
+</span><span id="visualize_all_variables-231"><a href="#visualize_all_variables-231"><span class="linenos">231</span></a>                <span class="n">cols</span><span class="p">,</span>
+</span><span id="visualize_all_variables-232"><a href="#visualize_all_variables-232"><span class="linenos">232</span></a>                <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+</span><span id="visualize_all_variables-233"><a href="#visualize_all_variables-233"><span class="linenos">233</span></a>            <span class="p">)</span>
+</span><span id="visualize_all_variables-234"><a href="#visualize_all_variables-234"><span class="linenos">234</span></a>
+</span><span id="visualize_all_variables-235"><a href="#visualize_all_variables-235"><span class="linenos">235</span></a>            <span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+</span><span id="visualize_all_variables-236"><a href="#visualize_all_variables-236"><span class="linenos">236</span></a>
+</span><span id="visualize_all_variables-237"><a href="#visualize_all_variables-237"><span class="linenos">237</span></a>            <span class="n">common_handles</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="visualize_all_variables-238"><a href="#visualize_all_variables-238"><span class="linenos">238</span></a>            <span class="n">common_labels</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="visualize_all_variables-239"><a href="#visualize_all_variables-239"><span class="linenos">239</span></a>
+</span><span id="visualize_all_variables-240"><a href="#visualize_all_variables-240"><span class="linenos">240</span></a>            <span class="c1"># ------------------------------------------</span>
+</span><span id="visualize_all_variables-241"><a href="#visualize_all_variables-241"><span class="linenos">241</span></a>            <span class="c1"># Graphs de la page</span>
+</span><span id="visualize_all_variables-242"><a href="#visualize_all_variables-242"><span class="linenos">242</span></a>            <span class="c1"># ------------------------------------------</span>
+</span><span id="visualize_all_variables-243"><a href="#visualize_all_variables-243"><span class="linenos">243</span></a>
+</span><span id="visualize_all_variables-244"><a href="#visualize_all_variables-244"><span class="linenos">244</span></a>            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">page_variables</span><span class="p">):</span>
+</span><span id="visualize_all_variables-245"><a href="#visualize_all_variables-245"><span class="linenos">245</span></a>
+</span><span id="visualize_all_variables-246"><a href="#visualize_all_variables-246"><span class="linenos">246</span></a>                <span class="n">variable_name</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"df_"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+</span><span id="visualize_all_variables-247"><a href="#visualize_all_variables-247"><span class="linenos">247</span></a>
+</span><span id="visualize_all_variables-248"><a href="#visualize_all_variables-248"><span class="linenos">248</span></a>                <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span id="visualize_all_variables-249"><a href="#visualize_all_variables-249"><span class="linenos">249</span></a>
+</span><span id="visualize_all_variables-250"><a href="#visualize_all_variables-250"><span class="linenos">250</span></a>                <span class="n">required</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="visualize_all_variables-251"><a href="#visualize_all_variables-251"><span class="linenos">251</span></a>                    <span class="s2">"URI"</span><span class="p">,</span>
+</span><span id="visualize_all_variables-252"><a href="#visualize_all_variables-252"><span class="linenos">252</span></a>                    <span class="s2">"Date"</span><span class="p">,</span>
+</span><span id="visualize_all_variables-253"><a href="#visualize_all_variables-253"><span class="linenos">253</span></a>                    <span class="n">variable_name</span>
+</span><span id="visualize_all_variables-254"><a href="#visualize_all_variables-254"><span class="linenos">254</span></a>                <span class="p">]</span>
+</span><span id="visualize_all_variables-255"><a href="#visualize_all_variables-255"><span class="linenos">255</span></a>
+</span><span id="visualize_all_variables-256"><a href="#visualize_all_variables-256"><span class="linenos">256</span></a>                <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">required</span><span class="p">):</span>
+</span><span id="visualize_all_variables-257"><a href="#visualize_all_variables-257"><span class="linenos">257</span></a>
+</span><span id="visualize_all_variables-258"><a href="#visualize_all_variables-258"><span class="linenos">258</span></a>                    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+</span><span id="visualize_all_variables-259"><a href="#visualize_all_variables-259"><span class="linenos">259</span></a>                        <span class="mf">0.5</span><span class="p">,</span>
+</span><span id="visualize_all_variables-260"><a href="#visualize_all_variables-260"><span class="linenos">260</span></a>                        <span class="mf">0.5</span><span class="p">,</span>
+</span><span id="visualize_all_variables-261"><a href="#visualize_all_variables-261"><span class="linenos">261</span></a>                        <span class="sa">f</span><span class="s2">"Missing columns</span><span class="se">\n</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+</span><span id="visualize_all_variables-262"><a href="#visualize_all_variables-262"><span class="linenos">262</span></a>                        <span class="n">horizontalalignment</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span>
+</span><span id="visualize_all_variables-263"><a href="#visualize_all_variables-263"><span class="linenos">263</span></a>                        <span class="n">verticalalignment</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span>
+</span><span id="visualize_all_variables-264"><a href="#visualize_all_variables-264"><span class="linenos">264</span></a>                        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span>
+</span><span id="visualize_all_variables-265"><a href="#visualize_all_variables-265"><span class="linenos">265</span></a>                    <span class="p">)</span>
+</span><span id="visualize_all_variables-266"><a href="#visualize_all_variables-266"><span class="linenos">266</span></a>
+</span><span id="visualize_all_variables-267"><a href="#visualize_all_variables-267"><span class="linenos">267</span></a>                    <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+</span><span id="visualize_all_variables-268"><a href="#visualize_all_variables-268"><span class="linenos">268</span></a>
+</span><span id="visualize_all_variables-269"><a href="#visualize_all_variables-269"><span class="linenos">269</span></a>                    <span class="nb">print</span><span class="p">(</span>
+</span><span id="visualize_all_variables-270"><a href="#visualize_all_variables-270"><span class="linenos">270</span></a>                        <span class="sa">f</span><span class="s2">"⚠️ Missing columns for '</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">'."</span>
+</span><span id="visualize_all_variables-271"><a href="#visualize_all_variables-271"><span class="linenos">271</span></a>                    <span class="p">)</span>
+</span><span id="visualize_all_variables-272"><a href="#visualize_all_variables-272"><span class="linenos">272</span></a>
+</span><span id="visualize_all_variables-273"><a href="#visualize_all_variables-273"><span class="linenos">273</span></a>                    <span class="k">continue</span>
+</span><span id="visualize_all_variables-274"><a href="#visualize_all_variables-274"><span class="linenos">274</span></a>
+</span><span id="visualize_all_variables-275"><a href="#visualize_all_variables-275"><span class="linenos">275</span></a>                <span class="n">data_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="visualize_all_variables-276"><a href="#visualize_all_variables-276"><span class="linenos">276</span></a>
+</span><span id="visualize_all_variables-277"><a href="#visualize_all_variables-277"><span class="linenos">277</span></a>                <span class="n">data_df</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+</span><span id="visualize_all_variables-278"><a href="#visualize_all_variables-278"><span class="linenos">278</span></a>                    <span class="n">data_df</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">],</span>
+</span><span id="visualize_all_variables-279"><a href="#visualize_all_variables-279"><span class="linenos">279</span></a>                    <span class="n">errors</span><span class="o">=</span><span class="s2">"coerce"</span>
+</span><span id="visualize_all_variables-280"><a href="#visualize_all_variables-280"><span class="linenos">280</span></a>                <span class="p">)</span>
+</span><span id="visualize_all_variables-281"><a href="#visualize_all_variables-281"><span class="linenos">281</span></a>
+</span><span id="visualize_all_variables-282"><a href="#visualize_all_variables-282"><span class="linenos">282</span></a>                <span class="n">data_df</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span>
+</span><span id="visualize_all_variables-283"><a href="#visualize_all_variables-283"><span class="linenos">283</span></a>                    <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">]</span>
+</span><span id="visualize_all_variables-284"><a href="#visualize_all_variables-284"><span class="linenos">284</span></a>                <span class="p">)</span>
+</span><span id="visualize_all_variables-285"><a href="#visualize_all_variables-285"><span class="linenos">285</span></a>
+</span><span id="visualize_all_variables-286"><a href="#visualize_all_variables-286"><span class="linenos">286</span></a>                <span class="n">data_df</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+</span><span id="visualize_all_variables-287"><a href="#visualize_all_variables-287"><span class="linenos">287</span></a>                    <span class="s2">"Date"</span>
+</span><span id="visualize_all_variables-288"><a href="#visualize_all_variables-288"><span class="linenos">288</span></a>                <span class="p">)</span>
+</span><span id="visualize_all_variables-289"><a href="#visualize_all_variables-289"><span class="linenos">289</span></a>
+</span><span id="visualize_all_variables-290"><a href="#visualize_all_variables-290"><span class="linenos">290</span></a>                <span class="c1"># --------------------------------------</span>
+</span><span id="visualize_all_variables-291"><a href="#visualize_all_variables-291"><span class="linenos">291</span></a>                <span class="c1"># Une courbe par URI</span>
+</span><span id="visualize_all_variables-292"><a href="#visualize_all_variables-292"><span class="linenos">292</span></a>                <span class="c1"># --------------------------------------</span>
+</span><span id="visualize_all_variables-293"><a href="#visualize_all_variables-293"><span class="linenos">293</span></a>
+</span><span id="visualize_all_variables-294"><a href="#visualize_all_variables-294"><span class="linenos">294</span></a>                <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">uri</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
+</span><span id="visualize_all_variables-295"><a href="#visualize_all_variables-295"><span class="linenos">295</span></a>                    <span class="n">data_df</span><span class="p">[</span><span class="s2">"URI"</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</span><span id="visualize_all_variables-296"><a href="#visualize_all_variables-296"><span class="linenos">296</span></a>                <span class="p">):</span>
+</span><span id="visualize_all_variables-297"><a href="#visualize_all_variables-297"><span class="linenos">297</span></a>
+</span><span id="visualize_all_variables-298"><a href="#visualize_all_variables-298"><span class="linenos">298</span></a>                    <span class="n">data</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span>
+</span><span id="visualize_all_variables-299"><a href="#visualize_all_variables-299"><span class="linenos">299</span></a>                        <span class="n">data_df</span><span class="p">[</span><span class="s2">"URI"</span><span class="p">]</span> <span class="o">==</span> <span class="n">uri</span>
+</span><span id="visualize_all_variables-300"><a href="#visualize_all_variables-300"><span class="linenos">300</span></a>                    <span class="p">]</span>
+</span><span id="visualize_all_variables-301"><a href="#visualize_all_variables-301"><span class="linenos">301</span></a>
+</span><span id="visualize_all_variables-302"><a href="#visualize_all_variables-302"><span class="linenos">302</span></a>                    <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span>
+</span><span id="visualize_all_variables-303"><a href="#visualize_all_variables-303"><span class="linenos">303</span></a>                        <span class="n">j</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>
+</span><span id="visualize_all_variables-304"><a href="#visualize_all_variables-304"><span class="linenos">304</span></a>                    <span class="p">]</span>
+</span><span id="visualize_all_variables-305"><a href="#visualize_all_variables-305"><span class="linenos">305</span></a>
+</span><span id="visualize_all_variables-306"><a href="#visualize_all_variables-306"><span class="linenos">306</span></a>                    <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="visualize_all_variables-307"><a href="#visualize_all_variables-307"><span class="linenos">307</span></a>
+</span><span id="visualize_all_variables-308"><a href="#visualize_all_variables-308"><span class="linenos">308</span></a>                        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+</span><span id="visualize_all_variables-309"><a href="#visualize_all_variables-309"><span class="linenos">309</span></a>                            <span class="n">data</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">],</span>
+</span><span id="visualize_all_variables-310"><a href="#visualize_all_variables-310"><span class="linenos">310</span></a>                            <span class="n">data</span><span class="p">[</span><span class="n">variable_name</span><span class="p">],</span>
+</span><span id="visualize_all_variables-311"><a href="#visualize_all_variables-311"><span class="linenos">311</span></a>                            <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+</span><span id="visualize_all_variables-312"><a href="#visualize_all_variables-312"><span class="linenos">312</span></a>                            <span class="n">label</span><span class="o">=</span><span class="n">uri</span><span class="p">,</span>
+</span><span id="visualize_all_variables-313"><a href="#visualize_all_variables-313"><span class="linenos">313</span></a>                            <span class="n">s</span><span class="o">=</span><span class="mi">30</span>
+</span><span id="visualize_all_variables-314"><a href="#visualize_all_variables-314"><span class="linenos">314</span></a>                        <span class="p">)</span>
+</span><span id="visualize_all_variables-315"><a href="#visualize_all_variables-315"><span class="linenos">315</span></a>
+</span><span id="visualize_all_variables-316"><a href="#visualize_all_variables-316"><span class="linenos">316</span></a>                    <span class="k">else</span><span class="p">:</span>
+</span><span id="visualize_all_variables-317"><a href="#visualize_all_variables-317"><span class="linenos">317</span></a>
+</span><span id="visualize_all_variables-318"><a href="#visualize_all_variables-318"><span class="linenos">318</span></a>                        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+</span><span id="visualize_all_variables-319"><a href="#visualize_all_variables-319"><span class="linenos">319</span></a>                            <span class="n">data</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">],</span>
+</span><span id="visualize_all_variables-320"><a href="#visualize_all_variables-320"><span class="linenos">320</span></a>                            <span class="n">data</span><span class="p">[</span><span class="n">variable_name</span><span class="p">],</span>
+</span><span id="visualize_all_variables-321"><a href="#visualize_all_variables-321"><span class="linenos">321</span></a>                            <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+</span><span id="visualize_all_variables-322"><a href="#visualize_all_variables-322"><span class="linenos">322</span></a>                            <span class="n">label</span><span class="o">=</span><span class="n">uri</span><span class="p">,</span>
+</span><span id="visualize_all_variables-323"><a href="#visualize_all_variables-323"><span class="linenos">323</span></a>                            <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.8</span><span class="p">,</span>
+</span><span id="visualize_all_variables-324"><a href="#visualize_all_variables-324"><span class="linenos">324</span></a>                            <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+</span><span id="visualize_all_variables-325"><a href="#visualize_all_variables-325"><span class="linenos">325</span></a>                            <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span>
+</span><span id="visualize_all_variables-326"><a href="#visualize_all_variables-326"><span class="linenos">326</span></a>                        <span class="p">)</span>
+</span><span id="visualize_all_variables-327"><a href="#visualize_all_variables-327"><span class="linenos">327</span></a>
+</span><span id="visualize_all_variables-328"><a href="#visualize_all_variables-328"><span class="linenos">328</span></a>                <span class="c1"># --------------------------------------</span>
+</span><span id="visualize_all_variables-329"><a href="#visualize_all_variables-329"><span class="linenos">329</span></a>                <span class="c1"># Titre</span>
+</span><span id="visualize_all_variables-330"><a href="#visualize_all_variables-330"><span class="linenos">330</span></a>                <span class="c1"># --------------------------------------</span>
+</span><span id="visualize_all_variables-331"><a href="#visualize_all_variables-331"><span class="linenos">331</span></a>
+</span><span id="visualize_all_variables-332"><a href="#visualize_all_variables-332"><span class="linenos">332</span></a>                <span class="n">title</span> <span class="o">=</span> <span class="n">variable_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+</span><span id="visualize_all_variables-333"><a href="#visualize_all_variables-333"><span class="linenos">333</span></a>                    <span class="s2">"_"</span><span class="p">,</span>
+</span><span id="visualize_all_variables-334"><a href="#visualize_all_variables-334"><span class="linenos">334</span></a>                    <span class="s2">" "</span>
+</span><span id="visualize_all_variables-335"><a href="#visualize_all_variables-335"><span class="linenos">335</span></a>                <span class="p">)</span>
+</span><span id="visualize_all_variables-336"><a href="#visualize_all_variables-336"><span class="linenos">336</span></a>
+</span><span id="visualize_all_variables-337"><a href="#visualize_all_variables-337"><span class="linenos">337</span></a>                <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+</span><span id="visualize_all_variables-338"><a href="#visualize_all_variables-338"><span class="linenos">338</span></a>                    <span class="n">title</span><span class="p">,</span>
+</span><span id="visualize_all_variables-339"><a href="#visualize_all_variables-339"><span class="linenos">339</span></a>                    <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+</span><span id="visualize_all_variables-340"><a href="#visualize_all_variables-340"><span class="linenos">340</span></a>                    <span class="n">fontweight</span><span class="o">=</span><span class="s2">"bold"</span><span class="p">,</span>
+</span><span id="visualize_all_variables-341"><a href="#visualize_all_variables-341"><span class="linenos">341</span></a>                    <span class="n">pad</span><span class="o">=</span><span class="mi">8</span>
+</span><span id="visualize_all_variables-342"><a href="#visualize_all_variables-342"><span class="linenos">342</span></a>                <span class="p">)</span>
+</span><span id="visualize_all_variables-343"><a href="#visualize_all_variables-343"><span class="linenos">343</span></a>
+</span><span id="visualize_all_variables-344"><a href="#visualize_all_variables-344"><span class="linenos">344</span></a>                <span class="c1"># --------------------------------------</span>
+</span><span id="visualize_all_variables-345"><a href="#visualize_all_variables-345"><span class="linenos">345</span></a>                <span class="c1"># Grille</span>
+</span><span id="visualize_all_variables-346"><a href="#visualize_all_variables-346"><span class="linenos">346</span></a>                <span class="c1"># --------------------------------------</span>
+</span><span id="visualize_all_variables-347"><a href="#visualize_all_variables-347"><span class="linenos">347</span></a>
+</span><span id="visualize_all_variables-348"><a href="#visualize_all_variables-348"><span class="linenos">348</span></a>                <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span>
+</span><span id="visualize_all_variables-349"><a href="#visualize_all_variables-349"><span class="linenos">349</span></a>                    <span class="kc">True</span><span class="p">,</span>
+</span><span id="visualize_all_variables-350"><a href="#visualize_all_variables-350"><span class="linenos">350</span></a>                    <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+</span><span id="visualize_all_variables-351"><a href="#visualize_all_variables-351"><span class="linenos">351</span></a>                    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span>
+</span><span id="visualize_all_variables-352"><a href="#visualize_all_variables-352"><span class="linenos">352</span></a>                <span class="p">)</span>
+</span><span id="visualize_all_variables-353"><a href="#visualize_all_variables-353"><span class="linenos">353</span></a>
+</span><span id="visualize_all_variables-354"><a href="#visualize_all_variables-354"><span class="linenos">354</span></a>                <span class="c1"># --------------------------------------</span>
+</span><span id="visualize_all_variables-355"><a href="#visualize_all_variables-355"><span class="linenos">355</span></a>                <span class="c1"># Dates</span>
+</span><span id="visualize_all_variables-356"><a href="#visualize_all_variables-356"><span class="linenos">356</span></a>                <span class="c1"># --------------------------------------</span>
+</span><span id="visualize_all_variables-357"><a href="#visualize_all_variables-357"><span class="linenos">357</span></a>
+</span><span id="visualize_all_variables-358"><a href="#visualize_all_variables-358"><span class="linenos">358</span></a>                <span class="n">locator</span> <span class="o">=</span> <span class="n">mdates</span><span class="o">.</span><span class="n">AutoDateLocator</span><span class="p">(</span>
+</span><span id="visualize_all_variables-359"><a href="#visualize_all_variables-359"><span class="linenos">359</span></a>                    <span class="n">minticks</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+</span><span id="visualize_all_variables-360"><a href="#visualize_all_variables-360"><span class="linenos">360</span></a>                    <span class="n">maxticks</span><span class="o">=</span><span class="mi">6</span>
+</span><span id="visualize_all_variables-361"><a href="#visualize_all_variables-361"><span class="linenos">361</span></a>                <span class="p">)</span>
+</span><span id="visualize_all_variables-362"><a href="#visualize_all_variables-362"><span class="linenos">362</span></a>
+</span><span id="visualize_all_variables-363"><a href="#visualize_all_variables-363"><span class="linenos">363</span></a>                <span class="n">formatter</span> <span class="o">=</span> <span class="n">mdates</span><span class="o">.</span><span class="n">ConciseDateFormatter</span><span class="p">(</span>
+</span><span id="visualize_all_variables-364"><a href="#visualize_all_variables-364"><span class="linenos">364</span></a>                    <span class="n">locator</span>
+</span><span id="visualize_all_variables-365"><a href="#visualize_all_variables-365"><span class="linenos">365</span></a>                <span class="p">)</span>
+</span><span id="visualize_all_variables-366"><a href="#visualize_all_variables-366"><span class="linenos">366</span></a>
+</span><span id="visualize_all_variables-367"><a href="#visualize_all_variables-367"><span class="linenos">367</span></a>                <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span>
+</span><span id="visualize_all_variables-368"><a href="#visualize_all_variables-368"><span class="linenos">368</span></a>                    <span class="n">locator</span>
+</span><span id="visualize_all_variables-369"><a href="#visualize_all_variables-369"><span class="linenos">369</span></a>                <span class="p">)</span>
+</span><span id="visualize_all_variables-370"><a href="#visualize_all_variables-370"><span class="linenos">370</span></a>
+</span><span id="visualize_all_variables-371"><a href="#visualize_all_variables-371"><span class="linenos">371</span></a>                <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span>
+</span><span id="visualize_all_variables-372"><a href="#visualize_all_variables-372"><span class="linenos">372</span></a>                    <span class="n">formatter</span>
+</span><span id="visualize_all_variables-373"><a href="#visualize_all_variables-373"><span class="linenos">373</span></a>                <span class="p">)</span>
+</span><span id="visualize_all_variables-374"><a href="#visualize_all_variables-374"><span class="linenos">374</span></a>
+</span><span id="visualize_all_variables-375"><a href="#visualize_all_variables-375"><span class="linenos">375</span></a>                <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span>
+</span><span id="visualize_all_variables-376"><a href="#visualize_all_variables-376"><span class="linenos">376</span></a>                    <span class="n">axis</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span>
+</span><span id="visualize_all_variables-377"><a href="#visualize_all_variables-377"><span class="linenos">377</span></a>                    <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span>
+</span><span id="visualize_all_variables-378"><a href="#visualize_all_variables-378"><span class="linenos">378</span></a>                <span class="p">)</span>
+</span><span id="visualize_all_variables-379"><a href="#visualize_all_variables-379"><span class="linenos">379</span></a>
+</span><span id="visualize_all_variables-380"><a href="#visualize_all_variables-380"><span class="linenos">380</span></a>                <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span>
+</span><span id="visualize_all_variables-381"><a href="#visualize_all_variables-381"><span class="linenos">381</span></a>                    <span class="n">axis</span><span class="o">=</span><span class="s2">"y"</span><span class="p">,</span>
+</span><span id="visualize_all_variables-382"><a href="#visualize_all_variables-382"><span class="linenos">382</span></a>                    <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span>
+</span><span id="visualize_all_variables-383"><a href="#visualize_all_variables-383"><span class="linenos">383</span></a>                <span class="p">)</span>
+</span><span id="visualize_all_variables-384"><a href="#visualize_all_variables-384"><span class="linenos">384</span></a>
+</span><span id="visualize_all_variables-385"><a href="#visualize_all_variables-385"><span class="linenos">385</span></a>                <span class="c1"># --------------------------------------</span>
+</span><span id="visualize_all_variables-386"><a href="#visualize_all_variables-386"><span class="linenos">386</span></a>                <span class="c1"># Legend commune</span>
+</span><span id="visualize_all_variables-387"><a href="#visualize_all_variables-387"><span class="linenos">387</span></a>                <span class="c1"># --------------------------------------</span>
+</span><span id="visualize_all_variables-388"><a href="#visualize_all_variables-388"><span class="linenos">388</span></a>
+</span><span id="visualize_all_variables-389"><a href="#visualize_all_variables-389"><span class="linenos">389</span></a>                <span class="k">if</span> <span class="ow">not</span> <span class="n">common_handles</span><span class="p">:</span>
+</span><span id="visualize_all_variables-390"><a href="#visualize_all_variables-390"><span class="linenos">390</span></a>
+</span><span id="visualize_all_variables-391"><a href="#visualize_all_variables-391"><span class="linenos">391</span></a>                    <span class="n">common_handles</span><span class="p">,</span> <span class="n">common_labels</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="visualize_all_variables-392"><a href="#visualize_all_variables-392"><span class="linenos">392</span></a>                        <span class="n">ax</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
+</span><span id="visualize_all_variables-393"><a href="#visualize_all_variables-393"><span class="linenos">393</span></a>                    <span class="p">)</span>
+</span><span id="visualize_all_variables-394"><a href="#visualize_all_variables-394"><span class="linenos">394</span></a>
+</span><span id="visualize_all_variables-395"><a href="#visualize_all_variables-395"><span class="linenos">395</span></a>            <span class="c1"># ------------------------------------------</span>
+</span><span id="visualize_all_variables-396"><a href="#visualize_all_variables-396"><span class="linenos">396</span></a>            <span class="c1"># Cacher cases inutilisées</span>
+</span><span id="visualize_all_variables-397"><a href="#visualize_all_variables-397"><span class="linenos">397</span></a>            <span class="c1"># ------------------------------------------</span>
+</span><span id="visualize_all_variables-398"><a href="#visualize_all_variables-398"><span class="linenos">398</span></a>
+</span><span id="visualize_all_variables-399"><a href="#visualize_all_variables-399"><span class="linenos">399</span></a>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span>
+</span><span id="visualize_all_variables-400"><a href="#visualize_all_variables-400"><span class="linenos">400</span></a>                <span class="nb">len</span><span class="p">(</span><span class="n">page_variables</span><span class="p">),</span>
+</span><span id="visualize_all_variables-401"><a href="#visualize_all_variables-401"><span class="linenos">401</span></a>                <span class="nb">len</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
+</span><span id="visualize_all_variables-402"><a href="#visualize_all_variables-402"><span class="linenos">402</span></a>            <span class="p">):</span>
+</span><span id="visualize_all_variables-403"><a href="#visualize_all_variables-403"><span class="linenos">403</span></a>                <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="visualize_all_variables-404"><a href="#visualize_all_variables-404"><span class="linenos">404</span></a>
+</span><span id="visualize_all_variables-405"><a href="#visualize_all_variables-405"><span class="linenos">405</span></a>            <span class="c1"># ------------------------------------------</span>
+</span><span id="visualize_all_variables-406"><a href="#visualize_all_variables-406"><span class="linenos">406</span></a>            <span class="c1"># Legend commune</span>
+</span><span id="visualize_all_variables-407"><a href="#visualize_all_variables-407"><span class="linenos">407</span></a>            <span class="c1"># ------------------------------------------</span>
+</span><span id="visualize_all_variables-408"><a href="#visualize_all_variables-408"><span class="linenos">408</span></a>
+</span><span id="visualize_all_variables-409"><a href="#visualize_all_variables-409"><span class="linenos">409</span></a>            <span class="k">if</span> <span class="n">common_handles</span><span class="p">:</span>
+</span><span id="visualize_all_variables-410"><a href="#visualize_all_variables-410"><span class="linenos">410</span></a>
+</span><span id="visualize_all_variables-411"><a href="#visualize_all_variables-411"><span class="linenos">411</span></a>                <span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+</span><span id="visualize_all_variables-412"><a href="#visualize_all_variables-412"><span class="linenos">412</span></a>                    <span class="n">common_handles</span><span class="p">,</span>
+</span><span id="visualize_all_variables-413"><a href="#visualize_all_variables-413"><span class="linenos">413</span></a>                    <span class="n">common_labels</span><span class="p">,</span>
+</span><span id="visualize_all_variables-414"><a href="#visualize_all_variables-414"><span class="linenos">414</span></a>                    <span class="n">loc</span><span class="o">=</span><span class="s2">"lower center"</span><span class="p">,</span>
+</span><span id="visualize_all_variables-415"><a href="#visualize_all_variables-415"><span class="linenos">415</span></a>                    <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span>
+</span><span id="visualize_all_variables-416"><a href="#visualize_all_variables-416"><span class="linenos">416</span></a>                    <span class="n">ncol</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span>
+</span><span id="visualize_all_variables-417"><a href="#visualize_all_variables-417"><span class="linenos">417</span></a>                        <span class="mi">5</span><span class="p">,</span>
+</span><span id="visualize_all_variables-418"><a href="#visualize_all_variables-418"><span class="linenos">418</span></a>                        <span class="nb">len</span><span class="p">(</span><span class="n">common_labels</span><span class="p">)</span>
+</span><span id="visualize_all_variables-419"><a href="#visualize_all_variables-419"><span class="linenos">419</span></a>                    <span class="p">),</span>
+</span><span id="visualize_all_variables-420"><a href="#visualize_all_variables-420"><span class="linenos">420</span></a>                    <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span>
+</span><span id="visualize_all_variables-421"><a href="#visualize_all_variables-421"><span class="linenos">421</span></a>                <span class="p">)</span>
+</span><span id="visualize_all_variables-422"><a href="#visualize_all_variables-422"><span class="linenos">422</span></a>
+</span><span id="visualize_all_variables-423"><a href="#visualize_all_variables-423"><span class="linenos">423</span></a>            <span class="c1"># ------------------------------------------</span>
+</span><span id="visualize_all_variables-424"><a href="#visualize_all_variables-424"><span class="linenos">424</span></a>            <span class="c1"># Espacement</span>
+</span><span id="visualize_all_variables-425"><a href="#visualize_all_variables-425"><span class="linenos">425</span></a>            <span class="c1"># ------------------------------------------</span>
+</span><span id="visualize_all_variables-426"><a href="#visualize_all_variables-426"><span class="linenos">426</span></a>
+</span><span id="visualize_all_variables-427"><a href="#visualize_all_variables-427"><span class="linenos">427</span></a>            <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span>
+</span><span id="visualize_all_variables-428"><a href="#visualize_all_variables-428"><span class="linenos">428</span></a>                <span class="n">left</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span>
+</span><span id="visualize_all_variables-429"><a href="#visualize_all_variables-429"><span class="linenos">429</span></a>                <span class="n">right</span><span class="o">=</span><span class="mf">0.98</span><span class="p">,</span>
+</span><span id="visualize_all_variables-430"><a href="#visualize_all_variables-430"><span class="linenos">430</span></a>                <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+</span><span id="visualize_all_variables-431"><a href="#visualize_all_variables-431"><span class="linenos">431</span></a>                <span class="n">bottom</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span>
+</span><span id="visualize_all_variables-432"><a href="#visualize_all_variables-432"><span class="linenos">432</span></a>                <span class="n">hspace</span><span class="o">=</span><span class="mf">0.45</span><span class="p">,</span>
+</span><span id="visualize_all_variables-433"><a href="#visualize_all_variables-433"><span class="linenos">433</span></a>                <span class="n">wspace</span><span class="o">=</span><span class="mf">0.25</span>
+</span><span id="visualize_all_variables-434"><a href="#visualize_all_variables-434"><span class="linenos">434</span></a>            <span class="p">)</span>
+</span><span id="visualize_all_variables-435"><a href="#visualize_all_variables-435"><span class="linenos">435</span></a>
+</span><span id="visualize_all_variables-436"><a href="#visualize_all_variables-436"><span class="linenos">436</span></a>            <span class="c1"># ------------------------------------------</span>
+</span><span id="visualize_all_variables-437"><a href="#visualize_all_variables-437"><span class="linenos">437</span></a>            <span class="c1"># Sauvegarde de la page</span>
+</span><span id="visualize_all_variables-438"><a href="#visualize_all_variables-438"><span class="linenos">438</span></a>            <span class="c1"># ------------------------------------------</span>
+</span><span id="visualize_all_variables-439"><a href="#visualize_all_variables-439"><span class="linenos">439</span></a>
+</span><span id="visualize_all_variables-440"><a href="#visualize_all_variables-440"><span class="linenos">440</span></a>            <span class="n">pdf</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span>
+</span><span id="visualize_all_variables-441"><a href="#visualize_all_variables-441"><span class="linenos">441</span></a>                <span class="n">fig</span><span class="p">,</span>
+</span><span id="visualize_all_variables-442"><a href="#visualize_all_variables-442"><span class="linenos">442</span></a>                <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">"tight"</span>
+</span><span id="visualize_all_variables-443"><a href="#visualize_all_variables-443"><span class="linenos">443</span></a>            <span class="p">)</span>
+</span><span id="visualize_all_variables-444"><a href="#visualize_all_variables-444"><span class="linenos">444</span></a>
+</span><span id="visualize_all_variables-445"><a href="#visualize_all_variables-445"><span class="linenos">445</span></a>            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span><span id="visualize_all_variables-446"><a href="#visualize_all_variables-446"><span class="linenos">446</span></a>
+</span><span id="visualize_all_variables-447"><a href="#visualize_all_variables-447"><span class="linenos">447</span></a>            <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</span><span id="visualize_all_variables-448"><a href="#visualize_all_variables-448"><span class="linenos">448</span></a>
+</span><span id="visualize_all_variables-449"><a href="#visualize_all_variables-449"><span class="linenos">449</span></a>    <span class="nb">print</span><span class="p">(</span>
+</span><span id="visualize_all_variables-450"><a href="#visualize_all_variables-450"><span class="linenos">450</span></a>        <span class="sa">f</span><span class="s2">"✅ Visualization saved to '</span><span class="si">{</span><span class="n">pdf_filepath</span><span class="si">}</span><span class="s2">'."</span>
+</span><span id="visualize_all_variables-451"><a href="#visualize_all_variables-451"><span class="linenos">451</span></a>    <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Visualize all variables contained in a dictionary of DataFrames.
+Several graphs are displayed per PDF page to keep them readable.</p>
+
+<h2 id="parameters">Parameters</h2>
+
+<p>df_variables : dict[str, pandas.DataFrame]
+    Dictionary where keys are variable identifiers and values are DataFrames.</p>
+
+<p>pdf_filepath : str, optional
+    Output PDF file.</p>
+</div>
+
+
+                </section>
+                <section id="compare_groups_by_factor_level">
+                            <input id="compare_groups_by_factor_level-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">compare_groups_by_factor_level</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">group_dict</span>,</span><span class="param">	<span class="n">session</span>,</span><span class="param">	<span class="n">experiment_name</span>,</span><span class="param">	<span class="n">group1_id</span>,</span><span class="param">	<span class="n">group2_id</span>,</span><span class="param">	<span class="n">factor</span>,</span><span class="param">	<span class="n">csv_filepath</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">pdf_filepath</span><span class="o">=</span><span class="kc">None</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="compare_groups_by_factor_level-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#compare_groups_by_factor_level"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="compare_groups_by_factor_level-518"><a href="#compare_groups_by_factor_level-518"><span class="linenos">518</span></a><span class="k">def</span><span class="w"> </span><span class="nf">compare_groups_by_factor_level</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-519"><a href="#compare_groups_by_factor_level-519"><span class="linenos">519</span></a>    <span class="n">group_dict</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-520"><a href="#compare_groups_by_factor_level-520"><span class="linenos">520</span></a>    <span class="n">session</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-521"><a href="#compare_groups_by_factor_level-521"><span class="linenos">521</span></a>    <span class="n">experiment_name</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-522"><a href="#compare_groups_by_factor_level-522"><span class="linenos">522</span></a>    <span class="n">group1_id</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-523"><a href="#compare_groups_by_factor_level-523"><span class="linenos">523</span></a>    <span class="n">group2_id</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-524"><a href="#compare_groups_by_factor_level-524"><span class="linenos">524</span></a>    <span class="n">factor</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-525"><a href="#compare_groups_by_factor_level-525"><span class="linenos">525</span></a>    <span class="n">csv_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-526"><a href="#compare_groups_by_factor_level-526"><span class="linenos">526</span></a>    <span class="n">pdf_filepath</span><span class="o">=</span><span class="kc">None</span>
+</span><span id="compare_groups_by_factor_level-527"><a href="#compare_groups_by_factor_level-527"><span class="linenos">527</span></a><span class="p">):</span>
+</span><span id="compare_groups_by_factor_level-528"><a href="#compare_groups_by_factor_level-528"><span class="linenos">528</span></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="compare_groups_by_factor_level-529"><a href="#compare_groups_by_factor_level-529"><span class="linenos">529</span></a><span class="sd">    Compare two groups by a factor level, transform data,</span>
+</span><span id="compare_groups_by_factor_level-530"><a href="#compare_groups_by_factor_level-530"><span class="linenos">530</span></a><span class="sd">    save outputs, and plot time series.</span>
+</span><span id="compare_groups_by_factor_level-531"><a href="#compare_groups_by_factor_level-531"><span class="linenos">531</span></a>
+</span><span id="compare_groups_by_factor_level-532"><a href="#compare_groups_by_factor_level-532"><span class="linenos">532</span></a><span class="sd">    All visualizations are saved in a single multipage PDF.</span>
+</span><span id="compare_groups_by_factor_level-533"><a href="#compare_groups_by_factor_level-533"><span class="linenos">533</span></a>
+</span><span id="compare_groups_by_factor_level-534"><a href="#compare_groups_by_factor_level-534"><span class="linenos">534</span></a><span class="sd">    Parameters</span>
+</span><span id="compare_groups_by_factor_level-535"><a href="#compare_groups_by_factor_level-535"><span class="linenos">535</span></a><span class="sd">    ----------</span>
+</span><span id="compare_groups_by_factor_level-536"><a href="#compare_groups_by_factor_level-536"><span class="linenos">536</span></a><span class="sd">    group_dict : dict</span>
+</span><span id="compare_groups_by_factor_level-537"><a href="#compare_groups_by_factor_level-537"><span class="linenos">537</span></a><span class="sd">        Dictionary containing all groups (keys = identifiers or IDs).</span>
+</span><span id="compare_groups_by_factor_level-538"><a href="#compare_groups_by_factor_level-538"><span class="linenos">538</span></a>
+</span><span id="compare_groups_by_factor_level-539"><a href="#compare_groups_by_factor_level-539"><span class="linenos">539</span></a><span class="sd">    session : requests.Session</span>
+</span><span id="compare_groups_by_factor_level-540"><a href="#compare_groups_by_factor_level-540"><span class="linenos">540</span></a><span class="sd">        Authenticated session for OpenSILEX API.</span>
+</span><span id="compare_groups_by_factor_level-541"><a href="#compare_groups_by_factor_level-541"><span class="linenos">541</span></a>
+</span><span id="compare_groups_by_factor_level-542"><a href="#compare_groups_by_factor_level-542"><span class="linenos">542</span></a><span class="sd">    experiment_name : str</span>
+</span><span id="compare_groups_by_factor_level-543"><a href="#compare_groups_by_factor_level-543"><span class="linenos">543</span></a><span class="sd">        Name of the experiment to fetch data from.</span>
+</span><span id="compare_groups_by_factor_level-544"><a href="#compare_groups_by_factor_level-544"><span class="linenos">544</span></a>
+</span><span id="compare_groups_by_factor_level-545"><a href="#compare_groups_by_factor_level-545"><span class="linenos">545</span></a><span class="sd">    group1_id, group2_id : str</span>
+</span><span id="compare_groups_by_factor_level-546"><a href="#compare_groups_by_factor_level-546"><span class="linenos">546</span></a><span class="sd">        Identifiers of the two groups to compare.</span>
+</span><span id="compare_groups_by_factor_level-547"><a href="#compare_groups_by_factor_level-547"><span class="linenos">547</span></a>
+</span><span id="compare_groups_by_factor_level-548"><a href="#compare_groups_by_factor_level-548"><span class="linenos">548</span></a><span class="sd">    factor : str</span>
+</span><span id="compare_groups_by_factor_level-549"><a href="#compare_groups_by_factor_level-549"><span class="linenos">549</span></a><span class="sd">        Column name containing the factor level</span>
+</span><span id="compare_groups_by_factor_level-550"><a href="#compare_groups_by_factor_level-550"><span class="linenos">550</span></a><span class="sd">        (e.g. "Water Level").</span>
+</span><span id="compare_groups_by_factor_level-551"><a href="#compare_groups_by_factor_level-551"><span class="linenos">551</span></a>
+</span><span id="compare_groups_by_factor_level-552"><a href="#compare_groups_by_factor_level-552"><span class="linenos">552</span></a><span class="sd">    csv_filepath : str, optional</span>
+</span><span id="compare_groups_by_factor_level-553"><a href="#compare_groups_by_factor_level-553"><span class="linenos">553</span></a><span class="sd">        Path of the output CSV file.</span>
+</span><span id="compare_groups_by_factor_level-554"><a href="#compare_groups_by_factor_level-554"><span class="linenos">554</span></a>
+</span><span id="compare_groups_by_factor_level-555"><a href="#compare_groups_by_factor_level-555"><span class="linenos">555</span></a><span class="sd">    pdf_filepath : str, optional</span>
+</span><span id="compare_groups_by_factor_level-556"><a href="#compare_groups_by_factor_level-556"><span class="linenos">556</span></a><span class="sd">        Path of the output multipage PDF file.</span>
+</span><span id="compare_groups_by_factor_level-557"><a href="#compare_groups_by_factor_level-557"><span class="linenos">557</span></a>
+</span><span id="compare_groups_by_factor_level-558"><a href="#compare_groups_by_factor_level-558"><span class="linenos">558</span></a><span class="sd">    Returns</span>
+</span><span id="compare_groups_by_factor_level-559"><a href="#compare_groups_by_factor_level-559"><span class="linenos">559</span></a><span class="sd">    -------</span>
+</span><span id="compare_groups_by_factor_level-560"><a href="#compare_groups_by_factor_level-560"><span class="linenos">560</span></a><span class="sd">    pandas.DataFrame</span>
+</span><span id="compare_groups_by_factor_level-561"><a href="#compare_groups_by_factor_level-561"><span class="linenos">561</span></a><span class="sd">        Combined DataFrame with columns:</span>
+</span><span id="compare_groups_by_factor_level-562"><a href="#compare_groups_by_factor_level-562"><span class="linenos">562</span></a><span class="sd">        ['Date', 'URI', 'Groupe', factor, 'Variable', 'Valeur']</span>
+</span><span id="compare_groups_by_factor_level-563"><a href="#compare_groups_by_factor_level-563"><span class="linenos">563</span></a><span class="sd">    """</span>
+</span><span id="compare_groups_by_factor_level-564"><a href="#compare_groups_by_factor_level-564"><span class="linenos">564</span></a>
+</span><span id="compare_groups_by_factor_level-565"><a href="#compare_groups_by_factor_level-565"><span class="linenos">565</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-566"><a href="#compare_groups_by_factor_level-566"><span class="linenos">566</span></a>    <span class="c1"># 1. Transform data</span>
+</span><span id="compare_groups_by_factor_level-567"><a href="#compare_groups_by_factor_level-567"><span class="linenos">567</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-568"><a href="#compare_groups_by_factor_level-568"><span class="linenos">568</span></a>
+</span><span id="compare_groups_by_factor_level-569"><a href="#compare_groups_by_factor_level-569"><span class="linenos">569</span></a>    <span class="n">df_final</span> <span class="o">=</span> <span class="n">transform_data_for_plot</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-570"><a href="#compare_groups_by_factor_level-570"><span class="linenos">570</span></a>        <span class="n">group_dict</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-571"><a href="#compare_groups_by_factor_level-571"><span class="linenos">571</span></a>        <span class="n">session</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-572"><a href="#compare_groups_by_factor_level-572"><span class="linenos">572</span></a>        <span class="n">experiment_name</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-573"><a href="#compare_groups_by_factor_level-573"><span class="linenos">573</span></a>        <span class="n">group1_id</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-574"><a href="#compare_groups_by_factor_level-574"><span class="linenos">574</span></a>        <span class="n">group2_id</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-575"><a href="#compare_groups_by_factor_level-575"><span class="linenos">575</span></a>        <span class="n">factor</span>
+</span><span id="compare_groups_by_factor_level-576"><a href="#compare_groups_by_factor_level-576"><span class="linenos">576</span></a>    <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-577"><a href="#compare_groups_by_factor_level-577"><span class="linenos">577</span></a>
+</span><span id="compare_groups_by_factor_level-578"><a href="#compare_groups_by_factor_level-578"><span class="linenos">578</span></a>    <span class="c1"># Protection against None</span>
+</span><span id="compare_groups_by_factor_level-579"><a href="#compare_groups_by_factor_level-579"><span class="linenos">579</span></a>    <span class="k">if</span> <span class="n">df_final</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="compare_groups_by_factor_level-580"><a href="#compare_groups_by_factor_level-580"><span class="linenos">580</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠️ transform_data_for_plot returned None."</span><span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-581"><a href="#compare_groups_by_factor_level-581"><span class="linenos">581</span></a>        <span class="k">return</span> <span class="kc">None</span>
+</span><span id="compare_groups_by_factor_level-582"><a href="#compare_groups_by_factor_level-582"><span class="linenos">582</span></a>
+</span><span id="compare_groups_by_factor_level-583"><a href="#compare_groups_by_factor_level-583"><span class="linenos">583</span></a>    <span class="k">if</span> <span class="n">df_final</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+</span><span id="compare_groups_by_factor_level-584"><a href="#compare_groups_by_factor_level-584"><span class="linenos">584</span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠️ No data to process. Exiting."</span><span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-585"><a href="#compare_groups_by_factor_level-585"><span class="linenos">585</span></a>        <span class="k">return</span> <span class="n">df_final</span>
+</span><span id="compare_groups_by_factor_level-586"><a href="#compare_groups_by_factor_level-586"><span class="linenos">586</span></a>
+</span><span id="compare_groups_by_factor_level-587"><a href="#compare_groups_by_factor_level-587"><span class="linenos">587</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-588"><a href="#compare_groups_by_factor_level-588"><span class="linenos">588</span></a>    <span class="c1"># 2. Default output paths</span>
+</span><span id="compare_groups_by_factor_level-589"><a href="#compare_groups_by_factor_level-589"><span class="linenos">589</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-590"><a href="#compare_groups_by_factor_level-590"><span class="linenos">590</span></a>
+</span><span id="compare_groups_by_factor_level-591"><a href="#compare_groups_by_factor_level-591"><span class="linenos">591</span></a>    <span class="k">if</span> <span class="n">csv_filepath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="compare_groups_by_factor_level-592"><a href="#compare_groups_by_factor_level-592"><span class="linenos">592</span></a>        <span class="n">csv_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-593"><a href="#compare_groups_by_factor_level-593"><span class="linenos">593</span></a>            <span class="s2">"output"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-594"><a href="#compare_groups_by_factor_level-594"><span class="linenos">594</span></a>            <span class="s2">"data.csv"</span>
+</span><span id="compare_groups_by_factor_level-595"><a href="#compare_groups_by_factor_level-595"><span class="linenos">595</span></a>        <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-596"><a href="#compare_groups_by_factor_level-596"><span class="linenos">596</span></a>
+</span><span id="compare_groups_by_factor_level-597"><a href="#compare_groups_by_factor_level-597"><span class="linenos">597</span></a>    <span class="k">if</span> <span class="n">pdf_filepath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="compare_groups_by_factor_level-598"><a href="#compare_groups_by_factor_level-598"><span class="linenos">598</span></a>        <span class="n">pdf_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-599"><a href="#compare_groups_by_factor_level-599"><span class="linenos">599</span></a>            <span class="s2">"output"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-600"><a href="#compare_groups_by_factor_level-600"><span class="linenos">600</span></a>            <span class="s2">"comparison_groups.pdf"</span>
+</span><span id="compare_groups_by_factor_level-601"><a href="#compare_groups_by_factor_level-601"><span class="linenos">601</span></a>        <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-602"><a href="#compare_groups_by_factor_level-602"><span class="linenos">602</span></a>
+</span><span id="compare_groups_by_factor_level-603"><a href="#compare_groups_by_factor_level-603"><span class="linenos">603</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-604"><a href="#compare_groups_by_factor_level-604"><span class="linenos">604</span></a>    <span class="c1"># 3. Create output directories</span>
+</span><span id="compare_groups_by_factor_level-605"><a href="#compare_groups_by_factor_level-605"><span class="linenos">605</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-606"><a href="#compare_groups_by_factor_level-606"><span class="linenos">606</span></a>
+</span><span id="compare_groups_by_factor_level-607"><a href="#compare_groups_by_factor_level-607"><span class="linenos">607</span></a>    <span class="n">csv_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-608"><a href="#compare_groups_by_factor_level-608"><span class="linenos">608</span></a>
+</span><span id="compare_groups_by_factor_level-609"><a href="#compare_groups_by_factor_level-609"><span class="linenos">609</span></a>    <span class="k">if</span> <span class="n">csv_dir</span><span class="p">:</span>
+</span><span id="compare_groups_by_factor_level-610"><a href="#compare_groups_by_factor_level-610"><span class="linenos">610</span></a>        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-611"><a href="#compare_groups_by_factor_level-611"><span class="linenos">611</span></a>            <span class="n">csv_dir</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-612"><a href="#compare_groups_by_factor_level-612"><span class="linenos">612</span></a>            <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span>
+</span><span id="compare_groups_by_factor_level-613"><a href="#compare_groups_by_factor_level-613"><span class="linenos">613</span></a>        <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-614"><a href="#compare_groups_by_factor_level-614"><span class="linenos">614</span></a>
+</span><span id="compare_groups_by_factor_level-615"><a href="#compare_groups_by_factor_level-615"><span class="linenos">615</span></a>    <span class="n">pdf_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">pdf_filepath</span><span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-616"><a href="#compare_groups_by_factor_level-616"><span class="linenos">616</span></a>
+</span><span id="compare_groups_by_factor_level-617"><a href="#compare_groups_by_factor_level-617"><span class="linenos">617</span></a>    <span class="k">if</span> <span class="n">pdf_dir</span><span class="p">:</span>
+</span><span id="compare_groups_by_factor_level-618"><a href="#compare_groups_by_factor_level-618"><span class="linenos">618</span></a>        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-619"><a href="#compare_groups_by_factor_level-619"><span class="linenos">619</span></a>            <span class="n">pdf_dir</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-620"><a href="#compare_groups_by_factor_level-620"><span class="linenos">620</span></a>            <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span>
+</span><span id="compare_groups_by_factor_level-621"><a href="#compare_groups_by_factor_level-621"><span class="linenos">621</span></a>        <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-622"><a href="#compare_groups_by_factor_level-622"><span class="linenos">622</span></a>
+</span><span id="compare_groups_by_factor_level-623"><a href="#compare_groups_by_factor_level-623"><span class="linenos">623</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-624"><a href="#compare_groups_by_factor_level-624"><span class="linenos">624</span></a>    <span class="c1"># 4. Save combined CSV</span>
+</span><span id="compare_groups_by_factor_level-625"><a href="#compare_groups_by_factor_level-625"><span class="linenos">625</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-626"><a href="#compare_groups_by_factor_level-626"><span class="linenos">626</span></a>
+</span><span id="compare_groups_by_factor_level-627"><a href="#compare_groups_by_factor_level-627"><span class="linenos">627</span></a>    <span class="n">df_final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-628"><a href="#compare_groups_by_factor_level-628"><span class="linenos">628</span></a>        <span class="n">csv_filepath</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-629"><a href="#compare_groups_by_factor_level-629"><span class="linenos">629</span></a>        <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
+</span><span id="compare_groups_by_factor_level-630"><a href="#compare_groups_by_factor_level-630"><span class="linenos">630</span></a>    <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-631"><a href="#compare_groups_by_factor_level-631"><span class="linenos">631</span></a>
+</span><span id="compare_groups_by_factor_level-632"><a href="#compare_groups_by_factor_level-632"><span class="linenos">632</span></a>    <span class="nb">print</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-633"><a href="#compare_groups_by_factor_level-633"><span class="linenos">633</span></a>        <span class="sa">f</span><span class="s2">"✅ Combined CSV saved at "</span>
+</span><span id="compare_groups_by_factor_level-634"><a href="#compare_groups_by_factor_level-634"><span class="linenos">634</span></a>        <span class="sa">f</span><span class="s2">"'</span><span class="si">{</span><span class="n">csv_filepath</span><span class="si">}</span><span class="s2">'."</span>
+</span><span id="compare_groups_by_factor_level-635"><a href="#compare_groups_by_factor_level-635"><span class="linenos">635</span></a>    <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-636"><a href="#compare_groups_by_factor_level-636"><span class="linenos">636</span></a>
+</span><span id="compare_groups_by_factor_level-637"><a href="#compare_groups_by_factor_level-637"><span class="linenos">637</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-638"><a href="#compare_groups_by_factor_level-638"><span class="linenos">638</span></a>    <span class="c1"># 5. Prepare plotting</span>
+</span><span id="compare_groups_by_factor_level-639"><a href="#compare_groups_by_factor_level-639"><span class="linenos">639</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-640"><a href="#compare_groups_by_factor_level-640"><span class="linenos">640</span></a>
+</span><span id="compare_groups_by_factor_level-641"><a href="#compare_groups_by_factor_level-641"><span class="linenos">641</span></a>    <span class="n">df_final</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-642"><a href="#compare_groups_by_factor_level-642"><span class="linenos">642</span></a>        <span class="n">df_final</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">],</span>
+</span><span id="compare_groups_by_factor_level-643"><a href="#compare_groups_by_factor_level-643"><span class="linenos">643</span></a>        <span class="n">errors</span><span class="o">=</span><span class="s2">"coerce"</span>
+</span><span id="compare_groups_by_factor_level-644"><a href="#compare_groups_by_factor_level-644"><span class="linenos">644</span></a>    <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-645"><a href="#compare_groups_by_factor_level-645"><span class="linenos">645</span></a>
+</span><span id="compare_groups_by_factor_level-646"><a href="#compare_groups_by_factor_level-646"><span class="linenos">646</span></a>    <span class="n">df_final</span> <span class="o">=</span> <span class="n">df_final</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-647"><a href="#compare_groups_by_factor_level-647"><span class="linenos">647</span></a>        <span class="n">by</span><span class="o">=</span><span class="s2">"Date"</span>
+</span><span id="compare_groups_by_factor_level-648"><a href="#compare_groups_by_factor_level-648"><span class="linenos">648</span></a>    <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-649"><a href="#compare_groups_by_factor_level-649"><span class="linenos">649</span></a>
+</span><span id="compare_groups_by_factor_level-650"><a href="#compare_groups_by_factor_level-650"><span class="linenos">650</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-651"><a href="#compare_groups_by_factor_level-651"><span class="linenos">651</span></a>    <span class="c1"># Groups and colors</span>
+</span><span id="compare_groups_by_factor_level-652"><a href="#compare_groups_by_factor_level-652"><span class="linenos">652</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-653"><a href="#compare_groups_by_factor_level-653"><span class="linenos">653</span></a>
+</span><span id="compare_groups_by_factor_level-654"><a href="#compare_groups_by_factor_level-654"><span class="linenos">654</span></a>    <span class="n">groupes_uniques</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-655"><a href="#compare_groups_by_factor_level-655"><span class="linenos">655</span></a>        <span class="n">df_final</span><span class="p">[</span><span class="s2">"Groupe"</span><span class="p">]</span>
+</span><span id="compare_groups_by_factor_level-656"><a href="#compare_groups_by_factor_level-656"><span class="linenos">656</span></a>        <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</span><span id="compare_groups_by_factor_level-657"><a href="#compare_groups_by_factor_level-657"><span class="linenos">657</span></a>        <span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</span><span id="compare_groups_by_factor_level-658"><a href="#compare_groups_by_factor_level-658"><span class="linenos">658</span></a>    <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-659"><a href="#compare_groups_by_factor_level-659"><span class="linenos">659</span></a>
+</span><span id="compare_groups_by_factor_level-660"><a href="#compare_groups_by_factor_level-660"><span class="linenos">660</span></a>    <span class="n">palette</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-661"><a href="#compare_groups_by_factor_level-661"><span class="linenos">661</span></a>        <span class="s2">"husl"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-662"><a href="#compare_groups_by_factor_level-662"><span class="linenos">662</span></a>        <span class="nb">len</span><span class="p">(</span><span class="n">groupes_uniques</span><span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-663"><a href="#compare_groups_by_factor_level-663"><span class="linenos">663</span></a>    <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-664"><a href="#compare_groups_by_factor_level-664"><span class="linenos">664</span></a>
+</span><span id="compare_groups_by_factor_level-665"><a href="#compare_groups_by_factor_level-665"><span class="linenos">665</span></a>    <span class="n">palette_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-666"><a href="#compare_groups_by_factor_level-666"><span class="linenos">666</span></a>        <span class="nb">zip</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-667"><a href="#compare_groups_by_factor_level-667"><span class="linenos">667</span></a>            <span class="n">groupes_uniques</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-668"><a href="#compare_groups_by_factor_level-668"><span class="linenos">668</span></a>            <span class="n">palette</span>
+</span><span id="compare_groups_by_factor_level-669"><a href="#compare_groups_by_factor_level-669"><span class="linenos">669</span></a>        <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-670"><a href="#compare_groups_by_factor_level-670"><span class="linenos">670</span></a>    <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-671"><a href="#compare_groups_by_factor_level-671"><span class="linenos">671</span></a>
+</span><span id="compare_groups_by_factor_level-672"><a href="#compare_groups_by_factor_level-672"><span class="linenos">672</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-673"><a href="#compare_groups_by_factor_level-673"><span class="linenos">673</span></a>    <span class="c1"># Variables</span>
+</span><span id="compare_groups_by_factor_level-674"><a href="#compare_groups_by_factor_level-674"><span class="linenos">674</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-675"><a href="#compare_groups_by_factor_level-675"><span class="linenos">675</span></a>
+</span><span id="compare_groups_by_factor_level-676"><a href="#compare_groups_by_factor_level-676"><span class="linenos">676</span></a>    <span class="n">variables</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-677"><a href="#compare_groups_by_factor_level-677"><span class="linenos">677</span></a>        <span class="n">df_final</span><span class="p">[</span><span class="s2">"Variable"</span><span class="p">]</span>
+</span><span id="compare_groups_by_factor_level-678"><a href="#compare_groups_by_factor_level-678"><span class="linenos">678</span></a>        <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</span><span id="compare_groups_by_factor_level-679"><a href="#compare_groups_by_factor_level-679"><span class="linenos">679</span></a>        <span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</span><span id="compare_groups_by_factor_level-680"><a href="#compare_groups_by_factor_level-680"><span class="linenos">680</span></a>    <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-681"><a href="#compare_groups_by_factor_level-681"><span class="linenos">681</span></a>
+</span><span id="compare_groups_by_factor_level-682"><a href="#compare_groups_by_factor_level-682"><span class="linenos">682</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-683"><a href="#compare_groups_by_factor_level-683"><span class="linenos">683</span></a>    <span class="c1"># 6. Create ONE multipage PDF</span>
+</span><span id="compare_groups_by_factor_level-684"><a href="#compare_groups_by_factor_level-684"><span class="linenos">684</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-685"><a href="#compare_groups_by_factor_level-685"><span class="linenos">685</span></a>
+</span><span id="compare_groups_by_factor_level-686"><a href="#compare_groups_by_factor_level-686"><span class="linenos">686</span></a>    <span class="k">with</span> <span class="n">PdfPages</span><span class="p">(</span><span class="n">pdf_filepath</span><span class="p">)</span> <span class="k">as</span> <span class="n">pdf</span><span class="p">:</span>
+</span><span id="compare_groups_by_factor_level-687"><a href="#compare_groups_by_factor_level-687"><span class="linenos">687</span></a>
+</span><span id="compare_groups_by_factor_level-688"><a href="#compare_groups_by_factor_level-688"><span class="linenos">688</span></a>        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+</span><span id="compare_groups_by_factor_level-689"><a href="#compare_groups_by_factor_level-689"><span class="linenos">689</span></a>
+</span><span id="compare_groups_by_factor_level-690"><a href="#compare_groups_by_factor_level-690"><span class="linenos">690</span></a>            <span class="n">var_df</span> <span class="o">=</span> <span class="n">df_final</span><span class="p">[</span>
+</span><span id="compare_groups_by_factor_level-691"><a href="#compare_groups_by_factor_level-691"><span class="linenos">691</span></a>                <span class="n">df_final</span><span class="p">[</span><span class="s2">"Variable"</span><span class="p">]</span> <span class="o">==</span> <span class="n">var</span>
+</span><span id="compare_groups_by_factor_level-692"><a href="#compare_groups_by_factor_level-692"><span class="linenos">692</span></a>            <span class="p">]</span>
+</span><span id="compare_groups_by_factor_level-693"><a href="#compare_groups_by_factor_level-693"><span class="linenos">693</span></a>
+</span><span id="compare_groups_by_factor_level-694"><a href="#compare_groups_by_factor_level-694"><span class="linenos">694</span></a>            <span class="k">if</span> <span class="n">var_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+</span><span id="compare_groups_by_factor_level-695"><a href="#compare_groups_by_factor_level-695"><span class="linenos">695</span></a>                <span class="k">continue</span>
+</span><span id="compare_groups_by_factor_level-696"><a href="#compare_groups_by_factor_level-696"><span class="linenos">696</span></a>
+</span><span id="compare_groups_by_factor_level-697"><a href="#compare_groups_by_factor_level-697"><span class="linenos">697</span></a>            <span class="c1"># ==========================================</span>
+</span><span id="compare_groups_by_factor_level-698"><a href="#compare_groups_by_factor_level-698"><span class="linenos">698</span></a>            <span class="c1"># Create figure</span>
+</span><span id="compare_groups_by_factor_level-699"><a href="#compare_groups_by_factor_level-699"><span class="linenos">699</span></a>            <span class="c1"># ==========================================</span>
+</span><span id="compare_groups_by_factor_level-700"><a href="#compare_groups_by_factor_level-700"><span class="linenos">700</span></a>
+</span><span id="compare_groups_by_factor_level-701"><a href="#compare_groups_by_factor_level-701"><span class="linenos">701</span></a>            <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-702"><a href="#compare_groups_by_factor_level-702"><span class="linenos">702</span></a>                <span class="mi">1</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-703"><a href="#compare_groups_by_factor_level-703"><span class="linenos">703</span></a>                <span class="mi">2</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-704"><a href="#compare_groups_by_factor_level-704"><span class="linenos">704</span></a>                <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-705"><a href="#compare_groups_by_factor_level-705"><span class="linenos">705</span></a>            <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-706"><a href="#compare_groups_by_factor_level-706"><span class="linenos">706</span></a>
+</span><span id="compare_groups_by_factor_level-707"><a href="#compare_groups_by_factor_level-707"><span class="linenos">707</span></a>            <span class="c1"># ==========================================</span>
+</span><span id="compare_groups_by_factor_level-708"><a href="#compare_groups_by_factor_level-708"><span class="linenos">708</span></a>            <span class="c1"># Graph 1</span>
+</span><span id="compare_groups_by_factor_level-709"><a href="#compare_groups_by_factor_level-709"><span class="linenos">709</span></a>            <span class="c1"># All OS curves colored by group</span>
+</span><span id="compare_groups_by_factor_level-710"><a href="#compare_groups_by_factor_level-710"><span class="linenos">710</span></a>            <span class="c1"># ==========================================</span>
+</span><span id="compare_groups_by_factor_level-711"><a href="#compare_groups_by_factor_level-711"><span class="linenos">711</span></a>
+</span><span id="compare_groups_by_factor_level-712"><a href="#compare_groups_by_factor_level-712"><span class="linenos">712</span></a>            <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-713"><a href="#compare_groups_by_factor_level-713"><span class="linenos">713</span></a>                <span class="n">data</span><span class="o">=</span><span class="n">var_df</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-714"><a href="#compare_groups_by_factor_level-714"><span class="linenos">714</span></a>                <span class="n">x</span><span class="o">=</span><span class="s2">"Date"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-715"><a href="#compare_groups_by_factor_level-715"><span class="linenos">715</span></a>                <span class="n">y</span><span class="o">=</span><span class="s2">"Valeur"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-716"><a href="#compare_groups_by_factor_level-716"><span class="linenos">716</span></a>                <span class="n">hue</span><span class="o">=</span><span class="s2">"Groupe"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-717"><a href="#compare_groups_by_factor_level-717"><span class="linenos">717</span></a>                <span class="n">style</span><span class="o">=</span><span class="s2">"Groupe"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-718"><a href="#compare_groups_by_factor_level-718"><span class="linenos">718</span></a>                <span class="n">units</span><span class="o">=</span><span class="s2">"URI"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-719"><a href="#compare_groups_by_factor_level-719"><span class="linenos">719</span></a>                <span class="n">estimator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-720"><a href="#compare_groups_by_factor_level-720"><span class="linenos">720</span></a>                <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-721"><a href="#compare_groups_by_factor_level-721"><span class="linenos">721</span></a>                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-722"><a href="#compare_groups_by_factor_level-722"><span class="linenos">722</span></a>                <span class="n">palette</span><span class="o">=</span><span class="n">palette_dict</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-723"><a href="#compare_groups_by_factor_level-723"><span class="linenos">723</span></a>                <span class="n">dashes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-724"><a href="#compare_groups_by_factor_level-724"><span class="linenos">724</span></a>                <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="compare_groups_by_factor_level-725"><a href="#compare_groups_by_factor_level-725"><span class="linenos">725</span></a>            <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-726"><a href="#compare_groups_by_factor_level-726"><span class="linenos">726</span></a>
+</span><span id="compare_groups_by_factor_level-727"><a href="#compare_groups_by_factor_level-727"><span class="linenos">727</span></a>            <span class="c1"># Extract readable variable name</span>
+</span><span id="compare_groups_by_factor_level-728"><a href="#compare_groups_by_factor_level-728"><span class="linenos">728</span></a>            <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-729"><a href="#compare_groups_by_factor_level-729"><span class="linenos">729</span></a>                <span class="sa">r</span><span class="s2">"[^_]+_([^_]+)"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-730"><a href="#compare_groups_by_factor_level-730"><span class="linenos">730</span></a>                <span class="nb">str</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-731"><a href="#compare_groups_by_factor_level-731"><span class="linenos">731</span></a>            <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-732"><a href="#compare_groups_by_factor_level-732"><span class="linenos">732</span></a>
+</span><span id="compare_groups_by_factor_level-733"><a href="#compare_groups_by_factor_level-733"><span class="linenos">733</span></a>            <span class="n">extracted_part</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-734"><a href="#compare_groups_by_factor_level-734"><span class="linenos">734</span></a>                <span class="k">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-735"><a href="#compare_groups_by_factor_level-735"><span class="linenos">735</span></a>                <span class="k">if</span> <span class="n">match</span>
+</span><span id="compare_groups_by_factor_level-736"><a href="#compare_groups_by_factor_level-736"><span class="linenos">736</span></a>                <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-737"><a href="#compare_groups_by_factor_level-737"><span class="linenos">737</span></a>            <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-738"><a href="#compare_groups_by_factor_level-738"><span class="linenos">738</span></a>
+</span><span id="compare_groups_by_factor_level-739"><a href="#compare_groups_by_factor_level-739"><span class="linenos">739</span></a>            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-740"><a href="#compare_groups_by_factor_level-740"><span class="linenos">740</span></a>                <span class="sa">f</span><span class="s2">"Évolution des OS - "</span>
+</span><span id="compare_groups_by_factor_level-741"><a href="#compare_groups_by_factor_level-741"><span class="linenos">741</span></a>                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">extracted_part</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="compare_groups_by_factor_level-742"><a href="#compare_groups_by_factor_level-742"><span class="linenos">742</span></a>            <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-743"><a href="#compare_groups_by_factor_level-743"><span class="linenos">743</span></a>
+</span><span id="compare_groups_by_factor_level-744"><a href="#compare_groups_by_factor_level-744"><span class="linenos">744</span></a>            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Date"</span><span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-745"><a href="#compare_groups_by_factor_level-745"><span class="linenos">745</span></a>            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">var</span><span class="p">))</span>
+</span><span id="compare_groups_by_factor_level-746"><a href="#compare_groups_by_factor_level-746"><span class="linenos">746</span></a>
+</span><span id="compare_groups_by_factor_level-747"><a href="#compare_groups_by_factor_level-747"><span class="linenos">747</span></a>            <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-748"><a href="#compare_groups_by_factor_level-748"><span class="linenos">748</span></a>                <span class="n">axis</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-749"><a href="#compare_groups_by_factor_level-749"><span class="linenos">749</span></a>                <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span>
+</span><span id="compare_groups_by_factor_level-750"><a href="#compare_groups_by_factor_level-750"><span class="linenos">750</span></a>            <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-751"><a href="#compare_groups_by_factor_level-751"><span class="linenos">751</span></a>
+</span><span id="compare_groups_by_factor_level-752"><a href="#compare_groups_by_factor_level-752"><span class="linenos">752</span></a>            <span class="c1"># ==========================================</span>
+</span><span id="compare_groups_by_factor_level-753"><a href="#compare_groups_by_factor_level-753"><span class="linenos">753</span></a>            <span class="c1"># Graph 2</span>
+</span><span id="compare_groups_by_factor_level-754"><a href="#compare_groups_by_factor_level-754"><span class="linenos">754</span></a>            <span class="c1"># Mean per group + SD</span>
+</span><span id="compare_groups_by_factor_level-755"><a href="#compare_groups_by_factor_level-755"><span class="linenos">755</span></a>            <span class="c1"># ==========================================</span>
+</span><span id="compare_groups_by_factor_level-756"><a href="#compare_groups_by_factor_level-756"><span class="linenos">756</span></a>
+</span><span id="compare_groups_by_factor_level-757"><a href="#compare_groups_by_factor_level-757"><span class="linenos">757</span></a>            <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-758"><a href="#compare_groups_by_factor_level-758"><span class="linenos">758</span></a>                <span class="n">data</span><span class="o">=</span><span class="n">var_df</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-759"><a href="#compare_groups_by_factor_level-759"><span class="linenos">759</span></a>                <span class="n">x</span><span class="o">=</span><span class="s2">"Date"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-760"><a href="#compare_groups_by_factor_level-760"><span class="linenos">760</span></a>                <span class="n">y</span><span class="o">=</span><span class="s2">"Valeur"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-761"><a href="#compare_groups_by_factor_level-761"><span class="linenos">761</span></a>                <span class="n">hue</span><span class="o">=</span><span class="s2">"Groupe"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-762"><a href="#compare_groups_by_factor_level-762"><span class="linenos">762</span></a>                <span class="n">style</span><span class="o">=</span><span class="s2">"Groupe"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-763"><a href="#compare_groups_by_factor_level-763"><span class="linenos">763</span></a>                <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-764"><a href="#compare_groups_by_factor_level-764"><span class="linenos">764</span></a>                <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-765"><a href="#compare_groups_by_factor_level-765"><span class="linenos">765</span></a>                <span class="n">dashes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-766"><a href="#compare_groups_by_factor_level-766"><span class="linenos">766</span></a>                <span class="n">errorbar</span><span class="o">=</span><span class="s2">"sd"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-767"><a href="#compare_groups_by_factor_level-767"><span class="linenos">767</span></a>                <span class="n">palette</span><span class="o">=</span><span class="n">palette_dict</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-768"><a href="#compare_groups_by_factor_level-768"><span class="linenos">768</span></a>                <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="compare_groups_by_factor_level-769"><a href="#compare_groups_by_factor_level-769"><span class="linenos">769</span></a>            <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-770"><a href="#compare_groups_by_factor_level-770"><span class="linenos">770</span></a>
+</span><span id="compare_groups_by_factor_level-771"><a href="#compare_groups_by_factor_level-771"><span class="linenos">771</span></a>            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-772"><a href="#compare_groups_by_factor_level-772"><span class="linenos">772</span></a>                <span class="sa">f</span><span class="s2">"Moyenne des groupes - "</span>
+</span><span id="compare_groups_by_factor_level-773"><a href="#compare_groups_by_factor_level-773"><span class="linenos">773</span></a>                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">extracted_part</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="compare_groups_by_factor_level-774"><a href="#compare_groups_by_factor_level-774"><span class="linenos">774</span></a>            <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-775"><a href="#compare_groups_by_factor_level-775"><span class="linenos">775</span></a>
+</span><span id="compare_groups_by_factor_level-776"><a href="#compare_groups_by_factor_level-776"><span class="linenos">776</span></a>            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Date"</span><span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-777"><a href="#compare_groups_by_factor_level-777"><span class="linenos">777</span></a>            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">var</span><span class="p">))</span>
+</span><span id="compare_groups_by_factor_level-778"><a href="#compare_groups_by_factor_level-778"><span class="linenos">778</span></a>
+</span><span id="compare_groups_by_factor_level-779"><a href="#compare_groups_by_factor_level-779"><span class="linenos">779</span></a>            <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-780"><a href="#compare_groups_by_factor_level-780"><span class="linenos">780</span></a>                <span class="n">axis</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-781"><a href="#compare_groups_by_factor_level-781"><span class="linenos">781</span></a>                <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span>
+</span><span id="compare_groups_by_factor_level-782"><a href="#compare_groups_by_factor_level-782"><span class="linenos">782</span></a>            <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-783"><a href="#compare_groups_by_factor_level-783"><span class="linenos">783</span></a>
+</span><span id="compare_groups_by_factor_level-784"><a href="#compare_groups_by_factor_level-784"><span class="linenos">784</span></a>            <span class="c1"># ==========================================</span>
+</span><span id="compare_groups_by_factor_level-785"><a href="#compare_groups_by_factor_level-785"><span class="linenos">785</span></a>            <span class="c1"># Layout</span>
+</span><span id="compare_groups_by_factor_level-786"><a href="#compare_groups_by_factor_level-786"><span class="linenos">786</span></a>            <span class="c1"># ==========================================</span>
+</span><span id="compare_groups_by_factor_level-787"><a href="#compare_groups_by_factor_level-787"><span class="linenos">787</span></a>
+</span><span id="compare_groups_by_factor_level-788"><a href="#compare_groups_by_factor_level-788"><span class="linenos">788</span></a>            <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</span><span id="compare_groups_by_factor_level-789"><a href="#compare_groups_by_factor_level-789"><span class="linenos">789</span></a>
+</span><span id="compare_groups_by_factor_level-790"><a href="#compare_groups_by_factor_level-790"><span class="linenos">790</span></a>            <span class="c1"># ==========================================</span>
+</span><span id="compare_groups_by_factor_level-791"><a href="#compare_groups_by_factor_level-791"><span class="linenos">791</span></a>            <span class="c1"># Add this figure as ONE page</span>
+</span><span id="compare_groups_by_factor_level-792"><a href="#compare_groups_by_factor_level-792"><span class="linenos">792</span></a>            <span class="c1"># ==========================================</span>
+</span><span id="compare_groups_by_factor_level-793"><a href="#compare_groups_by_factor_level-793"><span class="linenos">793</span></a>
+</span><span id="compare_groups_by_factor_level-794"><a href="#compare_groups_by_factor_level-794"><span class="linenos">794</span></a>            <span class="n">pdf</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-795"><a href="#compare_groups_by_factor_level-795"><span class="linenos">795</span></a>                <span class="n">fig</span><span class="p">,</span>
+</span><span id="compare_groups_by_factor_level-796"><a href="#compare_groups_by_factor_level-796"><span class="linenos">796</span></a>                <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">"tight"</span>
+</span><span id="compare_groups_by_factor_level-797"><a href="#compare_groups_by_factor_level-797"><span class="linenos">797</span></a>            <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-798"><a href="#compare_groups_by_factor_level-798"><span class="linenos">798</span></a>
+</span><span id="compare_groups_by_factor_level-799"><a href="#compare_groups_by_factor_level-799"><span class="linenos">799</span></a>            <span class="nb">print</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-800"><a href="#compare_groups_by_factor_level-800"><span class="linenos">800</span></a>                <span class="sa">f</span><span class="s2">"✅ Variable '</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">' added to PDF."</span>
+</span><span id="compare_groups_by_factor_level-801"><a href="#compare_groups_by_factor_level-801"><span class="linenos">801</span></a>            <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-802"><a href="#compare_groups_by_factor_level-802"><span class="linenos">802</span></a>
+</span><span id="compare_groups_by_factor_level-803"><a href="#compare_groups_by_factor_level-803"><span class="linenos">803</span></a>            <span class="c1"># Display</span>
+</span><span id="compare_groups_by_factor_level-804"><a href="#compare_groups_by_factor_level-804"><span class="linenos">804</span></a>            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span><span id="compare_groups_by_factor_level-805"><a href="#compare_groups_by_factor_level-805"><span class="linenos">805</span></a>
+</span><span id="compare_groups_by_factor_level-806"><a href="#compare_groups_by_factor_level-806"><span class="linenos">806</span></a>            <span class="c1"># Free memory</span>
+</span><span id="compare_groups_by_factor_level-807"><a href="#compare_groups_by_factor_level-807"><span class="linenos">807</span></a>            <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-808"><a href="#compare_groups_by_factor_level-808"><span class="linenos">808</span></a>
+</span><span id="compare_groups_by_factor_level-809"><a href="#compare_groups_by_factor_level-809"><span class="linenos">809</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-810"><a href="#compare_groups_by_factor_level-810"><span class="linenos">810</span></a>    <span class="c1"># 7. Final message</span>
+</span><span id="compare_groups_by_factor_level-811"><a href="#compare_groups_by_factor_level-811"><span class="linenos">811</span></a>    <span class="c1"># --------------------------------------------------</span>
+</span><span id="compare_groups_by_factor_level-812"><a href="#compare_groups_by_factor_level-812"><span class="linenos">812</span></a>
+</span><span id="compare_groups_by_factor_level-813"><a href="#compare_groups_by_factor_level-813"><span class="linenos">813</span></a>    <span class="nb">print</span><span class="p">(</span>
+</span><span id="compare_groups_by_factor_level-814"><a href="#compare_groups_by_factor_level-814"><span class="linenos">814</span></a>        <span class="sa">f</span><span class="s2">"✅ Multipage PDF saved at "</span>
+</span><span id="compare_groups_by_factor_level-815"><a href="#compare_groups_by_factor_level-815"><span class="linenos">815</span></a>        <span class="sa">f</span><span class="s2">"'</span><span class="si">{</span><span class="n">pdf_filepath</span><span class="si">}</span><span class="s2">'."</span>
+</span><span id="compare_groups_by_factor_level-816"><a href="#compare_groups_by_factor_level-816"><span class="linenos">816</span></a>    <span class="p">)</span>
+</span><span id="compare_groups_by_factor_level-817"><a href="#compare_groups_by_factor_level-817"><span class="linenos">817</span></a>
+</span><span id="compare_groups_by_factor_level-818"><a href="#compare_groups_by_factor_level-818"><span class="linenos">818</span></a>    <span class="k">return</span> <span class="n">df_final</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Compare two groups by a factor level, transform data,
+save outputs, and plot time series.</p>
+
+<p>All visualizations are saved in a single multipage PDF.</p>
+
+<h2 id="parameters">Parameters</h2>
+
+<p>group_dict : dict
+    Dictionary containing all groups (keys = identifiers or IDs).</p>
+
+<p>session : requests.Session
+    Authenticated session for OpenSILEX API.</p>
+
+<p>experiment_name : str
+    Name of the experiment to fetch data from.</p>
+
+<p>group1_id, group2_id : str
+    Identifiers of the two groups to compare.</p>
+
+<p>factor : str
+    Column name containing the factor level
+    (e.g. "Water Level").</p>
+
+<p>csv_filepath : str, optional
+    Path of the output CSV file.</p>
+
+<p>pdf_filepath : str, optional
+    Path of the output multipage PDF file.</p>
+
+<h2 id="returns">Returns</h2>
+
+<p>pandas.DataFrame
+    Combined DataFrame with columns:
+    ['Date', 'URI', 'Groupe', factor, 'Variable', 'Valeur']</p>
+</div>
+
+
+                </section>
+    </main>
+<script>
+    function escapeHTML(html) {
+        return document.createElement('div').appendChild(document.createTextNode(html)).parentNode.innerHTML;
+    }
+
+    const originalContent = document.querySelector("main.pdoc");
+    let currentContent = originalContent;
+
+    function setContent(innerHTML) {
+        let elem;
+        if (innerHTML) {
+            elem = document.createElement("main");
+            elem.classList.add("pdoc");
+            elem.innerHTML = innerHTML;
+        } else {
+            elem = originalContent;
+        }
+        if (currentContent !== elem) {
+            currentContent.replaceWith(elem);
+            currentContent = elem;
+        }
+    }
+
+    function getSearchTerm() {
+        return (new URL(window.location)).searchParams.get("search");
+    }
+
+    const searchBox = document.querySelector(".pdoc input[type=search]");
+    searchBox.addEventListener("input", function () {
+        let url = new URL(window.location);
+        if (searchBox.value.trim()) {
+            url.hash = "";
+            url.searchParams.set("search", searchBox.value);
+        } else {
+            url.searchParams.delete("search");
+        }
+        history.replaceState("", "", url.toString());
+        onInput();
+    });
+    window.addEventListener("popstate", onInput);
+
+
+    let search, searchErr;
+
+    async function initialize() {
+        try {
+            search = await new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.type = "text/javascript";
+                script.async = true;
+                script.onload = () => resolve(window.pdocSearch);
+                script.onerror = (e) => reject(e);
+                script.src = "../search.js";
+                document.getElementsByTagName("head")[0].appendChild(script);
+            });
+        } catch (e) {
+            console.error("Cannot fetch pdoc search index");
+            searchErr = "Cannot fetch search index.";
+        }
+        onInput();
+
+        document.querySelector("nav.pdoc").addEventListener("click", e => {
+            if (e.target.hash) {
+                searchBox.value = "";
+                searchBox.dispatchEvent(new Event("input"));
+            }
+        });
+    }
+
+    function onInput() {
+        setContent((() => {
+            const term = getSearchTerm();
+            if (!term) {
+                return null
+            }
+            if (searchErr) {
+                return `<h3>Error: ${searchErr}</h3>`
+            }
+            if (!search) {
+                return "<h3>Searching...</h3>"
+            }
+
+            window.scrollTo({top: 0, left: 0, behavior: 'auto'});
+
+            const results = search(term);
+
+            let html;
+            if (results.length === 0) {
+                html = `No search results for '${escapeHTML(term)}'.`
+            } else {
+                html = `<h4>${results.length} search result${results.length > 1 ? "s" : ""} for '${escapeHTML(term)}'.</h4>`;
+            }
+            for (let result of results.slice(0, 10)) {
+                let doc = result.doc;
+                let url = `../${doc.modulename.replaceAll(".", "/")}.html`;
+                if (doc.qualname) {
+                    url += `#${doc.qualname}`;
+                }
+
+                let heading;
+                switch (result.doc.kind) {
+                    case "function":
+                        if (doc.fullname.endsWith(".__init__")) {
+                            heading = `<span class="name">${doc.fullname.replace(/\.__init__$/, "")}</span>${doc.signature}`;
+                        } else {
+                            heading = `<span class="def">${doc.funcdef}</span> <span class="name">${doc.fullname}</span>${doc.signature}`;
+                        }
+                        break;
+                    case "class":
+                        heading = `<span class="def">class</span> <span class="name">${doc.fullname}</span>`;
+                        if (doc.bases)
+                            heading += `<wbr>(<span class="base">${doc.bases}</span>)`;
+                        heading += `:`;
+                        break;
+                    case "variable":
+                        heading = `<span class="name">${doc.fullname}</span>`;
+                        if (doc.annotation)
+                            heading += `<span class="annotation">${doc.annotation}</span>`;
+                        if (doc.default_value)
+                            heading += `<span class="default_value"> = ${doc.default_value}</span>`;
+                        break;
+                    default:
+                        heading = `<span class="name">${doc.fullname}</span>`;
+                        break;
+                }
+                html += `
+                        <section class="search-result">
+                        <a href="${url}" class="attr ${doc.kind}">${heading}</a>
+                        <div class="docstring">${doc.doc}</div>
+                        </section>
+                    `;
+
+            }
+            return html;
+        })());
+    }
+
+    if (getSearchTerm()) {
+        initialize();
+        searchBox.value = getSearchTerm();
+        onInput();
+    } else {
+        searchBox.addEventListener("focus", initialize, {once: true});
+    }
+
+    searchBox.addEventListener("keydown", e => {
+        if (["ArrowDown", "ArrowUp", "Enter"].includes(e.key)) {
+            let focused = currentContent.querySelector(".search-result.focused");
+            if (!focused) {
+                currentContent.querySelector(".search-result").classList.add("focused");
+            } else if (
+                e.key === "ArrowDown"
+                && focused.nextElementSibling
+                && focused.nextElementSibling.classList.contains("search-result")
+            ) {
+                focused.classList.remove("focused");
+                focused.nextElementSibling.classList.add("focused");
+                focused.nextElementSibling.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "nearest"
+                });
+            } else if (
+                e.key === "ArrowUp"
+                && focused.previousElementSibling
+                && focused.previousElementSibling.classList.contains("search-result")
+            ) {
+                focused.classList.remove("focused");
+                focused.previousElementSibling.classList.add("focused");
+                focused.previousElementSibling.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "nearest"
+                });
+            } else if (
+                e.key === "Enter"
+            ) {
+                focused.querySelector("a").click();
+            }
+        }
+    });
+</script></body>
+</html>
